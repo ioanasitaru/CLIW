@@ -1,0 +1,52 @@
+#right-side, #left-side, #logo, #progress-image, #side-bar-buttons, content {
+	border: solid 1px black;
+}
+
+#logo {
+	height: 20px;
+	width: 20px;
+	margin-left: 20px;
+}
+
+#left-side {
+	display: inline-block;
+	float: left;
+	width: 60%;
+	margin-left: 20px;
+}
+
+content {
+	width: 90%;
+	height: 90%;
+	margin: 10px 20px 10px 20px;
+	display: inline-block;
+	float: left;
+}
+
+#right-side {
+	display: inline-block;
+	float: right;
+	width: 30%;
+	margin-right: 20px;
+}
+
+#progress-image {
+	height: 100px;
+	width: 150px;
+	margin: auto;
+}
+
+#side-bar-buttons {
+	margin-top: 20px;
+}
+
+button {
+	display: block;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#left-side, #right-side {
+	margin-top: 20px;
+}
