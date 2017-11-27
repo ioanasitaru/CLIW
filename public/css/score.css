@@ -55,6 +55,17 @@ a:hover {
     border-bottom-color: transparent;
 }
 
+.twitter{
+    color: #00aced;
+    border: none;
+}
+
+.twitter:hover {
+    color: #c0deed !important;
+    cursor: pointer;
+}
+
+
 h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
     font-weight: 300;
@@ -206,6 +217,10 @@ header.major:after {
 }
 
 #progress-bar-1 {
+     width: 100%;
+     background-color: rgba(39, 40, 51, 0.965);
+ }
+#progress-bar-2 {
     width: 100%;
     background-color: rgba(39, 40, 51, 0.965);
 }
@@ -215,6 +230,17 @@ header.major:after {
 }
 
 #bar-1 {
+    border-radius: 5px;
+    width: 1%;
+    height: 30px;
+    background: #e44c65;
+    background: -webkit-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* Standard syntax */
+}
+
+#bar-2 {
     border-radius: 5px;
     width: 1%;
     height: 30px;
