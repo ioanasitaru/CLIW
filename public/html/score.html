@@ -6,26 +6,119 @@
     <link href="../css/score.css" rel="stylesheet">
 </head>
 <body>
-    <div id="page-wrapper">
-        <header id="header">
-            <h1>
-                <a href="#">Your Progress</a>
-            </h1>
-        </header>
-        <div id="main" class="wrapper">
-            <div class="container">
-                <header class="major">
-                    <h2>Your score at writing</h2>
-                    <p>You're doing pretty good..</p>
-                </header>
-                <section id="content">
-                    <a href="#" class="image fit">
-                        <img src="../img/pic05.jpg" alt="">
-                    </a>
-                    <p>Yes</p>
-                </section>
-            </div>
+<div id="page-wrapper">
+    <header id="header">
+        <h1>
+            <a href="#">Your Progress</a>
+        </h1>
+    </header>
+    <div id="main" class="wrapper">
+        <div class="container">
+            <header class="major">
+                <h2>Your stats at writing</h2>
+                <p>You're doing pretty good..</p>
+            </header>
+            <section id="content">
+                <h3>Last week performance:</h3>
+                <a href="#" class="image fit">
+                    <div id="chart"></div>
+                </a>
+                <h3>Current streak:</h3>
+                <div id="progress-bar-1">
+                    <div id="bar-1"></div>
+                </div>
+                <h5 id="progress">6 of maximum streak of 6</h5>
+            </section>
         </div>
     </div>
+</div>
+<script>
+    var chartjson = {
+        "title": "",
+        "data": [{
+            "name": "Monday",
+            "score": 10
+        }, {
+            "name": "Tuesday",
+            "score": 11
+        }, {
+            "name": "Wednesday",
+            "score": 4
+        }, {
+            "name": "Thursday",
+            "score": 3
+        },
+        {
+            "name": "Friday",
+            "score": 10
+        }, {
+            "name": "Saturday",
+            "score": 24
+        }, {
+            "name": "Sunday",
+            "score": 80
+        }],
+        "ymax": 120,
+        "ykey": 'score',
+        "xkey": "name",
+        "prefix": "%"
+    };
+
+    //chart colors
+    var colors = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen'];
+
+    //constants
+    var TROW = 'tr',
+        TDATA = 'td';
+
+    var chart = document.createElement('div');
+    //create the chart canvas
+    var barchart = document.createElement('table');
+    chart.appendChild(barchart);
+
+    //create the bar row
+    var barrow = document.createElement(TROW);
+    barrow.setAttribute('class', 'bars');
+
+    //lets add data to the chart
+    for (var i = 0; i < chartjson.data.length; i++) {
+        var prefix = '';
+        //create the bar data
+        var bardata = document.createElement(TDATA);
+        var bar = document.createElement('div');
+        bar.setAttribute('class', 'bar ' + colors[i]);
+        bar.style.height = chartjson.data[i][chartjson.ykey] + "%";
+        bardata.innerText = chartjson.data[i][chartjson.ykey] + prefix;
+        bardata.appendChild(bar);
+
+        var legbox = document.createElement('span');
+        legbox.setAttribute('class', 'legbox');
+        bardata.appendChild(legbox);
+        var bartext = document.createElement('span');
+        bartext.innerText = chartjson.data[i][chartjson.xkey];
+        legbox.appendChild(bartext);
+
+        barrow.appendChild(bardata);
+    }
+
+    barchart.appendChild(barrow);
+    chart.appendChild(barchart);
+    document.getElementById('chart').innerHTML = chart.outerHTML;
+</script>
+<script>
+    var elem = document.getElementById("bar-1");
+    var width = 1;
+    var id = setInterval(frame, 10);
+
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
+</script>
+
 </body>
 </html>
