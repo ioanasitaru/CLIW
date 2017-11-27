@@ -3,35 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>About</title>
-    <link href="../css/score.css" rel="stylesheet">
     <link href="../css/about.css" rel="stylesheet">
 </head>
-<body>
+<body class="landing">
     <div id="page-wrapper">
-        <header id="header">
-            <h1>
-                <a href="#">
-                    <img src="../img/logo.png">
-                </a>
-            </h1>
-        </header>
-        <div id="main" class="wrapper">
-            <div class="container">
-                <header class="major">
-                    <h1>About</h1>
+        <section id="banner">
+            <div class="content">
+                <header>
+                    <h2>ASLE</h2>
+                    <p>Asian Language<br />
+                    Learning Web Tool</p>
                 </header>
-                <section id="content">
-                    <p>
-                        <b>ASLE</b> (Asian Language Learner) is an application designed to help you learn to write and speak various Asian languages
-                        (e.g. Mandarin, Japanese, Korean etc.) by helping you practice writing, increase your vocabulary and many other
-                        linguistic skills. The cornerstone of this application is its ability to adapt to your needs, as you can easily
-                        adjust which modules you would like to see and train with. Using the provided template, any developer can contribute
-                        to the module list, thus helping it expand even further.
-                    </p>
-                    <h3><span>Features</span></h3>
-                </section>
+                <span class="image"><img src="../img/logo2.png" alt="" /></span>
             </div>
-        </div>
+            <span class="goto-next" onclick="scrollIt(document.getElementById('two'));">Next</span>
+        </section>
+        <section id="two" class="spotlight style2 right">
+            <span class="image fit main"><img src="../img/japanese.jpg" alt="japanese characters" /></span>
+            <div class="content">
+                <header>
+                    <h2>Overview</h2>
+                    <p><b>ASLE</b> (<b>As</b>ian Language <b>Le</b>arning Web Tool) is an application designed to help you learn to write and speak various Asian languages
+                        (e.g. Mandarin, Japanese, Korean etc.) by helping you practice writing, increase your vocabulary and many other
+                        linguistic skills.
+                    </p>
+                </header>
+            </div>
+            <span class="goto-next" onclick="scrollIt(document.getElementById('three'));">Next</span>
+        </section>
+
+        <section id="three" class="spotlight style3 left">
+            <span class="image fit main bottom"><img src="../img/tsunami.jpg" alt="tsunami drawing" /></span>
+            <div class="content">
+                <header>
+                    <h2>Customizable</h2>
+                    <p>The cornerstone of this application is its ability to adapt to your needs, as you can easily
+                        adjust which modules you would like to see and train with. Using the provided template, any developer can contribute
+                        to the module list, thus helping it expand even further.</p>
+                </header>
+            </div>
+            <span class="goto-next" onclick="scrollIt(document.getElementById('four'));">Next</span>
+        </section>
     </div>
 </body>
+
+<script>
+    function scrollIt(element) {
+        window.scrollTo({
+            'behavior': 'smooth',
+            'left': 0,
+            'top': element.offsetTop
+        });
+    }
+</script>
 </html>
