@@ -1,18 +1,12 @@
 #right-side, #left-side, #logo, #progress-image, #side-bar-buttons, content {
-    border: solid 1px black;
-}
-
-#logo {
-    height: 20px;
-    width: 20px;
-    margin-left: 20px;
+    border: solid 1px white;
 }
 
 #left-side {
     display: inline-block;
     float: left;
     width: 60%;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 content {
@@ -26,12 +20,12 @@ content {
 #right-side {
     display: inline-block;
     float: right;
-    width: 30%;
-    margin-right: 20px;
+    width: 25%;
+    margin-right: 40px;
 }
 
 #progress-image {
-    height: 100px;
+    height: 120px;
     width: 150px;
     margin: auto;
 }
@@ -49,4 +43,9 @@ button {
 
 #left-side, #right-side {
     margin-top: 20px;
+}
+
+#progress-image img {
+    height: 100%;
+    width: 100%;
 }

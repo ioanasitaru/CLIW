@@ -6,8 +6,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font: inherit;
+    font-size: 100%;
     vertical-align: baseline;
 }
 
@@ -44,7 +44,6 @@ body {
 a {
     -moz-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -webkit-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    -ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
     border-bottom: dotted 1px;
     color: #e44c65;
@@ -55,6 +54,17 @@ a:hover {
     color: #e44c65 !important;
     border-bottom-color: transparent;
 }
+
+.twitter{
+    color: #00aced;
+    border: none;
+}
+
+.twitter:hover {
+    color: #c0deed !important;
+    cursor: pointer;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
@@ -104,15 +114,6 @@ header.major {
     margin: 0 0 4em 0;
     position: relative;
     text-align: center;
-}
-
-header.major:after {
-    background: #e44c65;
-    content: '';
-    display: inline-block;
-    height: 0.2em;
-    max-width: 20em;
-    width: 75%;
 }
 
 .image.fit img {
@@ -206,8 +207,124 @@ header.major:after {
     display: none;
 }
 
+#progress-bar-1 {
+     width: 100%;
+     background-color: rgba(39, 40, 51, 0.965);
+ }
+#progress-bar-2 {
+    width: 100%;
+    background-color: rgba(39, 40, 51, 0.965);
+}
+
+#progress {
+    text-align: center;
+}
+
+#bar-1 {
+    border-radius: 5px;
+    width: 1%;
+    height: 30px;
+    background: #e44c65;
+    background: -webkit-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* Standard syntax */
+}
+
+#bar-2 {
+    border-radius: 5px;
+    width: 1%;
+    height: 30px;
+    background: #e44c65;
+    background: -webkit-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #E81F1A, #e13652, #477B6F); /* Standard syntax */
+}
+
+#chart {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    height: 400px;
+}
+
+.charttitle {
+    text-align: center;
+}
+
+.bars td {
+    vertical-align: bottom;
+}
+
+.bars div:hover {
+    opacity: 0.6;
+}
+
+.legend {
+    vertical-align: bottom;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.legbox {
+    display: block;
+    clear: both;
+}
+
+.xaxisname {
+    margin: 5px;
+    color: #fff;
+    font-size: 77%;
+    padding: 5px;
+    float: left;
+}
+
+/*Flat UI colors*/
+
+.one {
+    background: #16A085;
+}
+
+.two {
+    background: #2ECC71;
+}
+
+.three {
+    background: #27AE60;
+}
+
+.four {
+    background: #3498DB;
+}
+
+.five {
+    background: #2980B9;
+}
+
+.six {
+    background: #9B59B6;
+}
+
+.seven {
+    background: #8E44AD;
+}
+
+.bar {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 .wrapper {
     padding: 6em 0 4em 0;
+}
+
+td {
+    color: white;
+    width:14%;
+    text-align: center;
 }
 
 .container {
@@ -234,7 +351,7 @@ body.landing #header {
 
 @media screen and (max-width: 1680px) {
     .container {
-        width: 70em;
+        width: 90%;
     }
 
     .wrapper {
