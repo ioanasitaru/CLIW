@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,500,700');
 
 /* Reset */
 
@@ -232,21 +232,25 @@ body.landing #header {
 
 /* XLarge */
 
+@media screen and (max-width: 1680px) {
+    .container {
+        width: 70em;
+    }
+
+    .wrapper {
+        padding: 4.5em 2.5em 2.5em 2.5em;
+    }
+}
+
+/* Large */
+
 @media screen and (max-width: 1280px) {
     .container {
         width: 90%;
     }
 
     .wrapper {
-        padding: 4.5em 0 2.5em 0;
-    }
-}
-
-/* Large */
-
-@media screen and (max-width: 1680px) {
-    .container {
-        width: 70em;
+        padding: 4.5em 2.5em 2.5em 2.5em;
     }
 }
 

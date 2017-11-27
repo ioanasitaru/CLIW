@@ -1,0 +1,22 @@
+h1 {
+	font-size: 2em;
+}
+
+b {
+	font-weight: 400;
+}
+
+img {
+	width: 12%;
+	height: 120%;
+}
+
+#content h3 {
+	text-align: center;
+	margin-top: 40px;
+}
+
+#content h3 span {
+	padding-bottom: 15px;
+	border-bottom: #39c088 3px solid;
+}
