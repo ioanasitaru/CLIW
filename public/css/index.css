@@ -1,0 +1,22 @@
+.min-major {
+    margin: 0 0 2em 0;
+    position: relative;
+    text-align: center;
+}
+
+.min-major:after {
+    background: #e44c65;
+    content: '';
+    display: inline-block;
+    height: 0.2em;
+    max-width: 20em;
+    width: 75%;
+}
+
+.title, .subtitle {
+	margin-bottom: 0px;
+}
+
+.wrapper {
+	padding-top: 40px;
+}
