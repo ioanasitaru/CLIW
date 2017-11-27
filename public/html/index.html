@@ -11,11 +11,9 @@
 <body>
     <div id="page-wrapper">
         <header id="header">
-            <h1>
                 <a href="#">
-                    <img src="../img/logo.png">
+                    <img src="../img/logo.png" id="logo">
                 </a>
-            </h1>
         </header>
         <div id="main" class="wrapper">
             <div class="container">
@@ -25,7 +23,7 @@
                 </header>
                 <section id="content">
                     <div id="left-side">
-                        <content> <canvas> </canvas> </content>
+                        <content id="changeable_content"> <canvas> </canvas> </content>
                     </div>
                     <div id="right-side">
                         <div id="progress-image"> <img src="../img/progress_max.png"> </div>
@@ -33,7 +31,7 @@
                             <section>
                                 <h3> Canvas practice</h3>
                                 <p> Passionate about asian culture? You should start your advanture by learning how to write with this module, thought especially for beginners.</p>
-                                <button>
+                                <button onclick="changeContentToCanvas()">
                                     Try it out!
                                 </button>
                             </section>
@@ -41,7 +39,7 @@
                             <section>
                                 <h3> Quiz </h3>
                                 <p> Bored of drawing letters? Do you consider yourself better than that? </p>
-                                <button>
+                                <button onclick="changeContentToExercises()">
                                     Evaluate yourself!
                                 </button>
                             </section> 
@@ -51,6 +49,28 @@
             </div>
         </div>
     </div>
+     <script>
+        function changeContentToExercises(){
+        
+        var h = document.createElement("h1");
+         h.innerHTML = "H1 Inner HTML";
+
+        var nod = document.getElementById("changeable_content");
+
+        nod.parentElement.replaceChild(h, nod);
+        }
+    </script>
+    <script>
+        function changeContentToCanvas(){
+        
+        var h = document.createElement("h1");
+         h.innerHTML = "H2 Inner HTML";
+
+        var nod = document.getElementById("changeable_content");
+
+        nod.parentElement.replaceChild(h, nod);
+        }
+    </script>      
     
 
 </body>

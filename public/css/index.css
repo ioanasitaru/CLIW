@@ -67,3 +67,9 @@ canvas {
 	border-radius: 8px;
     border: 0;
 }
+
+#logo {
+	height: 65px;
+	width: 90px;
+}
+
