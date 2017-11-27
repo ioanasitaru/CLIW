@@ -1,11 +1,11 @@
-#right-side, #left-side, #logo, #progress-image, #side-bar-buttons, content {
+/*#right-side, #left-side, #logo, #progress-image, #side-bar-buttons, content {
     border: solid 1px white;
-}
+}*/
 
 #left-side {
     display: inline-block;
     float: left;
-    width: 60%;
+    width: 65%;
     margin-left: 40px;
 }
 
@@ -32,13 +32,6 @@ content {
 
 #side-bar-buttons {
     margin-top: 20px;
-}
-
-button {
-    display: block;
-    margin: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
 }
 
 #left-side, #right-side {
