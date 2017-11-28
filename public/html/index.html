@@ -29,7 +29,7 @@
                                 <p id="translated-word"> Translate: </p>
                             </div>
                             <div id="question">
-                               <h1>Quiz on Important Facts</h1>
+                               <h1>Quick Quiz</h1>
                                 <div class="quiz-container">
                                   <div id="quiz"></div>
                                 </div>
@@ -100,151 +100,137 @@
         }
     </script>
     <script>
-    (function() {
-    const myQuestions = [
-    {
-      question: "Who is the strongest?",
-      answers: {
-        a: "Superman",
-        b: "The Terminator",
-        c: "Waluigi, obviously"
-      },
-      correctAnswer: "c"
-    },
-    {
-      question: "What is the best site ever created?",
-      answers: {
-        a: "SitePoint",
-        b: "Simple Steps Code",
-        c: "Trick question; they're both the best"
-      },
-      correctAnswer: "c"
-    },
-    {
-      question: "Where is Waldo really?",
-      answers: {
-        a: "Antarctica",
-        b: "Exploring the Pacific Ocean",
-        c: "Sitting in a tree",
-        d: "Minding his own business, so stop asking"
-      },
-      correctAnswer: "d"
-    }
-    ];
+        (function() {
+        const myQuestions = [
+        {
+          question: "Select the Japanese translation for the English sentence: Good morning. ",
+          answers: {
+            a: "Ohayō gozaimasu",
+            b: "Gomennasai",
+            c: "O-yasumi nasai"
+          },
+          correctAnswer: "a"
+        },
+        {
+          question: "Check the numeral that matches the Japanese word: sanjū",
+          answers: {
+            a: "300",
+            b: "30",
+            c: "3"
+          },
+          correctAnswer: "b"
+        },
+        {
+          question: "Select the English translation for each Japanese sentence: Nante iimashita ka.",
+          answers: {
+            a: "I don't know what to say.",
+            b: "What did you say?",
+            c: "Did you say something?",
+          },
+          correctAnswer: "b"
+        }
+        ];
 
-  function buildQuiz() {
-    // we'll need a place to store the HTML output
-    const output = [];
+      function buildQuiz() {
 
-    // for each question...
-    myQuestions.forEach((currentQuestion, questionNumber) => {
-      // we'll want to store the list of answer choices
-      const answers = [];
+        const output = [];
 
-      // and for each available answer...
-      for (letter in currentQuestion.answers) {
-        // ...add an HTML radio button
-        answers.push(
-          `<label>
-             <input type="radio" name="question${questionNumber}" value="${letter}">
-              ${letter} :
-              ${currentQuestion.answers[letter]}
-           </label>`
-        );
+        myQuestions.forEach((currentQuestion, questionNumber) => {
+
+          const answers = [];
+
+          for (letter in currentQuestion.answers) {
+            answers.push(
+              `<label>
+                 <input type="radio" name="question${questionNumber}" value="${letter}">
+                  ${letter} :
+                  ${currentQuestion.answers[letter]}
+               </label>`
+            );
+          }
+
+          output.push(
+            `<div class="slide">
+               <div class="question"> ${currentQuestion.question} </div>
+               <div class="answers"> ${answers.join("")} </div>
+             </div>`
+          );
+        });
+
+        quizContainer.innerHTML = output.join("");
       }
 
-      // add this question and its answers to the output
-      output.push(
-        `<div class="slide">
-           <div class="question"> ${currentQuestion.question} </div>
-           <div class="answers"> ${answers.join("")} </div>
-         </div>`
-      );
-    });
+      function showResults() {
 
-    // finally combine our output list into one string of HTML and put it on the page
-    quizContainer.innerHTML = output.join("");
-  }
+        const answerContainers = quizContainer.querySelectorAll(".answers");
 
-  function showResults() {
-    // gather answer containers from our quiz
-    const answerContainers = quizContainer.querySelectorAll(".answers");
+        let numCorrect = 0;
 
-    // keep track of user's answers
-    let numCorrect = 0;
+        myQuestions.forEach((currentQuestion, questionNumber) => {
 
-    // for each question...
-    myQuestions.forEach((currentQuestion, questionNumber) => {
-      // find selected answer
-      const answerContainer = answerContainers[questionNumber];
-      const selector = `input[name=question${questionNumber}]:checked`;
-      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+          const answerContainer = answerContainers[questionNumber];
+          const selector = `input[name=question${questionNumber}]:checked`;
+          const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-      // if answer is correct
-      if (userAnswer === currentQuestion.correctAnswer) {
-        // add to the number of correct answers
-        numCorrect++;
+          if (userAnswer === currentQuestion.correctAnswer) {
 
-        // color the answers green
-        answerContainers[questionNumber].style.color = "lightgreen";
-      } else {
-        // if answer is wrong or blank
-        // color the answers red
-        answerContainers[questionNumber].style.color = "red";
+            numCorrect++;
+
+            answerContainers[questionNumber].style.color = "lightgreen";
+          } else {
+
+            answerContainers[questionNumber].style.color = "red";
+          }
+        });
+
+        resultsContainer.innerHTML = ` You have answered corectly at ${numCorrect} out of ${myQuestions.length} questions. You've earned ${numCorrect*10} points. `;
       }
-    });
 
-    // show number of correct answers out of total
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-  }
+      function showSlide(n) {
+        slides[currentSlide].classList.remove("active-slide");
+        slides[n].classList.add("active-slide");
+        currentSlide = n;
+        
+        if (currentSlide === 0) {
+          previousButton.style.display = "none";
+        } else {
+          previousButton.style.display = "inline-block";
+        }
+        
+        if (currentSlide === slides.length - 1) {
+          nextButton.style.display = "none";
+          submitButton.style.display = "inline-block";
+        } else {
+          nextButton.style.display = "inline-block";
+          submitButton.style.display = "none";
+        }
+      }
 
-  function showSlide(n) {
-    slides[currentSlide].classList.remove("active-slide");
-    slides[n].classList.add("active-slide");
-    currentSlide = n;
-    
-    if (currentSlide === 0) {
-      previousButton.style.display = "none";
-    } else {
-      previousButton.style.display = "inline-block";
-    }
-    
-    if (currentSlide === slides.length - 1) {
-      nextButton.style.display = "none";
-      submitButton.style.display = "inline-block";
-    } else {
-      nextButton.style.display = "inline-block";
-      submitButton.style.display = "none";
-    }
-  }
+      function showNextSlide() {
+        showSlide(currentSlide + 1);
+      }
 
-  function showNextSlide() {
-    showSlide(currentSlide + 1);
-  }
+      function showPreviousSlide() {
+        showSlide(currentSlide - 1);
+      }
 
-  function showPreviousSlide() {
-    showSlide(currentSlide - 1);
-  }
+      const quizContainer = document.getElementById("quiz");
+      const resultsContainer = document.getElementById("results");
+      const submitButton = document.getElementById("submit");
 
-  const quizContainer = document.getElementById("quiz");
-  const resultsContainer = document.getElementById("results");
-  const submitButton = document.getElementById("submit");
+      buildQuiz();
 
-  // display quiz right away
-  buildQuiz();
+      const previousButton = document.getElementById("previous");
+      const nextButton = document.getElementById("next");
+      const slides = document.querySelectorAll(".slide");
+      let currentSlide = 0;
 
-  const previousButton = document.getElementById("previous");
-  const nextButton = document.getElementById("next");
-  const slides = document.querySelectorAll(".slide");
-  let currentSlide = 0;
+      showSlide(0);
 
-  showSlide(0);
-
-  // on submit, show results
-  submitButton.addEventListener("click", showResults);
-  previousButton.addEventListener("click", showPreviousSlide);
-  nextButton.addEventListener("click", showNextSlide);
-})();
+      submitButton.addEventListener("click", showResults);
+      previousButton.addEventListener("click", showPreviousSlide);
+      nextButton.addEventListener("click", showNextSlide);
+    })();
     </script>
     
 
