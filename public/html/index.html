@@ -28,7 +28,7 @@
                                 <canvas > </canvas>
                             </div>
                             <div id="quiz">
-                                <h3>Yes</h3>
+                                <h4>How are you today?</h4>
                             </div>
                         </content>
                     </div>
@@ -60,35 +60,26 @@
      <script>
         function changeContentToExercises(){
         
-            // var newChild = document.createElement("h1");
-            // newChild.innerHTML = "H1 Inner HTML";
+            var nodes = document.getElementById('changeable_content').childNodes;
+            for(var i=0; i < nodes.length; i++) {
+                if (nodes[i].nodeName.toLowerCase() == 'div') {
+                    nodes[i].style.display = "none";
+                }
+            }
 
-            // var parrentNode = document.getElementById("changeable_content");
-
-            // while (parrentNode.firstChild) {
-            //     parrentNode.removeChild(parrentNode.firstChild);
-            // }
-
-            // parrentNode.appendChild(newChild)
-
-            document.getElementById("draw").style.display = "none";
             document.getElementById("quiz").style.display = "block";
         }
 
-        function changeContentToCanvas(){
+        function changeContentToCanvas() {
 
-            // var newChild = document.createElement("canvas");
+            var nodes = document.getElementById('changeable_content').childNodes;
+            for(var i=0; i < nodes.length; i++) {
+                if (nodes[i].nodeName.toLowerCase() == 'div') {
+                    nodes[i].style.display = "none";
+                }
+            }
 
-            // var parrentNode = document.getElementById("changeable_content");
-
-            // while (parrentNode.firstChild) {
-            //     parrentNode.firstChild.style.display = "none";
-            // }
-
-            // parrentNode.appendChild(newChild)
-
-            document.getElementById("quiz").style.display = "none";
-            document.getElementById("canvas").style.display = "block";
+            document.getElementById("draw").style.display = "block";
         }
     </script>      
     

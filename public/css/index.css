@@ -47,6 +47,10 @@ button:hover {
 	box-shadow: inset 0 0 0 1px  #e44c65;
 }
 
+button:focus {
+	outline:0;
+}
+
 hr {
     border: 0;
     border-bottom: solid 1px rgba(255, 255, 255, 0.3);
@@ -77,6 +81,6 @@ a {
     border: none
 }
 
-#draw, #quiz {
-	display: block;
+#quiz {
+	display: none;
 }
