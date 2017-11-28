@@ -31,7 +31,6 @@ table {
 body, input, select, textarea {
     color: rgba(255, 255, 255, 0.75);
     font-family: "Roboto", Helvetica, sans-serif;
-    font-size: 15pt;
     font-weight: 100;
     line-height: 1.75em;
 }
@@ -39,6 +38,26 @@ body, input, select, textarea {
 body {
     -webkit-text-size-adjust: none;
     background: #1c1d26;
+}
+
+#logo {
+    height: 3.5em;
+    width: 70px;
+}
+
+#logo-link{
+    position: absolute;
+    border-bottom: none;
+    border-right: white;
+    margin-left: 6em;
+}
+
+div.vertical-line{
+    width: 0.5px;
+    background-color: white;
+    height: 80%;
+    margin-left: 10.5em;
+    margin-top: 5px;
 }
 
 a {
@@ -162,7 +181,7 @@ header.major {
 
 #header nav {
     position: absolute;
-    right: 1em;
+    right: 6em;
     top: 0;
 }
 

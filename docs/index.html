@@ -29,7 +29,8 @@
                 <li><a href="#idei-concepte-design">2. Idei/concepte importante privind designul general</a></li>
                 <li><a href="#interactiune-utilizator">3. Maniera de interacţiune cu utilizatorul</a></li>
                 <li><a href="#model-api-stocare">4. Modelul datelor, API-uri externe, soluţii de stocare</a></li>
-                <li><a href="#cod-sursa">5. Maniera de folosire a sistemului de management al codului-sursă ales</a></li>
+                <li><a href="#cod-sursa">5. Maniera de folosire a sistemului de management al codului-sursă ales</a>
+                </li>
                 <li><a href="#membrii-echipei">6. Membrii echipei</a></li>
             </ul>
             <!--</p>-->
@@ -115,32 +116,52 @@
                 Am decis sa apelăm la acest API în defavoarea binecunoscutului Google Translate deoarece Google Cloud
                 Platform
                 obligă pe toți utilizatorii europeni ai platformei să își înregistreze un cont business. Cum aplicația
-                noastră este una lightweight și open-source am căutat și alte api-ui. Yandex Translate
+                noastră este una lightweight și open-source am căutat alternative. Yandex Translate este un sistem de
+                traducere statistic
+                ce oferă în pachetul gratuit 1,000,000 de caractere pe zi dar nu mai mult de 10,000,000 pe lună, mai
+                mult decât suficient pentru traficul scontat pentru aplicația noastră.
             </p>
         </blockquote>
         <blockquote>
             <h3> Google Firebase </h3>
             <p>
                 Google Firebase vine cu o suită de tools-uri precum Google Functions, Google Hosting, Google
-                authentication.
+                authentication pentru a folosi un instrument software aliniat problematicilor serverless și deci pentru
+                a ne concentra asupra interacțiunii cu utilizatorul la nivel de client.
             </p>
         </blockquote>
         <blockquote>
             <h3> Jisho </h3>
             <p>
-                Jisho este un dicționar japonez
+                Jisho este un dicționar japonez-englez căutarea putându-se face după cuvinte, kanju, exemple de
+                utilizare în propoziții rapid si ușor. Rezultatul oferit conține toate sensurile posibile, folosirea
+                termenului în diferite contexte și sinonime. Acest API va fi folosit la generarea de quizzuri de
+                traducere.
             </p>
         </blockquote>
         <blockquote>
             <h3> Twitter API</h3>
             <p>
-                Pentru partajarea progresului
+                Vom folosi API-ul oferit de Twitter, eventual împreună cu tool-ul pus la dispoziție de Google Firebase
+                Authentication, pentru a-i oferi utilizatorului posibilitatea de a da share la progresul înregistrat în
+                aplicație pe rețeaua de socializare
+            </p>
+        </blockquote>
+        <blockquote>
+            <h3> Local storage</h3>
+            <p>
+                Pentru stocarea progresului și a diferitelor informații folositoare despre utilizator am decis sa
+                folosim API-ul pus la dispoziție de HTML, Local Web Storage. Nu am recurs la cookie-uri deoarece ar
+                îngreuna cererile spre server dar și pentru că aceasta modalitate de stocarea a informațiilor este mai
+                sigură, multe date putând fi stocate local fără a afecta performanța site-ului.
             </p>
         </blockquote>
     </section>
     <section id="cod-sursa">
         <h2>6. Maniera de folosire a sistemului de management al codului-sursă ales</h2>
-        <p>Codul se afla la adresa <a href="https://github.com/ioanasitaru/CLIW">ASLE</a></p>
+        <p>Codul se afla la adresa <a href="https://github.com/ioanasitaru/CLIW">ASLE</a>. Din motive întemeiate,
+            repository-ul nu este încă public, însă după finalizarea cursului acesta va fi pus la dispoziția
+            utilizatorilor dar și a viitorilor dezvoltatori</p>
     </section>
     <section typeof="sa:AuthorsList" id="membrii-echipei">
         <h2>6. Membrii echipei</h2>

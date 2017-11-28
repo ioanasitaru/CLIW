@@ -115,3 +115,23 @@ section > div > a {
 label {
 	display: block;
 }
+
+@media screen and (max-width: 736px) {
+    #left-side, #right-side {
+        width: 100%;
+        float: none;
+        display:block;
+        margin: 10px auto;
+        position: relative;
+    }
+
+    #draw {
+        margin-left:-30px;
+    }
+
+    content {
+        position: static;
+        float: none;
+        width: 100%;
+    }
+}
