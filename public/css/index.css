@@ -45,6 +45,10 @@ button:hover {
 	box-shadow: inset 0 0 0 1px  #e44c65;
 }
 
+button:focus {
+	outline:0;
+}
+
 hr {
     border: 0;
     border-bottom: solid 1px rgba(255, 255, 255, 0.3);
@@ -75,3 +79,29 @@ a {
     border: none
 }
 
+#question {
+	display: none;
+}
+
+
+
+
+
+.slide{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.active-slide{
+  opacity: 1;
+  z-index: 2;
+}
+.quiz-container{
+  position: relative;
+  height: 200px;
+  margin-top: 40px;
+}
