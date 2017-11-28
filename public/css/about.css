@@ -577,14 +577,6 @@ header h2 + p {
     border-color: #39c088;
 }
 
-#page-wrapper {
-    padding-top: 3.5em;
-}
-
-/*body.landing #page-wrapper {*/
-    /*padding-top: 0;*/
-/*}*/
-
 /* Banner */
 
 #banner {
