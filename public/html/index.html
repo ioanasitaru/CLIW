@@ -23,12 +23,20 @@
                 </header>
                 <section id="content">
                     <div id="left-side">
-                        <content id="changeable_content"> <canvas> </canvas> </content>
+                        <content id="changeable_content"> 
+                            <div id="draw">
+                                <canvas > </canvas>
+                            </div>
+                            <div id="quiz">
+                                <h3>Yes</h3>
+                            </div>
+                        </content>
                     </div>
                     <div id="right-side">
                         <div id="progress-image"> <img src="../img/progress_max.png"> </div>
                         <div id="side-bar-buttons">
                             <section>
+                            <hr>
                                 <h3> Canvas practice</h3>
                                 <p> Passionate about asian culture? You should start your advanture by learning how to write with this module, thought especially for beginners.</p>
                                 <button onclick="changeContentToCanvas()">
@@ -52,29 +60,35 @@
      <script>
         function changeContentToExercises(){
         
-            var newChild = document.createElement("h1");
-            newChild.innerHTML = "H1 Inner HTML";
+            // var newChild = document.createElement("h1");
+            // newChild.innerHTML = "H1 Inner HTML";
 
-            var parrentNode = document.getElementById("changeable_content");
+            // var parrentNode = document.getElementById("changeable_content");
 
-            while (parrentNode.firstChild) {
-                parrentNode.removeChild(parrentNode.firstChild);
-            }
+            // while (parrentNode.firstChild) {
+            //     parrentNode.removeChild(parrentNode.firstChild);
+            // }
 
-            parrentNode.appendChild(newChild)
+            // parrentNode.appendChild(newChild)
+
+            document.getElementById("draw").style.display = "none";
+            document.getElementById("quiz").style.display = "block";
         }
 
         function changeContentToCanvas(){
 
-            var newChild = document.createElement("canvas");
+            // var newChild = document.createElement("canvas");
 
-            var parrentNode = document.getElementById("changeable_content");
+            // var parrentNode = document.getElementById("changeable_content");
 
-            while (parrentNode.firstChild) {
-                parrentNode.removeChild(parrentNode.firstChild);
-            }
+            // while (parrentNode.firstChild) {
+            //     parrentNode.firstChild.style.display = "none";
+            // }
 
-            parrentNode.appendChild(newChild)
+            // parrentNode.appendChild(newChild)
+
+            document.getElementById("quiz").style.display = "none";
+            document.getElementById("canvas").style.display = "block";
         }
     </script>      
     
