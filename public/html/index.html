@@ -8,7 +8,7 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/index.css" rel="stylesheet">
 </head>
-<body class="landing">
+<body>
 <div id="page-wrapper">
     <header id="header">
         <a href="#">
@@ -25,11 +25,11 @@
                 <div id="left-side">
                     <content id="changeable_content">
                         <div id="draw">
-                            <canvas></canvas>
+                            <canvas > </canvas>
                             <p id="translated-word"> Translate: </p>
                         </div>
                         <div id="question">
-                            <h1>Quiz on Important Facts</h1>
+                            <h1>Quick Quiz</h1>
                             <div class="quiz-container">
                                 <div id="quiz"></div>
                             </div>
@@ -41,13 +41,12 @@
                     </content>
                 </div>
                 <div id="right-side">
-                    <div id="progress-image"><img src="../img/progress_max.png"></div>
+                    <div id="progress-image"> <img src="../img/progress_max.png"> </div>
                     <div id="side-bar-buttons">
                         <section>
                             <hr>
                             <h3> Canvas practice</h3>
-                            <p> Passionate about asian culture? You should start your advanture by learning how to write
-                                with this module, thought especially for beginners.</p>
+                            <p> Passionate about asian culture? You should start your advanture by learning how to write with this module, thought especially for beginners.</p>
                             <button onclick="changeContentToCanvas()">
                                 Try it out!
                             </button>
@@ -76,10 +75,10 @@
     </div>
 </div>
 <script>
-    function changeContentToExercises() {
+    function changeContentToExercises(){
 
         var nodes = document.getElementById('changeable_content').childNodes;
-        for (var i = 0; i < nodes.length; i++) {
+        for(var i=0; i < nodes.length; i++) {
             if (nodes[i].nodeName.toLowerCase() == 'div') {
                 nodes[i].style.display = "none";
             }
@@ -91,7 +90,7 @@
     function changeContentToCanvas() {
 
         var nodes = document.getElementById('changeable_content').childNodes;
-        for (var i = 0; i < nodes.length; i++) {
+        for(var i=0; i < nodes.length; i++) {
             if (nodes[i].nodeName.toLowerCase() == 'div') {
                 nodes[i].style.display = "none";
             }
@@ -101,102 +100,90 @@
     }
 </script>
 <script>
-    (function () {
+    (function() {
         const myQuestions = [
             {
-                question: "Who is the strongest?",
+                question: "Select the Japanese translation for the English sentence: Good morning. ",
                 answers: {
-                    a: "Superman",
-                    b: "The Terminator",
-                    c: "Waluigi, obviously"
+                    a: "Ohayō gozaimasu",
+                    b: "Gomennasai",
+                    c: "O-yasumi nasai"
                 },
-                correctAnswer: "c"
+                correctAnswer: "a"
             },
             {
-                question: "What is the best site ever created?",
+                question: "Check the numeral that matches the Japanese word: sanjū",
                 answers: {
-                    a: "SitePoint",
-                    b: "Simple Steps Code",
-                    c: "Trick question; they're both the best"
+                    a: "300",
+                    b: "30",
+                    c: "3"
                 },
-                correctAnswer: "c"
+                correctAnswer: "b"
             },
             {
-                question: "Where is Waldo really?",
+                question: "Select the English translation for each Japanese sentence: Nante iimashita ka.",
                 answers: {
-                    a: "Antarctica",
-                    b: "Exploring the Pacific Ocean",
-                    c: "Sitting in a tree",
-                    d: "Minding his own business, so stop asking"
+                    a: "I don't know what to say.",
+                    b: "What did you say?",
+                    c: "Did you say something?",
                 },
-                correctAnswer: "d"
+                correctAnswer: "b"
             }
         ];
 
         function buildQuiz() {
-            // we'll need a place to store the HTML output
+
             const output = [];
 
-            // for each question...
             myQuestions.forEach((currentQuestion, questionNumber) => {
-                // we'll want to store the list of answer choices
+
                 const answers = [];
 
-                // and for each available answer...
                 for (letter in currentQuestion.answers) {
-                    // ...add an HTML radio button
                     answers.push(
                         `<label>
-             <input type="radio" name="question${questionNumber}" value="${letter}">
-              ${letter} :
-              ${currentQuestion.answers[letter]}
-           </label>`
+                 <input type="radio" name="question${questionNumber}" value="${letter}">
+                  ${letter} :
+                  ${currentQuestion.answers[letter]}
+               </label>`
                     );
                 }
 
-                // add this question and its answers to the output
                 output.push(
                     `<div class="slide">
-           <div class="question"> ${currentQuestion.question} </div>
-           <div class="answers"> ${answers.join("")} </div>
-         </div>`
+               <div class="question"> ${currentQuestion.question} </div>
+               <div class="answers"> ${answers.join("")} </div>
+             </div>`
                 );
             });
 
-            // finally combine our output list into one string of HTML and put it on the page
             quizContainer.innerHTML = output.join("");
         }
 
         function showResults() {
-            // gather answer containers from our quiz
+
             const answerContainers = quizContainer.querySelectorAll(".answers");
 
-            // keep track of user's answers
             let numCorrect = 0;
 
-            // for each question...
             myQuestions.forEach((currentQuestion, questionNumber) => {
-                // find selected answer
+
                 const answerContainer = answerContainers[questionNumber];
                 const selector = `input[name=question${questionNumber}]:checked`;
                 const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-                // if answer is correct
                 if (userAnswer === currentQuestion.correctAnswer) {
-                    // add to the number of correct answers
+
                     numCorrect++;
 
-                    // color the answers green
                     answerContainers[questionNumber].style.color = "lightgreen";
                 } else {
-                    // if answer is wrong or blank
-                    // color the answers red
+
                     answerContainers[questionNumber].style.color = "red";
                 }
             });
 
-            // show number of correct answers out of total
-            resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+            resultsContainer.innerHTML = ` You have answered corectly at ${numCorrect} out of ${myQuestions.length} questions. You've earned ${numCorrect*10} points. `;
         }
 
         function showSlide(n) {
@@ -231,7 +218,6 @@
         const resultsContainer = document.getElementById("results");
         const submitButton = document.getElementById("submit");
 
-        // display quiz right away
         buildQuiz();
 
         const previousButton = document.getElementById("previous");
@@ -241,7 +227,6 @@
 
         showSlide(0);
 
-        // on submit, show results
         submitButton.addEventListener("click", showResults);
         previousButton.addEventListener("click", showPreviousSlide);
         nextButton.addEventListener("click", showNextSlide);

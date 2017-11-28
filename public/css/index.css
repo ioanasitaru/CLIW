@@ -91,8 +91,6 @@ a {
 	display: inline-block;
 }
 
-
-
 .slide{
   position: absolute;
   left: 0px;
@@ -115,4 +113,8 @@ a {
 section > div > a {
 	display: block;
 	margin-left: 30%;
+}
+
+label {
+	display: block;
 }
