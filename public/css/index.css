@@ -86,7 +86,10 @@ a {
 	display: block;
 }
 
-
+#translated-word {
+	margin-left: 30%;
+	display: inline-block;
+}
 
 
 
@@ -107,4 +110,9 @@ a {
   position: relative;
   height: 200px;
   margin-top: 40px;
+}
+
+section > div > a {
+	display: block;
+	margin-left: 30%;
 }
