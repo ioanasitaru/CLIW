@@ -533,6 +533,7 @@ header h2 + p {
     border-style: solid;
     opacity: 1;
     position: absolute;
+    overflow: scroll;
 }
 
 .spotlight .goto-next {
@@ -580,9 +581,9 @@ header h2 + p {
     padding-top: 3.5em;
 }
 
-body.landing #page-wrapper {
-    padding-top: 0;
-}
+/*body.landing #page-wrapper {*/
+    /*padding-top: 0;*/
+/*}*/
 
 /* Banner */
 
@@ -934,25 +935,37 @@ b {
 }
 
 #four {
-    margin-top: 4em;
     margin-left: auto;
     margin-right: auto;
+    background-color: rgb(228, 76, 101);
+    padding: 7% 2%;
+}
+
+#four h2 {
+    text-align: center;
+}
+
+#four.a-holder {
+    width: 100%;
+    text-align: center;
 }
 
 #four a {
     transition: ease-in 0.3s;
     text-decoration: none;
+    text-align: center;
     color: white;
-    padding: 2em 5em;
+    padding: 2% 5%;
     border-radius: 10px;
     border: 1px solid white;
     font-size: 22px;
-    width: auto;
-    
+    width: 25%;
+    margin: 0 auto;
+    display: block;
 }
 
 #four a:hover {
     transition: ease-in 0.3s;
-    border: 1px solid rgb(228, 76, 101);
-    background: rgb(228, 76, 101);
+    color: rgb(228, 76, 101);
+    background: white;
 }

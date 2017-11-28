@@ -14,7 +14,7 @@
 }
 
 .title, .subtitle {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .wrapper {
@@ -81,6 +81,9 @@ a {
 
 #question {
 	display: none;
+}
+#draw, #quiz {
+	display: block;
 }
 
 

@@ -8,235 +8,236 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/index.css" rel="stylesheet">
 </head>
-<body>
-    <div id="page-wrapper">
-        <header id="header">
-                <a href="#">
-                    <img src="../img/logo.png" id="logo">
-                </a>
-        </header>
-        <div id="main" class="wrapper">
-            <div class="container">
-                <header class="min-major">
-                    <h1 class="title">Practice</h1>
-                    <p class="subtitle">Makes perfect</p>
-                </header>
-                <section id="content">
-                    <div id="left-side">
-                        <content id="changeable_content"> 
-                            <div id="draw">
-                                <canvas > </canvas>
-                            </div>
-                            <div id="question">
-                               <h1>Quiz on Important Facts</h1>
-                                <div class="quiz-container">
-                                  <div id="quiz"></div>
-                                </div>
-                                <button id="previous">Previous Question</button>
-                                <button id="next">Next Question</button>
-                                <button id="submit">Submit Quiz</button>
-                                <div id="results"></div>
-                            </div>
-                        </content>
-                    </div>
-                    <div id="right-side">
-                        <div id="progress-image"> <img src="../img/progress_max.png"> </div>
-                        <div id="side-bar-buttons">
-                            <section>
-                            <hr>
-                                <h3> Canvas practice</h3>
-                                <p> Passionate about asian culture? You should start your advanture by learning how to write with this module, thought especially for beginners.</p>
-                                <button onclick="changeContentToCanvas()">
-                                    Try it out!
-                                </button>
-                            </section>
-                            <hr>
-                            <section>
-                                <h3> Quiz </h3>
-                                <p> Bored of drawing letters? Do you consider yourself better than that? </p>
-                                <button onclick="changeContentToExercises()">
-                                    Evaluate yourself!
-                                </button>
-                            </section> 
+<body class="landing">
+<div id="page-wrapper">
+    <header id="header">
+        <a href="#">
+            <img src="../img/logo.png" id="logo">
+        </a>
+    </header>
+    <div id="main" class="wrapper">
+        <div class="container">
+            <header class="min-major">
+                <h1 class="title">Practice</h1>
+                <p class="subtitle">Makes perfect</p>
+            </header>
+            <section id="content">
+                <div id="left-side">
+                    <content id="changeable_content">
+                        <div id="draw">
+                            <canvas></canvas>
                         </div>
+                        <div id="question">
+                            <h1>Quiz on Important Facts</h1>
+                            <div class="quiz-container">
+                                <div id="quiz"></div>
+                            </div>
+                            <button id="previous">Previous Question</button>
+                            <button id="next">Next Question</button>
+                            <button id="submit">Submit Quiz</button>
+                            <div id="results"></div>
+                        </div>
+                    </content>
+                </div>
+                <div id="right-side">
+                    <div id="progress-image"><img src="../img/progress_max.png"></div>
+                    <div id="side-bar-buttons">
+                        <section>
+                            <hr>
+                            <h3> Canvas practice</h3>
+                            <p> Passionate about asian culture? You should start your advanture by learning how to write
+                                with this module, thought especially for beginners.</p>
+                            <button onclick="changeContentToCanvas()">
+                                Try it out!
+                            </button>
+                        </section>
+                        <hr>
+                        <section>
+                            <h3> Quiz </h3>
+                            <p> Bored of drawing letters? Do you consider yourself better than that? </p>
+                            <button onclick="changeContentToExercises()">
+                                Evaluate yourself!
+                            </button>
+                        </section>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </div>
     </div>
-     <script>
-        function changeContentToExercises(){
-        
-            var nodes = document.getElementById('changeable_content').childNodes;
-            for(var i=0; i < nodes.length; i++) {
-                if (nodes[i].nodeName.toLowerCase() == 'div') {
-                    nodes[i].style.display = "none";
-                }
-            }
+</div>
+<script>
+    function changeContentToExercises() {
 
-            document.getElementById("question").style.display = "block";
+        var nodes = document.getElementById('changeable_content').childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].nodeName.toLowerCase() == 'div') {
+                nodes[i].style.display = "none";
+            }
         }
 
-        function changeContentToCanvas() {
-
-            var nodes = document.getElementById('changeable_content').childNodes;
-            for(var i=0; i < nodes.length; i++) {
-                if (nodes[i].nodeName.toLowerCase() == 'div') {
-                    nodes[i].style.display = "none";
-                }
-            }
-
-            document.getElementById("draw").style.display = "block";
-        }
-    </script>
-    <script>
-(function() {
-  const myQuestions = [
-    {
-      question: "Who is the strongest?",
-      answers: {
-        a: "Superman",
-        b: "The Terminator",
-        c: "Waluigi, obviously"
-      },
-      correctAnswer: "c"
-    },
-    {
-      question: "What is the best site ever created?",
-      answers: {
-        a: "SitePoint",
-        b: "Simple Steps Code",
-        c: "Trick question; they're both the best"
-      },
-      correctAnswer: "c"
-    },
-    {
-      question: "Where is Waldo really?",
-      answers: {
-        a: "Antarctica",
-        b: "Exploring the Pacific Ocean",
-        c: "Sitting in a tree",
-        d: "Minding his own business, so stop asking"
-      },
-      correctAnswer: "d"
+        document.getElementById("question").style.display = "block";
     }
-  ];
 
-  function buildQuiz() {
-    // we'll need a place to store the HTML output
-    const output = [];
+    function changeContentToCanvas() {
 
-    // for each question...
-    myQuestions.forEach((currentQuestion, questionNumber) => {
-      // we'll want to store the list of answer choices
-      const answers = [];
+        var nodes = document.getElementById('changeable_content').childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].nodeName.toLowerCase() == 'div') {
+                nodes[i].style.display = "none";
+            }
+        }
 
-      // and for each available answer...
-      for (letter in currentQuestion.answers) {
-        // ...add an HTML radio button
-        answers.push(
-          `<label>
+        document.getElementById("draw").style.display = "block";
+    }
+</script>
+<script>
+    (function () {
+        const myQuestions = [
+            {
+                question: "Who is the strongest?",
+                answers: {
+                    a: "Superman",
+                    b: "The Terminator",
+                    c: "Waluigi, obviously"
+                },
+                correctAnswer: "c"
+            },
+            {
+                question: "What is the best site ever created?",
+                answers: {
+                    a: "SitePoint",
+                    b: "Simple Steps Code",
+                    c: "Trick question; they're both the best"
+                },
+                correctAnswer: "c"
+            },
+            {
+                question: "Where is Waldo really?",
+                answers: {
+                    a: "Antarctica",
+                    b: "Exploring the Pacific Ocean",
+                    c: "Sitting in a tree",
+                    d: "Minding his own business, so stop asking"
+                },
+                correctAnswer: "d"
+            }
+        ];
+
+        function buildQuiz() {
+            // we'll need a place to store the HTML output
+            const output = [];
+
+            // for each question...
+            myQuestions.forEach((currentQuestion, questionNumber) => {
+                // we'll want to store the list of answer choices
+                const answers = [];
+
+                // and for each available answer...
+                for (letter in currentQuestion.answers) {
+                    // ...add an HTML radio button
+                    answers.push(
+                        `<label>
              <input type="radio" name="question${questionNumber}" value="${letter}">
               ${letter} :
               ${currentQuestion.answers[letter]}
            </label>`
-        );
-      }
+                    );
+                }
 
-      // add this question and its answers to the output
-      output.push(
-        `<div class="slide">
+                // add this question and its answers to the output
+                output.push(
+                    `<div class="slide">
            <div class="question"> ${currentQuestion.question} </div>
            <div class="answers"> ${answers.join("")} </div>
          </div>`
-      );
-    });
+                );
+            });
 
-    // finally combine our output list into one string of HTML and put it on the page
-    quizContainer.innerHTML = output.join("");
-  }
+            // finally combine our output list into one string of HTML and put it on the page
+            quizContainer.innerHTML = output.join("");
+        }
 
-  function showResults() {
-    // gather answer containers from our quiz
-    const answerContainers = quizContainer.querySelectorAll(".answers");
+        function showResults() {
+            // gather answer containers from our quiz
+            const answerContainers = quizContainer.querySelectorAll(".answers");
 
-    // keep track of user's answers
-    let numCorrect = 0;
+            // keep track of user's answers
+            let numCorrect = 0;
 
-    // for each question...
-    myQuestions.forEach((currentQuestion, questionNumber) => {
-      // find selected answer
-      const answerContainer = answerContainers[questionNumber];
-      const selector = `input[name=question${questionNumber}]:checked`;
-      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+            // for each question...
+            myQuestions.forEach((currentQuestion, questionNumber) => {
+                // find selected answer
+                const answerContainer = answerContainers[questionNumber];
+                const selector = `input[name=question${questionNumber}]:checked`;
+                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-      // if answer is correct
-      if (userAnswer === currentQuestion.correctAnswer) {
-        // add to the number of correct answers
-        numCorrect++;
+                // if answer is correct
+                if (userAnswer === currentQuestion.correctAnswer) {
+                    // add to the number of correct answers
+                    numCorrect++;
 
-        // color the answers green
-        answerContainers[questionNumber].style.color = "lightgreen";
-      } else {
-        // if answer is wrong or blank
-        // color the answers red
-        answerContainers[questionNumber].style.color = "red";
-      }
-    });
+                    // color the answers green
+                    answerContainers[questionNumber].style.color = "lightgreen";
+                } else {
+                    // if answer is wrong or blank
+                    // color the answers red
+                    answerContainers[questionNumber].style.color = "red";
+                }
+            });
 
-    // show number of correct answers out of total
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-  }
+            // show number of correct answers out of total
+            resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+        }
 
-  function showSlide(n) {
-    slides[currentSlide].classList.remove("active-slide");
-    slides[n].classList.add("active-slide");
-    currentSlide = n;
-    
-    if (currentSlide === 0) {
-      previousButton.style.display = "none";
-    } else {
-      previousButton.style.display = "inline-block";
-    }
-    
-    if (currentSlide === slides.length - 1) {
-      nextButton.style.display = "none";
-      submitButton.style.display = "inline-block";
-    } else {
-      nextButton.style.display = "inline-block";
-      submitButton.style.display = "none";
-    }
-  }
+        function showSlide(n) {
+            slides[currentSlide].classList.remove("active-slide");
+            slides[n].classList.add("active-slide");
+            currentSlide = n;
 
-  function showNextSlide() {
-    showSlide(currentSlide + 1);
-  }
+            if (currentSlide === 0) {
+                previousButton.style.display = "none";
+            } else {
+                previousButton.style.display = "inline-block";
+            }
 
-  function showPreviousSlide() {
-    showSlide(currentSlide - 1);
-  }
+            if (currentSlide === slides.length - 1) {
+                nextButton.style.display = "none";
+                submitButton.style.display = "inline-block";
+            } else {
+                nextButton.style.display = "inline-block";
+                submitButton.style.display = "none";
+            }
+        }
 
-  const quizContainer = document.getElementById("quiz");
-  const resultsContainer = document.getElementById("results");
-  const submitButton = document.getElementById("submit");
+        function showNextSlide() {
+            showSlide(currentSlide + 1);
+        }
 
-  // display quiz right away
-  buildQuiz();
+        function showPreviousSlide() {
+            showSlide(currentSlide - 1);
+        }
 
-  const previousButton = document.getElementById("previous");
-  const nextButton = document.getElementById("next");
-  const slides = document.querySelectorAll(".slide");
-  let currentSlide = 0;
+        const quizContainer = document.getElementById("quiz");
+        const resultsContainer = document.getElementById("results");
+        const submitButton = document.getElementById("submit");
 
-  showSlide(0);
+        // display quiz right away
+        buildQuiz();
 
-  // on submit, show results
-  submitButton.addEventListener("click", showResults);
-  previousButton.addEventListener("click", showPreviousSlide);
-  nextButton.addEventListener("click", showNextSlide);
-})();
-    </script>
-    
+        const previousButton = document.getElementById("previous");
+        const nextButton = document.getElementById("next");
+        const slides = document.querySelectorAll(".slide");
+        let currentSlide = 0;
+
+        showSlide(0);
+
+        // on submit, show results
+        submitButton.addEventListener("click", showResults);
+        previousButton.addEventListener("click", showPreviousSlide);
+        nextButton.addEventListener("click", showNextSlide);
+    })();
+</script>
+
 
 </body>
 </html>

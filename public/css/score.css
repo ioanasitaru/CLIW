@@ -55,7 +55,7 @@ a:hover {
     border-bottom-color: transparent;
 }
 
-.twitter{
+.twitter {
     color: #00aced;
     border: none;
 }
@@ -64,7 +64,6 @@ a:hover {
     color: #c0deed !important;
     cursor: pointer;
 }
-
 
 h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
@@ -208,12 +207,16 @@ header.major {
 }
 
 #progress-bar-1 {
-     width: 100%;
-     background-color: rgba(39, 40, 51, 0.965);
- }
+    width: 100%;
+    background-color: rgba(39, 40, 51, 0.965);
+    border-radius: 5px;
+}
+
 #progress-bar-2 {
     width: 100%;
     background-color: rgba(39, 40, 51, 0.965);
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 
 #progress {
@@ -323,7 +326,7 @@ table {
 
 td {
     color: white;
-    width:14%;
+    width: 14%;
     text-align: center;
 }
 
@@ -337,15 +340,15 @@ td {
     padding-top: 3.5em;
 }
 
-body.landing #page-wrapper {
-    padding-top: 0;
-}
+/*body.landing #page-wrapper {*/
+/*padding-top: 0;*/
+/*}*/
 
-body.landing #header {
-    background: transparent;
-    box-shadow: none;
-    position: absolute;
-}
+/*body.landing #header {*/
+/*background: transparent;*/
+/*box-shadow: none;*/
+/*position: absolute;*/
+/*}*/
 
 /* XLarge */
 
@@ -398,3 +401,4 @@ body.landing #header {
         width: 100% !important;
     }
 }
+
