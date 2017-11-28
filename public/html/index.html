@@ -52,23 +52,29 @@
      <script>
         function changeContentToExercises(){
         
-        var h = document.createElement("h1");
-         h.innerHTML = "H1 Inner HTML";
+            var newChild = document.createElement("h1");
+            newChild.innerHTML = "H1 Inner HTML";
 
-        var nod = document.getElementById("changeable_content");
+            var parrentNode = document.getElementById("changeable_content");
 
-        nod.parentElement.replaceChild(h, nod);
+            while (parrentNode.firstChild) {
+                parrentNode.removeChild(parrentNode.firstChild);
+            }
+
+            parrentNode.appendChild(newChild)
         }
-    </script>
-    <script>
+
         function changeContentToCanvas(){
-        
-        var h = document.createElement("h1");
-         h.innerHTML = "H2 Inner HTML";
 
-        var nod = document.getElementById("changeable_content");
+            var newChild = document.createElement("canvas");
 
-        nod.parentElement.replaceChild(h, nod);
+            var parrentNode = document.getElementById("changeable_content");
+
+            while (parrentNode.firstChild) {
+                parrentNode.removeChild(parrentNode.firstChild);
+            }
+
+            parrentNode.appendChild(newChild)
         }
     </script>      
     
