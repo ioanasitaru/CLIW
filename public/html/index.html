@@ -38,7 +38,7 @@
                     <div id="left-side">
                         <content id="changeable_content">
                             <div id="draw">
-                                <canvas id="canvas"></canvas>
+                                <canvas id="canvas" class="wrong"></canvas>
                                 <p id="translated-word"> Latin letters equivalent: </p>
                             </div>
                             <div id="question">
@@ -86,11 +86,6 @@
                 </section>
             </div>
         </div>
-        <footer>
-            <p>
-                <i class="fa fa-copyright" aria-hidden="true"></i> ASLE - CLIW 2017
-            </p>
-        </footer>
     </div>
 <script>
     function changeContentToExercises() {
@@ -253,15 +248,12 @@
     })();
 </script>
 <script>
-    // create canvas element and append it to document body
     var canvas = document.getElementById('canvas');
 
 
-    // get canvas 2D context and set him correct size
     var ctx = canvas.getContext('2d');
     resize();
 
-    // last known position
     var pos = {x: 0, y: 0};
 
     function offset(el) {
@@ -276,21 +268,18 @@
     canvas.addEventListener('mousedown', setPosition);
     canvas.addEventListener('mouseenter', setPosition);
 
-    // new position from mouse event
     function setPosition(e) {
         off = offset(canvas)
         pos.x = e.pageX + off.left;
         pos.y = e.pageY - off.top;
     }
 
-    // resize canvas
     function resize() {
         ctx.canvas.width = window.innerWidth;
         ctx.canvas.height = window.innerHeight;
     }
 
     function draw(e) {
-        // mouse left button must be pressed
         if (e.buttons !== 1) return;
 
         ctx.beginPath(); // begin
@@ -299,11 +288,11 @@
         ctx.lineCap = 'round';
         ctx.strokeStyle = '#c0392b';
 
-        ctx.moveTo(pos.x, pos.y); // from
+        ctx.moveTo(pos.x, pos.y);
         setPosition(e);
-        ctx.lineTo(pos.x, pos.y); // to
+        ctx.lineTo(pos.x, pos.y); 
 
-        ctx.stroke(); // draw it!
+        ctx.stroke();
     }
 </script>
 
