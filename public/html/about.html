@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>About</title>
     <link href="../css/about.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../../../../landed/assets/css/main.css">
 </head>
 <body class="landing">
     <div id="page-wrapper">
@@ -57,15 +56,14 @@
             </div>
         </section>
     </div>
+    <script>
+        function scrollIt(element) {
+            window.scrollTo({
+                'behavior': 'smooth',
+                'left': 0,
+                'top': element.offsetTop
+            });
+        }
+    </script>
 </body>
-
-<script>
-    function scrollIt(element) {
-        window.scrollTo({
-            'behavior': 'smooth',
-            'left': 0,
-            'top': element.offsetTop
-        });
-    }
-</script>
 </html>
