@@ -403,6 +403,14 @@ td {
     .wrapper {
         padding: 4.5em 2.5em 2.5em 2.5em;
     }
+
+    #logo-link{
+        margin-left: 2em;
+    }
+
+    div.vertical-line{
+        margin-left: 6.5em;
+    }
 }
 
 /* Small */

@@ -263,6 +263,13 @@
     // last known position
     var pos = {x: 0, y: 0};
 
+    function offset(el) {
+        var rect = el.getBoundingClientRect(),
+            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+    }
+
     window.addEventListener('resize', resize);
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mousedown', setPosition);
@@ -270,8 +277,9 @@
 
     // new position from mouse event
     function setPosition(e) {
-        pos.x = e.pageX + 100;
-        pos.y = e.pageY - 100;
+        off = offset(canvas)
+        pos.x = e.pageX + off.left;
+        pos.y = e.pageY - off.top;
     }
 
     // resize canvas
