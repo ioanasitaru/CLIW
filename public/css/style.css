@@ -10,7 +10,7 @@
 content {
     width: 45%;
     height: 45%;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
     display: inline-block;
     float: left;
     position: fixed;
@@ -21,6 +21,7 @@ content {
     float: right;
     width: 25%;
     margin-right: 5%;
+    overflow: scroll;
 }
 
 #progress-image {
