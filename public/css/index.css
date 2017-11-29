@@ -211,3 +211,13 @@ footer {
     }
 
 }
+
+@media screen and (min-width: 1760px) {
+  #right-side {
+    margin-right: 0;
+  }
+
+  #left-side {
+    margin-left: 0;
+  }
+}
