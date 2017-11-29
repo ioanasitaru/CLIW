@@ -116,6 +116,11 @@ label {
 	display: block;
 }
 
+footer {
+  margin-top: 100%
+
+}
+
 @media screen and (max-width: 900px) {
     #left-side, #right-side {
         width: 100%;
