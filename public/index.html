@@ -1,28 +1,75 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>CLIW</title>
-		<link href="css/style.css" rel="stylesheet">  
-	</head>
-	<body>
-		<div id="logo">
-			
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>About</title>
+	<link href="css/about.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="landing">
+<div id="page-wrapper">
+	<section id="banner">
+		<div class="content">
+			<header>
+				<h2>ASLE</h2>
+				<p>Asian Language<br />
+					Learning Web Tool</p>
+			</header>
+			<span class="image"><img src="img/logo2.png" alt="" /></span>
 		</div>
-		<div id="left-side">
-			<content></content>
+		<span class="goto-next" onclick="scrollIt(document.getElementById('two'));">Next</span>
+	</section>
+	<section id="two" class="spotlight style2 right">
+		<span class="image fit main"><img src="img/japanese.jpg" alt="japanese characters" /></span>
+		<div class="content">
+			<header>
+				<h2>Overview</h2>
+				<p><b>ASLE</b> (<b>As</b>ian Language <b>Le</b>arning Web Tool) is an application designed to help you learn to write and speak various Asian languages
+					(e.g. Mandarin, Japanese, Korean etc.) by helping you practice writing, increase your vocabulary and many other
+					linguistic skills.
+				</p>
+			</header>
 		</div>
-		<div id="right-side">
-			<div id="progress-image">
-				
+		<span class="goto-next" onclick="scrollIt(document.getElementById('three'));">Next</span>
+	</section>
+
+	<section id="three" class="spotlight style3 left">
+		<span class="image fit main bottom"><img src="../img/tsunami.jpg" alt="tsunami drawing"/></span>
+		<div class="content">
+			<header>
+				<h2>Customizable</h2>
+				<p>The cornerstone of this application is its ability to adapt to your needs, as you can easily
+					adjust which modules you would like to see and train with. Using the provided template, any developer can contribute
+					to the module list, thus helping it expand even further.</p>
+			</header>
+		</div>
+		<span class="goto-next" onclick="scrollIt(document.getElementById('four'));">Next</span>
+	</section>
+
+	<section id="four" class="wrapper">
+		<div class="container">
+			<header>
+				<h2>Try it out!</h2>
+			</header>
+			<div id="a-holder">
+				<a href="index.html">Get started</a>
 			</div>
-			<div id="side-bar-buttons">
-				<button>
-					YES
-				</button>
-				<button>
-					YES
-				</button>
-			</div>
 		</div>
-	</body>
+	</section>
+	<footer>
+		<p>
+			<i class="fa fa-copyright" aria-hidden="true"></i> ASLE - CLIW 2017
+		</p>
+	</footer>
+</div>
+<script>
+    function scrollIt(element) {
+        window.scrollTo({
+            'behavior': 'smooth',
+            'left': 0,
+            'top': element.offsetTop
+        });
+    }
+</script>
+</body>
 </html>
