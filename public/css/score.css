@@ -55,9 +55,9 @@ body {
 div.vertical-line{
     width: 0.5px;
     background-color: white;
-    height: 80%;
+    height: 60%;
     margin-left: 10.5em;
-    margin-top: 5px;
+    margin-top: 9px;
 }
 
 a {

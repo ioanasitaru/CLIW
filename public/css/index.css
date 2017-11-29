@@ -1,10 +1,9 @@
 .min-major {
-    margin: 0 0 2em 0;
-    position: relative;
-    text-align: center;
+    margin: 0 0 2% 41%;
+    
 }
 
-.min-major:after {
+.min-major div:after {
     background: #e44c65;
     content: '';
     display: inline-block;
@@ -19,6 +18,11 @@
 
 .wrapper {
 	padding-top: 40px;
+}
+
+.min-major > div {
+  position: fixed;
+  text-align: center;
 }
 
 button {
@@ -70,10 +74,6 @@ canvas {
     border: 0;
 }
 
-#logo {
-	height: 65px;
-	width: 90px;
-}
 
 a {
     border: none
@@ -116,13 +116,21 @@ label {
 	display: block;
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 900px) {
     #left-side, #right-side {
         width: 100%;
         float: none;
         display:block;
         margin: 10px auto;
         position: relative;
+    }
+
+    #right-side p, #right-side a {
+      text-align: center;
+    }
+
+    #right-side a {
+      margin-left: 0;
     }
 
     #draw {
@@ -132,6 +140,24 @@ label {
     content {
         position: static;
         float: none;
-        width: 100%;
+        width: 97%;
+        margin: auto;
     }
+
+    #draw p {
+      margin-left:1em;
+    }
+
+    .min-major {
+      margin: 0;
+    }
+
+    .min-major > div {
+      position: relative;
+    }
+
+    #canvas {
+      margin-left: 2%;
+    }
+
 }
