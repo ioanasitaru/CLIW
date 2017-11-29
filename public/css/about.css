@@ -1,5 +1,5 @@
 @import url("font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic,500");
 
 /* Reset */
 
@@ -354,22 +354,22 @@ body.landing:before {
     z-index: -1;
 }
 
-body.landing:after {
-    -moz-animation: overlay-hide 1.5s ease-in forwards !important;
-    -webkit-animation: overlay-hide 1.5s ease-in forwards !important;
-    -ms-animation: overlay-hide 1.5s ease-in forwards !important;
-    animation: overlay-hide 1.5s ease-in forwards !important;
-    background: #1c1d26;
-    content: '';
-    display: block;
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: -1;
-}
+/*body.landing:after {*/
+    /*-moz-animation: overlay-hide 1.5s ease-in forwards !important;*/
+    /*-webkit-animation: overlay-hide 1.5s ease-in forwards !important;*/
+    /*-ms-animation: overlay-hide 1.5s ease-in forwards !important;*/
+    /*animation: overlay-hide 1.5s ease-in forwards !important;*/
+    /*background: #1c1d26;*/
+    /*content: '';*/
+    /*display: block;*/
+    /*height: 100%;*/
+    /*left: 0;*/
+    /*opacity: 0;*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*z-index: -1;*/
+/*}*/
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 
@@ -827,16 +827,16 @@ header h2 + p {
 
     /* Off-Canvas Navigation */
     #page-wrapper {
-        -moz-backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -moz-transition: -moz-transform 0.5s ease;
-        -webkit-transition: -webkit-transform 0.5s ease;
-        -ms-transition: -ms-transform 0.5s ease;
-        transition: transform 0.5s ease;
-        padding-bottom: 1px;
-        padding-top: 44px !important;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-transition: -moz-transform 0.5s ease;
+    -webkit-transition: -webkit-transform 0.5s ease;
+    -ms-transition: -ms-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    padding-bottom: 1px;
+    padding-top: 44px !important;
     }
 
     /* Footer */
@@ -856,10 +856,6 @@ header h2 + p {
         font-size: 12pt;
     }
 
-    /* List */
-
-    /* Button */
-
     /* Spotlight */
     .spotlight .image.main {
         max-height: 50vh;
@@ -869,14 +865,10 @@ header h2 + p {
         padding: 3em 1.25em 1em 1.25em !important;
     }
 
-    /* Wrapper */
-
     /* Banner */
     #banner .content {
         padding: 3em 1.5625em 5.25em 1.5625em;
     }
-
-    /* Footer */
 
 }
 
@@ -956,4 +948,19 @@ b {
     transition: ease-in 0.3s;
     color: rgb(228, 76, 101);
     background: white;
+}
+
+footer {
+    width: 100%;
+    height: 100px;
+    background-image: url("../img/overlay.png");
+    text-align: center;
+    vertical-align: middle;
+}
+
+footer p {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 300;
 }
