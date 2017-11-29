@@ -354,22 +354,22 @@ body.landing:before {
     z-index: -1;
 }
 
-/*body.landing:after {*/
-    /*-moz-animation: overlay-hide 1.5s ease-in forwards !important;*/
-    /*-webkit-animation: overlay-hide 1.5s ease-in forwards !important;*/
-    /*-ms-animation: overlay-hide 1.5s ease-in forwards !important;*/
-    /*animation: overlay-hide 1.5s ease-in forwards !important;*/
-    /*background: #1c1d26;*/
-    /*content: '';*/
-    /*display: block;*/
-    /*height: 100%;*/
-    /*left: 0;*/
-    /*opacity: 0;*/
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*width: 100%;*/
-    /*z-index: -1;*/
-/*}*/
+body.landing:after {
+    -moz-animation: overlay-hide 1.5s ease-in forwards !important;
+    -webkit-animation: overlay-hide 1.5s ease-in forwards !important;
+    -ms-animation: overlay-hide 1.5s ease-in forwards !important;
+    animation: overlay-hide 1.5s ease-in forwards !important;
+    background: #1c1d26;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 
