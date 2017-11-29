@@ -13,7 +13,7 @@
 <div id="page-wrapper">
     <header id="header">
         <a href="#">
-            <img src="../img/logo.png" id="logo">
+            <img src="../img/logo.png" id="logo" alt="asle-logo">
         </a>
     </header>
     <div id="main" class="wrapper">
@@ -26,8 +26,8 @@
                 <div id="left-side">
                     <content id="changeable_content">
                         <div id="draw">
-                            <canvas > </canvas>
-                            <p id="translated-word"> Translation in English: </p>
+                            <canvas id="canvas"></canvas>
+                            <p id="translated-word"> Latin letters equivalent: </p>
                         </div>
                         <div id="question">
                             <h1>Quick Quiz</h1>
@@ -42,12 +42,17 @@
                     </content>
                 </div>
                 <div id="right-side">
-                    <div id="progress-image"> <img src="../img/progress_max.png"> </div>
+                    <div id="progress-image"><img src="../img/progress_max.png" alt="max-progress"></div>
                     <div id="side-bar-buttons">
                         <section>
                             <hr>
                             <h3> Canvas practice</h3>
+<<<<<<< HEAD
                             <p> Passionate about asian culture? You should start your adventure by learning how to write with this module, thought especially for beginners.</p>
+=======
+                            <p> Passionate about asian culture? You should start your advanture by learning how to write
+                                with this module, thought especially for beginners.</p>
+>>>>>>> 36bb25c77cc14e83764ae47377e41efa87fb4be2
                             <button onclick="changeContentToCanvas()">
                                 Try it out!
                             </button>
@@ -76,10 +81,10 @@
     </div>
 </div>
 <script>
-    function changeContentToExercises(){
+    function changeContentToExercises() {
 
         var nodes = document.getElementById('changeable_content').childNodes;
-        for(var i=0; i < nodes.length; i++) {
+        for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].nodeName.toLowerCase() == 'div') {
                 nodes[i].style.display = "none";
             }
@@ -91,7 +96,7 @@
     function changeContentToCanvas() {
 
         var nodes = document.getElementById('changeable_content').childNodes;
-        for(var i=0; i < nodes.length; i++) {
+        for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].nodeName.toLowerCase() == 'div') {
                 nodes[i].style.display = "none";
             }
@@ -101,7 +106,7 @@
     }
 </script>
 <script>
-    (function() {
+    (function () {
         const myQuestions = [
             {
                 question: "Select the Japanese translation for the English sentence: Good morning. ",
@@ -140,23 +145,24 @@
 
                 const answers = [];
 
-                for (letter in currentQuestion.answers) {
-                    answers.push(
-                        `<label>
+            for (letter in currentQuestion.answers) {
+                answers.push(
+                    `<label>
                  <input type="radio" name="question${questionNumber}" value="${letter}">
                   ${letter} :
                   ${currentQuestion.answers[letter]}
                </label>`
-                    );
-                }
+                );
+            }
 
-                output.push(
-                    `<div class="slide">
+            output.push(
+                `<div class="slide">
                <div class="question"> ${currentQuestion.question} </div>
                <div class="answers"> ${answers.join("")} </div>
              </div>`
-                );
-            });
+            );
+        })
+            ;
 
             quizContainer.innerHTML = output.join("");
         }
@@ -170,19 +176,20 @@
             myQuestions.forEach((currentQuestion, questionNumber) => {
 
                 const answerContainer = answerContainers[questionNumber];
-                const selector = `input[name=question${questionNumber}]:checked`;
-                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+            const selector = `input[name=question${questionNumber}]:checked`;
+            const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-                if (userAnswer === currentQuestion.correctAnswer) {
+            if (userAnswer === currentQuestion.correctAnswer) {
 
-                    numCorrect++;
+                numCorrect++;
 
-                    answerContainers[questionNumber].style.color = "lightgreen";
-                } else {
+                answerContainers[questionNumber].style.color = "lightgreen";
+            } else {
 
-                    answerContainers[questionNumber].style.color = "red";
-                }
-            });
+                answerContainers[questionNumber].style.color = "red";
+            }
+        })
+            ;
 
             resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${myQuestions.length} questions correctlys. You've earned ${numCorrect*10} points. `;
         }
@@ -234,8 +241,50 @@
     })();
 </script>
 <script>
-    
-    
+    // create canvas element and append it to document body
+    var canvas = document.getElementById('canvas');
+
+
+    // get canvas 2D context and set him correct size
+    var ctx = canvas.getContext('2d');
+    resize();
+
+    // last known position
+    var pos = {x: 0, y: 0};
+
+    window.addEventListener('resize', resize);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mousedown', setPosition);
+    canvas.addEventListener('mouseenter', setPosition);
+
+    // new position from mouse event
+    function setPosition(e) {
+        pos.x = e.pageX + 100;
+        pos.y = e.pageY - 100;
+    }
+
+    // resize canvas
+    function resize() {
+        ctx.canvas.width = window.innerWidth;
+        ctx.canvas.height = window.innerHeight;
+    }
+
+    function draw(e) {
+        // mouse left button must be pressed
+        if (e.buttons !== 1) return;
+
+        ctx.beginPath(); // begin
+
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#c0392b';
+
+        ctx.moveTo(pos.x, pos.y); // from
+        setPosition(e);
+        ctx.lineTo(pos.x, pos.y); // to
+
+        ctx.stroke(); // draw it!
+    }
 </script>
 
 
