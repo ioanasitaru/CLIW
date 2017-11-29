@@ -1,3 +1,48 @@
+#left-side {
+    display: inline-block;
+    float: left;
+    width: 65%;
+    margin-left: 13%;
+    position: sticky;
+    margin-top: 150px;
+}
+
+content {
+    width: 45%;
+    height: 45%;
+    margin: 10px 0 10px 0;
+    display: inline-block;
+    float: left;
+    position: fixed;
+}
+
+#right-side {
+    display: inline-block;
+    float: right;
+    width: 25%;
+    margin-right: 5%;
+    overflow: scroll;
+}
+
+#progress-image {
+    height: 120px;
+    width: 120px;
+    margin: auto;
+}
+
+#side-bar-buttons {
+    margin-top: 20px;
+}
+
+ #right-side {
+    margin-top: 20px;
+}
+
+#progress-image img {
+    height: 100%;
+    width: 100%;
+}
+
 .min-major {
     margin: 0 0 2% 41%;
     
@@ -117,8 +162,8 @@ label {
 }
 
 footer {
-  margin-top: 100%
-
+  margin-top: 80%;
+  height: 90px;
 }
 
 @media screen and (max-width: 900px) {
