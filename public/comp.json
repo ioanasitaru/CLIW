@@ -1,0 +1,7 @@
+components = [
+  {
+    "name": "quiz",
+    "description": "Bored of drawing letters? Do you consider yourself better than that?",
+    "button": "Evaluate yourself!"
+  }
+]
