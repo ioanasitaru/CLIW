@@ -3,7 +3,7 @@
 
 /* Reset */
 
-html, body, div, span, h2, p, img, b, header, section {
+html, body, div, span, h2, p, img, b, header, section, iframe {
     margin: 0;
     padding: 0;
     border: 0;
