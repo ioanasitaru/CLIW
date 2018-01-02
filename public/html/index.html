@@ -43,16 +43,6 @@
                             <canvas id="canvas" class="wrong"></canvas>
                             <p id="translated-word"> Latin letters equivalent: </p>
                         </div>
-                        <div id="question">
-                            <h1>Quick Quiz</h1>
-                            <div class="quiz-container">
-                                <div id="quiz"></div>
-                            </div>
-                            <button id="previous">Previous Question</button>
-                            <button id="next">Next Question</button>
-                            <button id="submit">Submit Quiz</button>
-                            <div id="results"></div>
-                        </div>
                     </content>
                 </div>
                 <div id="right-side">
@@ -83,23 +73,11 @@
     </div>
 </div>
 <script>
-    function changeContentToExercises() {
-
-        var nodes = document.getElementById('changeable_content').childNodes;
-        for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i].nodeName.toLowerCase() == 'div') {
-                nodes[i].style.display = "none";
-            }
-        }
-
-        document.getElementById("question").style.display = "block";
-    }
-
     function changeContentToCanvas() {
 
         var nodes = document.getElementById('changeable_content').childNodes;
         for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i].nodeName.toLowerCase() == 'div') {
+            if (nodes[i].nodeName.toLowerCase() == 'iframe') {
                 nodes[i].style.display = "none";
             }
         }
@@ -156,31 +134,37 @@
     }
 </script>
 <script>
-    String.prototype.capitalize = function() {
+    String.prototype.capitalize = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
     let moduleMenu = document.getElementById("side-bar-buttons");
     let references = document.getElementById("references");
 
-    components.forEach((component) => {
-        let newSection = document.createElement("section");
-        let title = document.createElement("h3");
-        let description = document.createElement("p");
-        let button = document.createElement("button");
-        let after = document.createElement("hr");
+    fetch("../comp.json")
+        .then(response => response.json())
+        .then(components => {
+            components.forEach((component) => {
+                let newSection = document.createElement("section");
+                let title = document.createElement("h3");
+                let description = document.createElement("p");
+                let button = document.createElement("button");
+                let after = document.createElement("hr");
 
-        title.innerText = component.name.capitalize();
-        description.innerText = component.description;
-        button.addEventListener("click", function() {mLoader.changeContent(component.name);}, false);
-        button.innerText = component.button;
+                title.innerText = component.name.capitalize();
+                description.innerText = component.description;
+                button.addEventListener("click", function () {
+                    mLoader.changeContent(component.name, component.src);
+                }, false);
+                button.innerText = component.button;
 
-        newSection.appendChild(title);
-        newSection.appendChild(description);
-        newSection.appendChild(button);
+                newSection.appendChild(title);
+                newSection.appendChild(description);
+                newSection.appendChild(button);
 
-        moduleMenu.insertBefore(newSection, references);
-        moduleMenu.insertBefore(after, references);
+                moduleMenu.insertBefore(newSection, references);
+                moduleMenu.insertBefore(after, references);
+            });
     });
 </script>
 </body>

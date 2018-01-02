@@ -3,18 +3,18 @@ class ModuleLoader {
         this.id = changeableDivId;
     }
 
-    changeContent(componentName) {
-        console.log(componentName);
+    changeContent(componentName, componentSrc) {
         let cc = document.getElementById(this.id);
         let nodes = document.getElementById(this.id).childNodes;
         for (let i = 0; i < nodes.length; i++) {
             if (nodes[i].nodeName.toLowerCase() === 'iframe' || nodes[i].nodeName.toLowerCase() === 'div') {
-                nodes[i].remove();
+                nodes[i].style.display = "none";
             }
         }
 
         let ifrm = document.createElement("iframe");
-        ifrm.setAttribute("src", "../components/" + componentName + "/" + componentName + ".html");
+        ifrm.setAttribute("src", componentSrc);
+        ifrm.setAttribute("scrolling", "no");
 
         cc.appendChild(ifrm);
     }
