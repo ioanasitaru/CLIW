@@ -1,5 +1,11 @@
 [
   {
+    "name": "Canvas practice",
+    "description": "Passionate about asian culture? You should start your adventure by learning how to write with this module, thought especially for beginners.",
+    "button": "Try it out!",
+    "src": "../components/draw/draw.html"
+  },
+  {
     "name": "quiz",
     "description": "Bored of drawing letters? Do you consider yourself better than that?",
     "button": "Evaluate yourself!",
