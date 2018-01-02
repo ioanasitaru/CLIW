@@ -36,7 +36,7 @@ function buildQuiz() {
 
         const answers = [];
 
-        for (letter in currentQuestion.answers) {
+        for (let letter in currentQuestion.answers) {
             answers.push(
                 `<label>
                  <input type="radio" name="question${questionNumber}" value="${letter}">
@@ -82,7 +82,7 @@ function showResults() {
     })
     ;
 
-    resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${myQuestions.length} questions correctlys. You've earned ${numCorrect * 10} points. `;
+    resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${myQuestions.length} questions correctly. You've earned ${numCorrect * 10} points. `;
 }
 
 function showSlide(n) {
