@@ -57,6 +57,11 @@ content {
 
 }
 
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
 .min-major div:after {
     background: #e44c65;
     content: '';
