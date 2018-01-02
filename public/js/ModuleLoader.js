@@ -3,7 +3,7 @@ class ModuleLoader {
         this.id = changeableDivId;
     }
 
-    changeContent(componentName, componentSrc) {
+    changeContent(componentSrc) {
         let cc = document.getElementById(this.id);
         let nodes = document.getElementById(this.id).childNodes;
         for (let i = 0; i < nodes.length; i++) {

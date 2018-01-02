@@ -80,7 +80,7 @@
                 title.innerText = component.name.capitalize();
                 description.innerText = component.description;
                 button.addEventListener("click", function () {
-                    mLoader.changeContent(component.name, component.src);
+                    mLoader.changeContent(component.src);
                 }, false);
                 button.innerText = component.button;
 
@@ -92,6 +92,7 @@
                 moduleMenu.insertBefore(after, references);
             });
         });
+    mLoader.changeContent("../components/draw/draw.html");
 </script>
 </body>
 </html>
