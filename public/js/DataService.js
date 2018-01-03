@@ -249,8 +249,10 @@ class DataService {
         ];
 
         this.size = this.wordList.length;
-    }
+        this.key = "trnsl.1.1.20171025T100211Z.a9519771c952a95e.5a3403145cbfacd8040d8dd31ce16a8b76d5314a";
 
+        this.yandexEndpoint = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + this.key + "&lang=en-ja";
+    }
 
     getRandomWord() {
         return this.wordList[DataService.randInt(this.size)];
@@ -258,5 +260,18 @@ class DataService {
 
     static randInt(lessThan) {
         return Math.floor(Math.random() * lessThan);
+    }
+
+    translateText(text, success) {
+        let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        xhr.open('POST', this.yandexEndpoint);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState > 3 && xhr.status === 200) {
+                success(JSON.parse(xhr.responseText).text[0]);
+            }
+        };
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("text=" + text);
+        return xhr;
     }
 }

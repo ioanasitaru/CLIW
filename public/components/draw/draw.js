@@ -1,4 +1,3 @@
-
 // Keep track of the old/last position when drawing a line
 // We set it to -1 at the start to indicate that we don't have a good value for it yet
 var lastX, lastY = -1;
@@ -84,6 +83,7 @@ function getMousePos(e) {
 
 // Set-up the canvas and add our event handlers after the page has loaded
 function init() {
+
     // Get the specific canvas element from the HTML document
     canvas = document.getElementById('canvas');
     canvas.width = 490;
@@ -97,4 +97,10 @@ function init() {
         canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
         window.addEventListener('mouseup', sketchpad_mouseUp, false);
     }
+
+    let dService = new DataService();
+    let randomWord = dService.getRandomWord();
+    let japaneseEquivalent = dService.translateText(randomWord, word => {
+        ctx.fillText(word, canvas.width / 2, canvas.height / 2);
+    });
 }
