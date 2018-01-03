@@ -26,6 +26,7 @@
     <link href="../css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../js/ModuleLoader.js"></script>
+    <script src="../js/DataService.js"></script>
     <script src="../js/score.js"></script>
     <script src="../comp.json"></script>
     <script>mLoader = new ModuleLoader("changeable_content");</script>
@@ -80,7 +81,7 @@
 <script>
     String.prototype.capitalize = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
-    }
+    };
 
     let moduleMenu = document.getElementById("side-bar-buttons");
     let references = document.getElementById("references");
