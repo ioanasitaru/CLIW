@@ -28,14 +28,14 @@
         <div class="container">
             <header class="major">
                 <h2>Your stats at writing</h2>
-                <p>You're doing pretty good. You have written correctly 17 out of 29 words</p>
+                <p>You're doing pretty good. You have written correctly 17 out of 29 characters</p>
                 <!--<p>Share it on <a class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>-->
                 <!--<p>
                     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I just scored x in y! Think you can beat me? Head over to asle.com/y and try!" data-hashtags="asle" data-show-count="false">Twitter</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     <span style="top: -10%;"> &nbsp;about your progress to your friends!<br/></span>
                 </p>-->
                 <!--<p>Share it on <a target="_blank" class="twitter" href="https://twitter.com/intent/tweet?hashtags=asle&original_referer=http%3A%2F%2Flocalhost%3A8080%2Fhtml%2Fscore.html&ref_src=twsrc%5Etfw&text=I%20just%20scored%20x%20in%20y!%20Think%20you%20can%20beat%20me%3F%20Head%20over%20to%20asle.com%2Fy%20and%20try!"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>-->
-                <p>Share it on <a href="javascript:void(0)" class="twitter" onclick='tweet("Writing", 17)'><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>
+                <p>Share it on <a href="javascript:void(0)" class="twitter" onclick='tweet("Writing")'><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>
 
             </header>
             <section id="content1">
@@ -55,7 +55,7 @@
             <header class="major">
                 <h2>Your stats at quiz</h2>
                 <p>Way to go! You have answered correctly 17 out of 29 questions.</p>
-                <p>Share it on <a href="javascript:void(0)" class="twitter" onclick='tweet("Quiz", 17)'><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>
+                <p>Share it on <a href="javascript:void(0)" class="twitter" onclick='tweet("Quiz")'><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>
 
 
             </header>
@@ -78,6 +78,7 @@
         <i class="fa fa-copyright" aria-hidden="true"></i> ASLE - CLIW 2017
     </p>
 </footer>
+<script src="../js/score.js"></script>
 <script>
     var chartjson = {
         "title": "",
@@ -252,9 +253,9 @@
     }
 </script>
 <script>
-    tweet = function(module, score) {
+    tweet = function(module_name) {
         window.open(
-            "https://twitter.com/intent/tweet?hashtags=asle&original_referer=http%3A%2F%2Flocalhost%3A8080%2Fhtml%2Fscore.html&ref_src=twsrc%5Etfw&text=I%20just%20scored%20"+score+"%20in%20"+module+"!%20Think%20you%20can%20beat%20me%3F%20Head%20over%20to%20asle.com%2F"+module.toLowerCase()+"%20and%20try!",
+            "https://twitter.com/intent/tweet?hashtags=asle&original_referer=http%3A%2F%2Flocalhost%3A8080%2Fhtml%2Fscore.html&ref_src=twsrc%5Etfw&text=I%20just%20scored%20"+get_score(module_name)+"%20in%20"+module_name+"!%20Think%20you%20can%20beat%20me%3F%20Head%20over%20to%20asle.com%2F"+module_name.toLowerCase()+"%20and%20try!",
             "Share your ASLE progress on Twitter!",
             "width=600,height=400,")
     }

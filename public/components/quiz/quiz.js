@@ -1,3 +1,7 @@
+// import {set_score, get_score} from "../../js/score.js";
+// require("../../js/score.js");
+const module_name = "Quiz";
+
 const myQuestions = [
     {
         question: "Select the Japanese translation for the English sentence: Good morning. ",
@@ -81,6 +85,8 @@ function showResults() {
         }
     })
     ;
+
+    set_score(module_name, numCorrect * 10);
 
     resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${myQuestions.length} questions correctly. You've earned ${numCorrect * 10} points. `;
 }
