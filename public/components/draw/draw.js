@@ -8,6 +8,13 @@ var canvas, ctx;
 var mouseX, mouseY, mouseDown = 0;
 // Draws a dot at a specific position on the supplied canvas name
 // Parameters are: A canvas context, the x position, the y position, the size of the dot
+
+var translatedWord;
+
+var initialPath;
+
+var score;
+
 function drawLine(ctx, x, y, size) {
     // If lastX is not set, set lastX and lastY to the current position
     if (lastX == -1) {
@@ -42,12 +49,20 @@ function drawLine(ctx, x, y, size) {
 // Clear the canvas context using the canvas width and height
 function clearCanvas(canvas, ctx) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+    ctx.font = "bold 150px Arial";         
+    ctx.globalAlpha = 0.2;
+    ctx.fillText(translatedWord, canvas.width/2 - ctx.measureText(translatedWord).width/2, canvas.height/2 + 50);
+    ctx.globalAlpha = 1;
+
 }
 
 // Keep track of the mouse button being pressed and draw a dot at current location
 function sketchpad_mouseDown() {
     mouseDown = 1;
     drawLine(ctx, mouseX, mouseY, 7);
+    compareUserInput();
 }
 
 // Keep track of the mouse button being released
@@ -55,7 +70,21 @@ function sketchpad_mouseUp() {
     mouseDown = 0;
     lastX = -1;
     lastY = -1;
+    console.log(score);
 }
+
+function compareUserInput() {
+    if (initialPath[((mouseY - 1)* canvas.width + mouseX) * 4 + 3] > 0) {
+        document.getElementById('canvas').classList.remove("wrong");
+        score += 1;
+    }
+    else {
+        document.getElementById('canvas').classList.add("wrong");
+        score -= 1;
+    }
+
+}
+
 
 // Keep track of the mouse position and draw a dot if mouse button is currently pressed
 function sketchpad_mouseMove(e) {
@@ -64,7 +93,10 @@ function sketchpad_mouseMove(e) {
     // Draw a dot if the mouse button is currently being pressed
     if (mouseDown == 1) {
         drawLine(ctx, mouseX, mouseY, 7);
+        compareUserInput();
     }
+
+
 }
 
 // Get the current mouse position relative to the top-left of the canvas
@@ -95,12 +127,26 @@ function init() {
     if (ctx) {
         canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
         canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
-        window.addEventListener('mouseup', sketchpad_mouseUp, false);
+        window.addEventListener('mouseup', sketchpad_mouseUp, false);    
+
     }
 
     let dService = new DataService();
     let randomWord = dService.getRandomWord();
+
     let japaneseEquivalent = dService.translateText(randomWord, word => {
-        ctx.fillText(word, canvas.width / 2, canvas.height / 2);
+        translatedWord = word;
+        ctx.font = "bold 150px Arial";         
+        ctx.globalAlpha = 0.2;
+        ctx.fillText(word, canvas.width/2 - ctx.measureText(word).width/2, canvas.height/2 + 50);
+        score = 0;
+        initialPath = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        console.log(initialPath.length, initialPath);
+        ctx.globalAlpha = 1;
+
+        console.log(canvas.width, canvas.height);
+        
+        // console.log(ctx.canvas.toDataURL());
+
     });
 }
