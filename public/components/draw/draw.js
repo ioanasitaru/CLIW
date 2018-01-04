@@ -128,7 +128,12 @@ function init() {
         window.addEventListener('mouseup', sketchpad_mouseUp, false);    
 
     }
-    generateWord();    
+    generateWord();
+
+
+    let score = new Score("draw");
+    score.initScore();
+    score.upScore();
 }
 
 function generateWord(){
