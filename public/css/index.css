@@ -167,12 +167,30 @@ a {
   z-index: 2;
 }
 
-.clear-canvas {
-  float: right;
+.submit {
+  display: inline-block;
   width: 100px;
   height: 40px;
   padding: 0;
   line-height: 25px;
+  margin-right: 5px;
+}
+
+#canvas-buttons {
+  float: right;
+}
+
+.clear-canvas {
+    display: inline-block;
+  width: 100px;
+  height: 40px;
+  padding: 0;
+  line-height: 25px;
+  margin-left: 5px;
+}
+
+#translated-word {
+    display: inline-block;
 }
 
 .quiz-container{

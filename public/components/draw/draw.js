@@ -49,13 +49,12 @@ function drawLine(ctx, x, y, size) {
 // Clear the canvas context using the canvas width and height
 function clearCanvas(canvas, ctx) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-
     ctx.font = "bold 150px Arial";         
     ctx.globalAlpha = 0.2;
     ctx.fillText(translatedWord, canvas.width/2 - ctx.measureText(translatedWord).width/2, canvas.height/2 + 50);
     ctx.globalAlpha = 1;
-
+    score = 0;
+    document.getElementById('canvas').classList.remove("wrong");
 }
 
 // Keep track of the mouse button being pressed and draw a dot at current location
@@ -70,7 +69,6 @@ function sketchpad_mouseUp() {
     mouseDown = 0;
     lastX = -1;
     lastY = -1;
-    console.log(score);
 }
 
 function compareUserInput() {
@@ -130,7 +128,10 @@ function init() {
         window.addEventListener('mouseup', sketchpad_mouseUp, false);    
 
     }
+    generateWord();    
+}
 
+function generateWord(){
     let dService = new DataService();
     let randomWord = dService.getRandomWord();
 
@@ -143,10 +144,19 @@ function init() {
         initialPath = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         console.log(initialPath.length, initialPath);
         ctx.globalAlpha = 1;
-
-        console.log(canvas.width, canvas.height);
-        
-        // console.log(ctx.canvas.toDataURL());
-
     });
+}
+
+function submitResult(){
+    console.log(score);
+    let initial_score = get_score("Writing");
+    if(initial_score == "")
+        set_score("Writing", score);
+    else
+        set_score("Writing", parseInt(score) + parseInt(initial_score));
+
+    clearCanvas(canvas, ctx);
+    canvas.width = canvas.width;
+
+    generateWord();
 }
