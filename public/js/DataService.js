@@ -252,10 +252,75 @@ class DataService {
         this.key = "trnsl.1.1.20171025T100211Z.a9519771c952a95e.5a3403145cbfacd8040d8dd31ce16a8b76d5314a";
 
         this.yandexEndpoint = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + this.key + "&lang=en-ja";
+
+        this.hardcodedList = [
+            {"word": "widely", "translation": "広く"},
+            {"word": "fresh", "translation": "新鮮"},
+            {"word": "made", "translation": "作"},
+            {"word": "laugh", "translation": "笑"},
+            {"word": "term", "translation": "期間"},
+            {"word": "bicycle", "translation": "自転車"},
+            {"word": "ability", "translation": "能力"},
+            {"word": "past", "translation": "過去の"},
+            {"word": "plane", "translation": "平面"},
+            {"word": "total", "translation": "合計"},
+            {"word": "bone", "translation": "骨"},
+            {"word": "tip", "translation": "先端"},
+            {"word": "subject", "translation": "対象"},
+            {"word": "sky", "translation": "スカイ"},
+            {"word": "stream", "translation": "ストリーム"},
+            {"word": "thou", "translation": "あ"},
+            {"word": "example", "translation": "例"},
+            {"word": "transportation", "translation": "輸送"},
+            {"word": "union", "translation": "組合"},
+            {"word": "method", "translation": "方法"},
+            {"word": "copy", "translation": "コピー"},
+            {"word": "memory", "translation": "メモリ"},
+            {"word": "empty", "translation": "空"},
+            {"word": "dig", "translation": "dig"},
+            {"word": "heading", "translation": "見出し"},
+            {"word": "fed", "translation": "frb"},
+            {"word": "great", "translation": "大"},
+            {"word": "out", "translation": "施"},
+            {"word": "table", "translation": "テーブル"},
+            {"word": "printed", "translation": "印刷"},
+            {"word": "fog", "translation": "霧"},
+            {"word": "opposite", "translation": "逆"},
+            {"word": "spoken", "translation": "語"},
+            {"word": "off", "translation": "off"},
+            {"word": "ground", "translation": "地"},
+            {"word": "this", "translation": "この"},
+            {"word": "nest", "translation": "巣"},
+            {"word": "west", "translation": "西"},
+            {"word": "behind", "translation": "裏"},
+            {"word": "thirty", "translation": "三十"},
+            {"word": "have", "translation": "してい"},
+            {"word": "friend", "translation": "友人"},
+            {"word": "stood", "translation": "っ"},
+            {"word": "felt", "translation": "感"},
+            {"word": "excited", "translation": "励起"},
+            {"word": "classroom", "translation": "教室"},
+            {"word": "joined", "translation": "入"},
+            {"word": "began", "translation": "を開始"},
+            {"word": "almost", "translation": "ほとんど"},
+            {"word": "throughout", "translation": "全体"},
+            {"word": "lonely", "translation": "孤独"},
+            {"word": "hard", "translation": "硬い"},
+            {"word": "shells", "translation": "貝殻"},
+            {"word": "farm", "translation": "農"},
+            {"word": "soil", "translation": "土壌"},
+            {"word": "dirty", "translation": "汚れ"},
+            {"word": "tonight", "translation": "今宵"},
+            {"word": "today", "translation": "今日の"},
+            {"word": "written", "translation": "書"},
+            {"word": "bat", "translation": "バット"}
+        ];
+        this.size = this.hardcodedList.length;
     }
 
     getRandomWord() {
-        return this.wordList[DataService.randInt(this.size)];
+        return this.hardcodedList[DataService.randInt(this.size)]["word"];
+        // return this.wordList[DataService.randInt(this.size)];
     }
 
     static randInt(lessThan) {
@@ -263,15 +328,31 @@ class DataService {
     }
 
     translateText(text, success) {
-        let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-        xhr.open('POST', this.yandexEndpoint);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState > 3 && xhr.status === 200) {
-                success(JSON.parse(xhr.responseText).text[0]);
-            }
-        };
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send("text=" + text);
-        return xhr;
+        success(this.hardcodedList.filter(w => w["word"] === text)[0]["translation"]);
+
+
+
+        // let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        // xhr.open('POST', this.yandexEndpoint);
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState > 3 && xhr.status === 200) {
+        //         success(JSON.parse(xhr.responseText).text[0]);
+        //     }
+        // };
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // xhr.send("text=" + text);
+        // return xhr;
+    }
+
+    getHardcodedList() {
+        let list = [];
+        for (let i = 0; i < 100; i++) {
+            let word = this.getRandomWord();
+            this.translateText(word, translatedWord => {
+                list.push({word: word, translation: translatedWord});
+            });
+        }
+
+        return list;
     }
 }
