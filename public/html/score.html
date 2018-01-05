@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="../img/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="../img/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="../img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
@@ -42,52 +42,6 @@
         </nav>
     </div>
     <div id="main" class="wrapper">
-        <div class="container">
-            <header class="major">
-                <h2>Your stats at writing</h2>
-                <p>You're doing pretty good. You have written correctly 17 out of 29 characters</p>
-                <!--<p>Share it on <a class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>-->
-                <!--<p>
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="I just scored x in y! Think you can beat me? Head over to asle.com/y and try!" data-hashtags="asle" data-show-count="false">Twitter</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    <span style="top: -10%;"> &nbsp;about your progress to your friends!<br/></span>
-                </p>-->
-                <!--<p>Share it on <a target="_blank" class="twitter" href="https://twitter.com/intent/tweet?hashtags=asle&original_referer=http%3A%2F%2Flocalhost%3A8080%2Fhtml%2Fscore.html&ref_src=twsrc%5Etfw&text=I%20just%20scored%20x%20in%20y!%20Think%20you%20can%20beat%20me%3F%20Head%20over%20to%20asle.com%2Fy%20and%20try!"><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>-->
-                <p>Share it on <a href="javascript:void(0)" class="twitter" onclick='tweet("Writing")'><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>
-
-            </header>
-            <section id="content1">
-                <h3>Last week performance:</h3>
-                <h3>Current streak:</h3>
-                <div id="progress-bar-1">
-                    <div id="bar-1"></div>
-                </div>
-                <h5 id="progress1">6 of maximum streak of 6</h5>
-                <a href="#" class="image fit">
-                    <div id="chart1"></div>
-                </a>
-
-            </section>
-        </div>
-        <div class="container">
-            <header class="major">
-                <h2>Your stats at quiz</h2>
-                <p>Way to go! You have answered correctly 17 out of 29 questions.</p>
-                <p>Share it on <a href="javascript:void(0)" class="twitter" onclick='tweet("Quiz")'><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a> with your friends.</p>
-
-
-            </header>
-            <section id="content2">
-                <h3>Last week performance:</h3>
-                <h5 id="progress2">3 of maximum streak of 6</h5>
-                <h3>Current streak:</h3>
-                <div id="progress-bar-2">
-                    <div id="bar-2"></div>
-                </div>
-                <a href="#" class="image fit">
-                    <div id="chart2"></div>
-                </a>
-            </section>
-        </div>
     </div>
 </div>
 <footer>
@@ -96,186 +50,228 @@
     </p>
 </footer>
 <script src="../js/score.js"></script>
+<script src="../js/score2.js"></script>
 <script>
-    var chartjson = {
-        "title": "",
-        "data": [{
-            "name": "Monday",
-            "score": 12
-        }, {
-            "name": "Tuesday",
-            "score": 3
-        }, {
-            "name": "Wednesday",
-            "score": 0
-        }, {
-            "name": "Thursday",
-            "score": 1
-        },
-            {
-                "name": "Friday",
-                "score": 50
-            }, {
-                "name": "Saturday",
-                "score": 51
-            }, {
-                "name": "Sunday",
-                "score": 52
-            }],
-        "ymax": 120,
-        "ykey": 'score',
-        "xkey": "name",
-        "prefix": "%"
-    };
-
-    //chart colors
-    var colors = ['five', 'five', 'five', 'five', 'five', 'five', 'five'];
-
-    //constants
-    var TROW = 'tr',
-        TDATA = 'td';
-
-    var chart = document.createElement('div');
-    //create the chart draw
-    var barchart = document.createElement('table');
-    chart.appendChild(barchart);
-
-    //create the bar row
-    var barrow = document.createElement(TROW);
-    barrow.setAttribute('class', 'bars');
-
-    //lets add data to the chart
-    for (var i = 0; i < chartjson.data.length; i++) {
-        var prefix = '';
-        //create the bar data
-        var bardata = document.createElement(TDATA);
-        var bar = document.createElement('div');
-        bar.setAttribute('class', 'bar ' + colors[i]);
-        bar.style.height = chartjson.data[i][chartjson.ykey] + "%";
-        bardata.innerText = chartjson.data[i][chartjson.ykey] + prefix;
-        bardata.appendChild(bar);
-
-        var legbox = document.createElement('span');
-        legbox.setAttribute('class', 'legbox');
-        bardata.appendChild(legbox);
-        var bartext = document.createElement('span');
-        bartext.innerText = chartjson.data[i][chartjson.xkey];
-        legbox.appendChild(bartext);
-
-        barrow.appendChild(bardata);
-    }
-
-    barchart.appendChild(barrow);
-    chart.appendChild(barchart);
-    document.getElementById('chart1').innerHTML = chart.outerHTML;
-</script>
-<script>
-    var chartjson = {
-        "title": "",
-        "data": [{
-            "name": "Monday",
-            "score": 10
-        }, {
-            "name": "Tuesday",
-            "score": 11
-        }, {
-            "name": "Wednesday",
-            "score": 4
-        }, {
-            "name": "Thursday",
-            "score": 3
-        },
-            {
-                "name": "Friday",
-                "score": 10
-            }, {
-                "name": "Saturday",
-                "score": 24
-            }, {
-                "name": "Sunday",
-                "score": 80
-            }],
-        "ymax": 120,
-        "ykey": 'score',
-        "xkey": "name",
-        "prefix": "%"
-    };
-
-    //chart colors
-    var colors = ['five', 'five', 'five', 'five', 'five', 'five', 'five'];
-
-    //constants
-    var TROW = 'tr',
-        TDATA = 'td';
-
-    var chart = document.createElement('div');
-    //create the chart draw
-    var barchart = document.createElement('table');
-    chart.appendChild(barchart);
-
-    //create the bar row
-    var barrow = document.createElement(TROW);
-    barrow.setAttribute('class', 'bars');
-
-    //lets add data to the chart
-    for (var i = 0; i < chartjson.data.length; i++) {
-        var prefix = '';
-        //create the bar data
-        var bardata = document.createElement(TDATA);
-        var bar = document.createElement('div');
-        bar.setAttribute('class', 'bar ' + colors[i]);
-        bar.style.height = chartjson.data[i][chartjson.ykey] + "%";
-        bardata.innerText = chartjson.data[i][chartjson.ykey] + prefix;
-        bardata.appendChild(bar);
-
-        var legbox = document.createElement('span');
-        legbox.setAttribute('class', 'legbox');
-        bardata.appendChild(legbox);
-        var bartext = document.createElement('span');
-        bartext.innerText = chartjson.data[i][chartjson.xkey];
-        legbox.appendChild(bartext);
-
-        barrow.appendChild(bardata);
-    }
-
-    barchart.appendChild(barrow);
-    chart.appendChild(barchart);
-    document.getElementById('chart2').innerHTML = chart.outerHTML;
-</script>
-<script>
-    var elem = document.getElementById("bar-1");
-    var width = 1;
-    var id = setInterval(frame, 10);
-
-    function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-        } else {
-            width++;
-            elem.style.width = width + '%';
-        }
-    }
-
-    var elem2 = document.getElementById("bar-2");
-    var width2 = 1;
-    var id2 = setInterval(frame2, 10);
-
-    function frame2() {
-        if (width2 >= 50) {
-            clearInterval(id2);
-        } else {
-            width2++;
-            elem2.style.width = width2 + '%';
-        }
-    }
-</script>
-<script>
-    tweet = function(module_name) {
+    tweet = function (module_name, score) {
         window.open(
-            "https://twitter.com/intent/tweet?hashtags=asle&original_referer=http%3A%2F%2Flocalhost%3A8080%2Fhtml%2Fscore.html&ref_src=twsrc%5Etfw&text=I%20just%20scored%20"+get_score(module_name)+"%20in%20"+module_name+"!%20Think%20you%20can%20beat%20me%3F%20Head%20over%20to%20asle.com%2F"+module_name.toLowerCase()+"%20and%20try!",
+            "https://twitter.com/intent/tweet?hashtags=asle&original_referer=http%3A%2F%2Flocalhost%3A8080%2Fhtml%2Fscore.html&ref_src=twsrc%5Etfw&text=I%20just%20scored%20" + score + "%20in%20" + module_name + "!%20Think%20you%20can%20beat%20me%3F%20Head%20over%20to%20asle.com%2F" + module_name.toLowerCase() + "%20and%20try!",
             "Share your ASLE progress on Twitter!",
             "width=600,height=400,")
     }
+</script>
+<script>
+    function getPerformanceMessage(score) {
+        console.log(score);
+        let performance = [
+            {
+                "threshold": "25",
+                "message": "It seems you really need more practice"
+            },
+            {
+                "threshold": "50",
+                "message": "Way to go"
+            },
+            {
+                "threshold": "75",
+                "message": "You are doing pretty good"
+            },
+            {
+                "threshold": "100",
+                "message": "You are almost native"
+            },
+        ];
+
+        for (let i = 0; i < performance.length; i++) {
+            if (score < performance[i].threshold) {
+                return performance[i].message;
+            }
+        }
+    }
+
+    String.prototype.capitalize = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+
+    let insertingDiv = document.getElementById("main");
+
+    fetch("../comp.json")
+        .then(response => response.json())
+        .then(components => {
+            components.forEach((component) => {
+                let score = new Score(component.name);
+                let history = score.getHistory();
+                if (history) {
+                    history.positive = 76;
+                    history.total = 100;
+                    history.maxStreak = 100;
+                    history.streak = 80;
+                    history.monday = 10;
+                    history.tuesday = 20;
+                    history.wednesday = 76;
+                    history.thursday = 67;
+                    history.friday = 56;
+                    history.saturday = 45;
+                    history.sunday = 22;
+
+
+                    let container = document.createElement("div");
+                    container.className = "container";
+
+                    let header = document.createElement("header");
+                    header.className = "major";
+
+                    let message = document.createElement("h2");
+                    message.textContent = "Your stats at " + component.name.capitalize();
+
+                    let overallPerformance = document.createElement("p");
+                    let performanceMessage = getPerformanceMessage((history.positive / history.total) * 100);
+                    overallPerformance.textContent = performanceMessage + "! You have answered correctly " + history.positive + " out of " + history.total;
+
+                    let twitterShare = document.createElement("p");
+                    let textBefore = document.createTextNode("Share it on ");
+                    let textAfter = document.createTextNode(" with your friends.");
+                    let link = document.createElement("a");
+                    link.setAttribute("href", "javascript:void(0)");
+                    link.className = "twitter";
+                    link.addEventListener("click", function () {
+                        tweet(component.name, history.positive);
+                    });
+                    link.textContent = "Twitter";
+                    let twitterIcon = document.createElement("i");
+                    twitterIcon.className = "fa fa-twitter";
+                    twitterIcon.setAttribute("aria-hidden", "true");
+
+                    link.appendChild(twitterIcon);
+
+                    twitterShare.appendChild(textBefore);
+                    twitterShare.appendChild(link);
+                    twitterShare.appendChild(textAfter);
+
+                    header.appendChild(message);
+                    header.appendChild(overallPerformance);
+                    header.appendChild(twitterShare);
+                    container.appendChild(header);
+
+
+                    let statsSection = document.createElement("section");
+                    statsSection.id = "content2";
+
+                    let title = document.createElement("h3");
+                    title.textContent = "Last week performance:";
+
+                    let progress = document.createElement("h5");
+                    progress.textContent = history.streak + " of maximum streak of " + history.maxStreak;
+
+                    let currentStreak = document.createElement("h3");
+                    currentStreak.textContent = "Current streak";
+
+                    let progressBar = document.createElement("div");
+                    progressBar.className = "progress-bar";
+
+                    let pBar = document.createElement("div");
+                    pBar.className = "pBar";
+                    let width = 1;
+                    let id = setInterval(frame, 10);
+
+                    function frame() {
+                        if (width >= (history.streak / history.maxStreak) * 100) {
+                            clearInterval(id);
+                        } else {
+                            width++;
+                            pBar.style.width = width + '%';
+                        }
+                    }
+
+                    let linkChart = document.createElement("a");
+                    linkChart.className = "image fit";
+                    linkChart.setAttribute("href", "#");
+
+                    let chart = document.createElement("div");
+                    let chartjson = {
+                        "title": "",
+                        "data": [{
+                            "name": "Monday",
+                            "score": history.monday
+                        }, {
+                            "name": "Tuesday",
+                            "score": history.tuesday
+                        }, {
+                            "name": "Wednesday",
+                            "score": history.wednesday
+                        }, {
+                            "name": "Thursday",
+                            "score": history.thursday
+                        },
+                        {
+                            "name": "Friday",
+                            "score": history.friday
+                        }, {
+                            "name": "Saturday",
+                            "score": history.saturday
+                        }, {
+                            "name": "Sunday",
+                            "score": history.sunday
+                        }],
+                        "ymax": Math.max(history.monday, history.tuesday, history.wednesday, history.thursday, history.friday, history.saturday, history.sunday),
+                        "ykey": 'score',
+                        "xkey": "name",
+                        "prefix": "%"
+                    };
+
+                    //chart colors
+                    let colors = ['five', 'five', 'five', 'five', 'five', 'five', 'five'];
+
+                    //constants
+                    let TROW = 'tr',
+                        TDATA = 'td';
+
+                    //create the chart draw
+                    let barchart = document.createElement('table');
+                    chart.appendChild(barchart);
+
+                    //create the bar row
+                    let barrow = document.createElement(TROW);
+                    barrow.setAttribute('class', 'bars');
+
+                    //lets add data to the chart
+                    for (let i = 0; i < chartjson.data.length; i++) {
+                        let prefix = '';
+                        //create the bar data
+                        let bardata = document.createElement(TDATA);
+                        let bar = document.createElement('div');
+                        bar.setAttribute('class', 'bar ' + colors[i]);
+                        bar.style.height = chartjson.data[i][chartjson.ykey] + "%";
+                        bardata.innerText = chartjson.data[i][chartjson.ykey] + prefix;
+                        bardata.appendChild(bar);
+
+                        let legbox = document.createElement('span');
+                        legbox.setAttribute('class', 'legbox');
+                        bardata.appendChild(legbox);
+                        let bartext = document.createElement('span');
+                        bartext.innerText = chartjson.data[i][chartjson.xkey];
+                        legbox.appendChild(bartext);
+
+                        barrow.appendChild(bardata);
+                    }
+
+                    barchart.appendChild(barrow);
+                    chart.appendChild(barchart);
+
+                    linkChart.appendChild(chart);
+                    progressBar.appendChild(pBar);
+
+                    statsSection.appendChild(title);
+                    statsSection.appendChild(currentStreak);
+                    statsSection.appendChild(progressBar);
+                    statsSection.appendChild(progress);
+                    statsSection.appendChild(linkChart);
+
+
+                    insertingDiv.appendChild(container);
+                    insertingDiv.appendChild(statsSection);
+                }
+            });
+        });
 </script>
 </body>
 </html>
