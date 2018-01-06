@@ -160,6 +160,14 @@ function submitResult(){
     else
         set_score("Writing", parseInt(score) + parseInt(initial_score));
 
+    document.getElementById('result').style.visibility='visible';
+
+    document.getElementById('result').innerHTML="You just scored: " + score + "!";
+
+    setTimeout(function () {
+        document.getElementById('result').style.visibility='hidden';
+    }, 2000);
+
     clearCanvas(canvas, ctx);
     canvas.width = canvas.width;
 

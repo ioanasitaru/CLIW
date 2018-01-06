@@ -176,6 +176,15 @@ a {
   margin-right: 5px;
 }
 
+.result-text{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  color: #E44C65;
+  font-weight: bold;
+  font-size: small;
+}
+
 #canvas-buttons {
   float: right;
 }
