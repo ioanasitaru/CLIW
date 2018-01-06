@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-CACHE:
+NETWORK:
 css/about.css
 css/index.css
 css/score.css
@@ -29,3 +29,4 @@ components/quiz/quiz.css
 components/quiz/quiz.html
 components/quiz/quiz.js
 comp.json
+https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic,500

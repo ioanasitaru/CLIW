@@ -2,7 +2,7 @@
 // require("../../js/score.js");
 const module_name = "Quiz";
 
-const myQuestions = [
+const firstSet = [
     {
         question: "Select the Japanese translation for the English sentence: Good morning. ",
         answers: {
@@ -13,11 +13,11 @@ const myQuestions = [
         correctAnswer: "a"
     },
     {
-        question: "Check the numeral that matches the Japanese word: sanjū",
+        question: "Japanese culture: What is ikebana?",
         answers: {
-            a: "300",
-            b: "30",
-            c: "3"
+            a: "A traditional dish.",
+            b: "Art of flower arrangement.",
+            c: "A building."
         },
         correctAnswer: "b"
     },
@@ -32,11 +32,76 @@ const myQuestions = [
     }
 ];
 
+const secondSet = [
+    {
+        question: "Pick the Japanese word that matches the English word: Watashi wa nihongo ga [a little] shika hanasemasen.",
+        answers: {
+            a: "sukoshi",
+            b: "motto",
+            c: "yoku"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "Japanese culture: While having dinner at a restaurant with your Japanese friends your nose starts to run.",
+        answers: {
+            a: "Blow your nose on a tissue and throw it away.",
+            b: "Sniff repeatedly.",
+            c: "Excuse yourself, turn your head over your shoulder, blow your nose on a tissue and put it in your pocket."
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "Select the English translation for each Japanese sentence: Nante iimashita ka.",
+        answers: {
+            a: "I don't know what to say.",
+            b: "What did you say?",
+            c: "Did you say something?",
+        },
+        correctAnswer: "b"
+    }
+];
+
+const thirdSet = [
+    {
+        question: "Japanese culture: Many decisions/choices are made in Japan by",
+        answers: {
+            a: "Tossing a coin.",
+            b: "Women get first choice.",
+            c: "Rock, paper, scissors. "
+        },
+        correctAnswer: "c"
+    },
+    {
+        question: "Check the numeral that matches the Japanese word: sanjū",
+        answers: {
+            a: "300",
+            b: "30",
+            c: "3"
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "Christmas in Japan...",
+        answers: {
+            a: "Although most Japanese people are not Christians it is customary to go to church on Christmas eve.",
+            b: "Is mostly celebrated by sweethearts going on romantic dates. ",
+            c: "Is not well known as there are few Christians in Japan. ",
+        },
+        correctAnswer: "b"
+    }
+];
+
+var allSets = [firstSet, secondSet, thirdSet];
+
+var chosenSet = allSets[Math.floor(Math.random() * allSets.length)];
+
+
 function buildQuiz() {
 
     const output = [];
 
-    myQuestions.forEach((currentQuestion, questionNumber) => {
+    chosenSet.forEach((currentQuestion, questionNumber) => {
 
         const answers = [];
 
@@ -68,7 +133,7 @@ function showResults() {
 
     let numCorrect = 0;
 
-    myQuestions.forEach((currentQuestion, questionNumber) => {
+    chosenSet.forEach((currentQuestion, questionNumber) => {
 
         const answerContainer = answerContainers[questionNumber];
         const selector = `input[name=question${questionNumber}]:checked`;
@@ -88,7 +153,7 @@ function showResults() {
 
     set_score(module_name, numCorrect * 10);
 
-    resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${myQuestions.length} questions correctly. You've earned ${numCorrect * 10} points. `;
+    resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${chosenSet.length} questions correctly. You've earned ${numCorrect * 10} points. `;
 }
 
 function showSlide(n) {
