@@ -13,8 +13,10 @@ img/pic05.jpg
 img/logo.png
 img/logo2.png
 img/arrow.svg
-img/progress_max.png
-img/progress_on_going.png
+img/level1.png
+img/level2.png
+img/level3.png
+img/level4.png
 js/DataService.js
 js/ModuleLoader.js
 js/score.js
@@ -29,3 +31,6 @@ components/quiz/quiz.css
 components/quiz/quiz.html
 components/quiz/quiz.js
 comp.json
+
+NETWORK:
+html/index.html
