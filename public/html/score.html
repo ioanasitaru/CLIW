@@ -23,6 +23,21 @@
     <link href="../css/about.css" rel="stylesheet">
     <link href="../css/score.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="../js/html2canvas.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBz3REZO1eComp07sU_w8bHbTyRo6yRNdg",
+            authDomain: "asle-b7a2d.firebaseapp.com",
+            databaseURL: "https://asle-b7a2d.firebaseio.com",
+            projectId: "asle-b7a2d",
+            storageBucket: "asle-b7a2d.appspot.com",
+            messagingSenderId: "174054857729"
+        };
+        firebase.initializeApp(config);
+    </script>
 </head>
 <body class="landing">
 <div id="page-wrapper">
@@ -52,11 +67,34 @@
 <script src="../js/score.js"></script>
 <script src="../js/score2.js"></script>
 <script>
-    tweet = function (module_name, score) {
-        window.open(
-            "https://twitter.com/intent/tweet?hashtags=asle&original_referer=http%3A%2F%2Flocalhost%3A8080%2Fhtml%2Fscore.html&ref_src=twsrc%5Etfw&text=I%20just%20scored%20" + score + "%20in%20" + module_name + "!%20Think%20you%20can%20beat%20me%3F%20Head%20over%20to%20asle.com%2F" + module_name.toLowerCase() + "%20and%20try!",
-            "Share your ASLE progress on Twitter!",
-            "width=600,height=400,")
+    tweet = function (module_name, score, scorePlace) {
+        var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function (result) {
+            var token = result.credential.accessToken;
+            var secret = result.credential.secret;
+            var user = result.user;
+
+            var chart = document.getElementsByClassName("image fit")[scorePlace];
+
+            html2canvas(chart).then(function (cnvs) {
+                let dataUrl = cnvs.toDataURL();
+                var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+
+                xhr.open('POST', '/api/twitter');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState > 3 && xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({token: token, secret: secret, img: dataUrl.substring(22), module: module_name, score: score}));
+                return xhr;
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+
+        });
     }
 </script>
 <script>
@@ -94,6 +132,7 @@
 
     let insertingDiv = document.getElementById("main");
 
+    let place = 0;
     fetch("../comp.json")
         .then(response => response.json())
         .then(components => {
@@ -134,7 +173,8 @@
                     link.setAttribute("href", "javascript:void(0)");
                     link.className = "twitter";
                     link.addEventListener("click", function () {
-                        tweet(component.name, history.positive);
+                        tweet(component.name, history.positive, place);
+                        place++;
                     });
                     link.textContent = "Twitter";
                     let twitterIcon = document.createElement("i");
@@ -202,16 +242,16 @@
                             "name": "Thursday",
                             "score": history.thursday
                         },
-                        {
-                            "name": "Friday",
-                            "score": history.friday
-                        }, {
-                            "name": "Saturday",
-                            "score": history.saturday
-                        }, {
-                            "name": "Sunday",
-                            "score": history.sunday
-                        }],
+                            {
+                                "name": "Friday",
+                                "score": history.friday
+                            }, {
+                                "name": "Saturday",
+                                "score": history.saturday
+                            }, {
+                                "name": "Sunday",
+                                "score": history.sunday
+                            }],
                         "ymax": Math.max(history.monday, history.tuesday, history.wednesday, history.thursday, history.friday, history.saturday, history.sunday),
                         "ykey": 'score',
                         "xkey": "name",
