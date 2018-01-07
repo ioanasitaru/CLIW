@@ -83,15 +83,25 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState > 3 && xhr.status === 200) {
                         console.log(xhr.responseText);
+                        let popup = document.getElementById("myPopup"+scorePlace);
+                        popup.classList.toggle("show");
+
+                        setTimeout(function(){popup.classList.toggle("show");}, 3000);
                     }
                 };
                 xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({token: token, secret: secret, img: dataUrl.substring(22), module: module_name, score: score}));
+                xhr.send(JSON.stringify({
+                    token: token,
+                    secret: secret,
+                    img: dataUrl.substring(22),
+                    module: module_name,
+                    score: score
+                }));
                 return xhr;
             })
-            .catch(function (error) {
-                console.error('oops, something went wrong!', error);
-            });
+                .catch(function (error) {
+                    console.error('oops, something went wrong!', error);
+                });
 
         });
     }
@@ -169,6 +179,12 @@
                     let textBefore = document.createTextNode("Share it on ");
                     let textAfter = document.createTextNode(" with your friends.");
                     let link = document.createElement("a");
+
+                    let popup = document.createElement("span");
+                    popup.className = "popuptext";
+                    popup.id = "myPopup" + place;
+                    popup.textContent = "Tweeted !";
+
                     link.setAttribute("href", "javascript:void(0)");
                     link.className = "twitter";
                     link.addEventListener("click", function () {
@@ -182,9 +198,13 @@
 
                     link.appendChild(twitterIcon);
 
+                    twitterShare.className = "popup";
                     twitterShare.appendChild(textBefore);
                     twitterShare.appendChild(link);
                     twitterShare.appendChild(textAfter);
+                    twitterShare.appendChild(popup);
+
+                    console.log(twitterShare);
 
                     header.appendChild(message);
                     header.appendChild(overallPerformance);
@@ -314,12 +334,14 @@
 </script>
 
 <script>
-    if('serviceWorker' in navigator) {
-        console.log("Beam me up");
-        navigator.serviceWorker
-            .register('/service-worker.js')
-            .then(function() { console.log("Service Worker Registered"); });
-    }
+    // if ('serviceWorker' in navigator) {
+    //     console.log("Beam me up");
+    //     navigator.serviceWorker
+    //         .register('/service-worker.js')
+    //         .then(function () {
+    //             console.log("Service Worker Registered");
+    //         });
+    // }
 </script>
 </body>
 </html>
