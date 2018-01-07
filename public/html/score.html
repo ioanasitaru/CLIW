@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" manifest="../manifest.appcache">
+<html lang="en">
 <head>
     <link rel="apple-touch-icon" sizes="57x57" href="../img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/apple-icon-60x60.png">
@@ -10,7 +10,6 @@
     <link rel="apple-touch-icon" sizes="144x144" href="../img/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="../img/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../img/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
@@ -68,17 +67,17 @@
 <script src="../js/score2.js"></script>
 <script>
     tweet = function (module_name, score, scorePlace) {
-        var provider = new firebase.auth.TwitterAuthProvider();
+        const provider = new firebase.auth.TwitterAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function (result) {
-            var token = result.credential.accessToken;
-            var secret = result.credential.secret;
-            var user = result.user;
+            const token = result.credential.accessToken;
+            const secret = result.credential.secret;
+            const user = result.user;
 
-            var chart = document.getElementsByClassName("image fit")[scorePlace];
+            const chart = document.getElementsByClassName("image fit")[scorePlace];
 
             html2canvas(chart).then(function (cnvs) {
                 let dataUrl = cnvs.toDataURL();
-                var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+                const xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
 
                 xhr.open('POST', '/api/twitter');
                 xhr.onreadystatechange = function () {
@@ -312,6 +311,15 @@
                 }
             });
         });
+</script>
+
+<script>
+    if('serviceWorker' in navigator) {
+        console.log("Beam me up");
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then(function() { console.log("Service Worker Registered"); });
+    }
 </script>
 </body>
 </html>
