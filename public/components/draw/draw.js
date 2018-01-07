@@ -1,3 +1,6 @@
+
+const module_name = "Writing";
+
 // Keep track of the old/last position when drawing a line
 // We set it to -1 at the start to indicate that we don't have a good value for it yet
 var lastX, lastY = -1;
@@ -14,6 +17,8 @@ var translatedWord;
 var initialPath;
 
 var score;
+
+var visited = [];
 
 function drawLine(ctx, x, y, size) {
     // If lastX is not set, set lastX and lastY to the current position
@@ -71,16 +76,34 @@ function sketchpad_mouseUp() {
     lastY = -1;
 }
 
+function isVisited(X, Y) {
+    console.log({X, Y});
+    var i;
+
+    for (i = 0; i < visited.length; i++) {
+        if (visited[i].X === X & visited[i].Y === Y ) {
+            return true;
+        }
+     }
+    visited.push({X, Y});
+    console.log(visited);
+    return false;
+}
+
+
 function compareUserInput() {
     if (initialPath[((mouseY - 1)* canvas.width + mouseX) * 4 + 3] > 0) {
         document.getElementById('canvas').classList.remove("wrong");
-        score += 1;
+        if(!isVisited(mouseX, mouseY)) {
+            score += 1;
+        }  
     }
     else {
         document.getElementById('canvas').classList.add("wrong");
-        score -= 1;
+        if(!isVisited(mouseX, mouseY)) {
+         score -= 1;
+        }
     }
-
 }
 
 
@@ -140,6 +163,8 @@ function generateWord(){
     let dService = new DataService();
     let randomWord = dService.getRandomWord();
 
+    document.getElementById("translation").innerHTML = randomWord;
+
     let japaneseEquivalent = dService.translateText(randomWord, word => {
         translatedWord = word;
         ctx.font = "bold 150px Arial";         
@@ -154,11 +179,11 @@ function generateWord(){
 
 function submitResult(){
     console.log(score);
-    let initial_score = get_score("Writing");
+    let initial_score = get_score(module_name);
     if(initial_score == "")
-        set_score("Writing", score);
+        set_score(module_name, score);
     else
-        set_score("Writing", parseInt(score) + parseInt(initial_score));
+        set_score(module_name, parseInt(score) + parseInt(initial_score));
 
     document.getElementById('result').style.visibility='visible';
 

@@ -2,6 +2,10 @@
 // require("../../js/score.js");
 const module_name = "Quiz";
 
+var score;
+
+var totalAnswers = 0;
+
 const firstSet = [
     {
         question: "Select the Japanese translation for the English sentence: Good morning. ",
@@ -125,6 +129,8 @@ function buildQuiz() {
     ;
 
     quizContainer.innerHTML = output.join("");
+
+    score = 0;
 }
 
 function showResults() {
@@ -139,11 +145,13 @@ function showResults() {
         const selector = `input[name=question${questionNumber}]:checked`;
         const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
+        totalAnswers ++;
         if (userAnswer === currentQuestion.correctAnswer) {
 
             numCorrect++;
-
+            score++;
             answerContainers[questionNumber].style.color = "lightgreen";
+            
         } else {
 
             answerContainers[questionNumber].style.color = "red";
@@ -151,9 +159,13 @@ function showResults() {
     })
     ;
 
-    set_score(module_name, numCorrect * 10);
+    let initial_score = get_score(module_name);
+    if(initial_score == "")
+        set_score(module_name, score);
+    else
+        set_score(module_name, parseInt(score) + parseInt(initial_score));
 
-    resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${chosenSet.length} questions correctly. You've earned ${numCorrect * 10} points. `;
+    resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${chosenSet.length} questions correctly. You've earned ${score} points. `;
 }
 
 function showSlide(n) {
