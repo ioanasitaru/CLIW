@@ -41,14 +41,14 @@ self.addEventListener('install', function(e) {
     );
 });
 
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request)
-                .catch(function(event) {
-                    console.log("Could not fetch data: ", event);
-                    // return caches.match(event.request);;
-            })
-        })
-    );
-});
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         caches.match(event.request).then(function(response) {
+//             return response || fetch(event.request)
+//                 .catch(function(event) {
+//                     console.log("Could not fetch data: ", event);
+//                     // return caches.match(event.request);;
+//             })
+//         })
+//     );
+// });

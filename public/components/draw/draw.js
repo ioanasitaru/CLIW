@@ -5,6 +5,9 @@ const module_name = "Writing";
 // We set it to -1 at the start to indicate that we don't have a good value for it yet
 var lastX, lastY = -1;
 
+// Variables to keep track of the touch position
+var touchX,touchY;
+
 // Variables for referencing the canvas and 2dcanvas context
 var canvas, ctx;
 // Variables to keep track of the mouse position and left-button status
@@ -66,7 +69,18 @@ function clearCanvas(canvas, ctx) {
 function sketchpad_mouseDown() {
     mouseDown = 1;
     drawLine(ctx, mouseX, mouseY, 7);
-    compareUserInput();
+    compareUserInput(mouseX, mouseY);
+}
+
+// Keep track of the mouse position and draw a dot if mouse button is currently pressed
+function sketchpad_mouseMove(e) {
+    // Update the mouse co-ordinates when moved
+    getMousePos(e);
+    // Draw a dot if the mouse button is currently being pressed
+    if (mouseDown == 1) {
+        drawLine(ctx, mouseX, mouseY, 7);
+        compareUserInput(mouseX, mouseY);
+    }
 }
 
 // Keep track of the mouse button being released
@@ -75,6 +89,68 @@ function sketchpad_mouseUp() {
     lastX = -1;
     lastY = -1;
 }
+
+// Get the current mouse position relative to the top-left of the canvas
+function getMousePos(e) {
+    if (!e)
+        var e = event;
+    if (e.offsetX) {
+        mouseX = e.offsetX;
+        mouseY = e.offsetY;
+    }
+    else if (e.layerX) {
+        mouseX = e.layerX;
+        mouseY = e.layerY;
+    }
+}
+
+ // Draw something when a touch start is detected
+function sketchpad_touchStart() {
+    // Update the touch co-ordinates
+    getTouchPos();
+
+    drawLine(ctx,touchX,touchY,7);
+
+    // Prevents an additional mousedown event being triggered
+    event.preventDefault();
+    compareUserInput(touchX, touchY);
+}
+
+function sketchpad_touchEnd() {
+    // Reset lastX and lastY to -1 to indicate that they are now invalid, since we have lifted the "pen"
+    lastX=-1;
+    lastY=-1;
+}
+
+// Draw something and prevent the default scrolling when touch movement is detected
+function sketchpad_touchMove(e) { 
+    // Update the touch co-ordinates
+    getTouchPos(e);
+    // During a touchmove event, unlike a mousemove event, we don't need to check if the touch is engaged, since there will always be contact with the screen by definition.
+    drawLine(ctx,touchX,touchY,7); 
+
+    // Prevent a scrolling action as a result of this touchmove triggering.
+    event.preventDefault();
+    compareUserInput(touchX, touchY);
+}
+
+// Get the touch position relative to the top-left of the canvas
+// When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
+// but not the position relative to our target div. We'll adjust them using "target.offsetLeft" and
+// "target.offsetTop" to get the correct values in relation to the top left of the canvas.
+function getTouchPos(e) {
+    if (!e)
+        var e = event;
+
+    if(e.touches) {
+        if (e.touches.length == 1) { // Only deal with one finger
+            var touch = e.touches[0]; // Get the information for finger #1
+            touchX=touch.pageX-touch.target.offsetLeft;
+            touchY=touch.pageY-touch.target.offsetTop;
+        }
+    }
+}
+
 
 function isVisited(X, Y) {
     console.log({X, Y});
@@ -91,46 +167,20 @@ function isVisited(X, Y) {
 }
 
 
-function compareUserInput() {
-    if (initialPath[((mouseY - 1)* canvas.width + mouseX) * 4 + 3] > 0) {
+function compareUserInput(X,Y) {
+    X = Math.round(X);
+    Y = Math.round(Y);
+    if (initialPath[((Y - 1)* canvas.width + X) * 4 + 3] > 0) {
         document.getElementById('canvas').classList.remove("wrong");
-        if(!isVisited(mouseX, mouseY)) {
+        if(!isVisited(X, Y)) {
             score += 1;
         }  
     }
     else {
         document.getElementById('canvas').classList.add("wrong");
-        if(!isVisited(mouseX, mouseY)) {
+        if(!isVisited(X, Y)) {
          score -= 1;
         }
-    }
-}
-
-
-// Keep track of the mouse position and draw a dot if mouse button is currently pressed
-function sketchpad_mouseMove(e) {
-    // Update the mouse co-ordinates when moved
-    getMousePos(e);
-    // Draw a dot if the mouse button is currently being pressed
-    if (mouseDown == 1) {
-        drawLine(ctx, mouseX, mouseY, 7);
-        compareUserInput();
-    }
-
-
-}
-
-// Get the current mouse position relative to the top-left of the canvas
-function getMousePos(e) {
-    if (!e)
-        var e = event;
-    if (e.offsetX) {
-        mouseX = e.offsetX;
-        mouseY = e.offsetY;
-    }
-    else if (e.layerX) {
-        mouseX = e.layerX;
-        mouseY = e.layerY;
     }
 }
 
@@ -148,15 +198,20 @@ function init() {
     if (ctx) {
         canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
         canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
-        window.addEventListener('mouseup', sketchpad_mouseUp, false);    
+        window.addEventListener('mouseup', sketchpad_mouseUp, false);
+
+      // React to touch events on the canvas
+        canvas.addEventListener('touchstart', sketchpad_touchStart, false);
+        canvas.addEventListener('touchend', sketchpad_touchEnd, false);
+        canvas.addEventListener('touchmove', sketchpad_touchMove, false);
 
     }
     generateWord();
 
 
-    let score = new Score("draw");
-    score.initScore();
-    score.upScore();
+    // let score = new Score("draw");
+    // score.initScore();
+    // score.upScore();
 }
 
 function generateWord(){
@@ -180,7 +235,7 @@ function generateWord(){
 function submitResult(){
     console.log(score);
     let initial_score = get_score(module_name);
-    if(initial_score == "")
+    if(initial_score == null)
         set_score(module_name, score);
     else
         set_score(module_name, parseInt(score) + parseInt(initial_score));
