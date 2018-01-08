@@ -8,6 +8,15 @@ var totalAnswers = 0;
 
 var chosenSet = [];
 
+var answers = [];
+
+var slides = [];
+
+var currentSlide = 0;
+
+const previousButton = document.getElementById("previous");
+const nextButton = document.getElementById("next");
+
 let scoreObj = new Score(module_name);
 scoreObj.initScore();
 
@@ -87,19 +96,21 @@ const questions =  [
 ];
 
 
-chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
-chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
-
 
 function buildQuiz() {
+
+    chosenSet = [];
+
+    chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
+    chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
 
     const output = [];
 
     chosenSet.forEach((currentQuestion, questionNumber) => {
 
-        const answers = [];
-
+        answers = [];
         for (let letter in currentQuestion.answers) {
+
             answers.push(
                 `<label>
                  <input type="radio" name="question${questionNumber}" value="${letter}">
@@ -117,10 +128,20 @@ function buildQuiz() {
         );
     })
     ;
-
+    console.log(output);
     quizContainer.innerHTML = output.join("");
 
     score = 0;
+
+    currentSlide = 0;
+    slides = document.querySelectorAll(".slide");
+
+    showSlide(0);
+
+    submitButton.addEventListener("click", showResults);
+    previousButton.addEventListener("click", showPreviousSlide);
+    nextButton.addEventListener("click", showNextSlide);
+    nextQuizButton.addEventListener("click", buildQuiz);
 }
 
 function showResults() {
@@ -146,8 +167,10 @@ function showResults() {
 
             answerContainers[questionNumber].style.color = "red";
         }
-    })
-    ;
+    });
+
+    submitButton.style.display = "none";
+    nextQuizButton.style.display = "inline-block";
 
     scoreObj.updateScore(score);
 

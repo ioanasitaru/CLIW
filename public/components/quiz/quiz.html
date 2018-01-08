@@ -5,7 +5,6 @@
     <title>Title</title>
     <link rel="stylesheet" href="quiz.css">
     <script src="../../js/Score.js"></script>
-    <script src="quiz.js"></script>
     <link href="../../css/score.css" rel="stylesheet">
     <link href="../../css/about.css" rel="stylesheet">
     <link href="../../css/index.css" rel="stylesheet">
@@ -19,24 +18,20 @@
     <button id="previous">Previous Question</button>
     <button id="next">Next Question</button>
     <button id="submit">Submit Quiz</button>
+    <button id="next-quiz">Next Quiz</button>
     <div id="results"></div>
+<script src="quiz.js"></script>
 <script>
     const quizContainer = document.getElementById("quiz");
     const resultsContainer = document.getElementById("results");
     const submitButton = document.getElementById("submit");
+    const nextQuizButton = document.getElementById("next-quiz");
 
     buildQuiz();
 
-    const previousButton = document.getElementById("previous");
-    const nextButton = document.getElementById("next");
-    const slides = document.querySelectorAll(".slide");
-    let currentSlide = 0;
 
-    showSlide(0);
 
-    submitButton.addEventListener("click", showResults);
-    previousButton.addEventListener("click", showPreviousSlide);
-    nextButton.addEventListener("click", showNextSlide);
+
 </script>
 </body>
 </html>
