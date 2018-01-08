@@ -80,7 +80,7 @@ function sketchpad_mouseMove(e) {
     // Update the mouse co-ordinates when moved
     getMousePos(e);
     // Draw a dot if the mouse button is currently being pressed
-    if (mouseDown == 1) {
+    if (mouseDown === 1) {
         drawLine(ctx, mouseX, mouseY, 7);
         compareUserInput(mouseX, mouseY);
     }
@@ -91,12 +91,13 @@ function sketchpad_mouseUp() {
     mouseDown = 0;
     lastX = -1;
     lastY = -1;
+    document.getElementById('canvas').classList.remove("wrong");
 }
 
 // Get the current mouse position relative to the top-left of the canvas
 function getMousePos(e) {
     if (!e)
-        var e = event;
+        e = event;
     if (e.offsetX) {
         mouseX = e.offsetX;
         mouseY = e.offsetY;
@@ -120,9 +121,10 @@ function sketchpad_touchStart() {
 }
 
 function sketchpad_touchEnd() {
-    // Reset lastX and lastY to -1 to indicate that they are now invalid, since we have lifted the "pen"
+    // Reset lastX and lastY to -1 to indicate that they are now invalid, since we have lifted the "pen"; also, remove red outline if present
     lastX=-1;
     lastY=-1;
+    document.getElementById('canvas').classList.remove("wrong");
 }
 
 // Draw something and prevent the default scrolling when touch movement is detected
