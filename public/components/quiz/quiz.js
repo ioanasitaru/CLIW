@@ -6,7 +6,9 @@ var score;
 
 var totalAnswers = 0;
 
-const firstSet = [
+var chosenSet = [];
+
+const questions =  [
     {
         question: "Select the Japanese translation for the English sentence: Good morning. ",
         answers: {
@@ -33,10 +35,7 @@ const firstSet = [
             c: "Did you say something?",
         },
         correctAnswer: "b"
-    }
-];
-
-const secondSet = [
+    },
     {
         question: "Pick the Japanese word that matches the English word: Watashi wa nihongo ga [a little] shika hanasemasen.",
         answers: {
@@ -55,18 +54,6 @@ const secondSet = [
         },
         correctAnswer: "b"
     },
-    {
-        question: "Select the English translation for each Japanese sentence: Nante iimashita ka.",
-        answers: {
-            a: "I don't know what to say.",
-            b: "What did you say?",
-            c: "Did you say something?",
-        },
-        correctAnswer: "b"
-    }
-];
-
-const thirdSet = [
     {
         question: "Japanese culture: Many decisions/choices are made in Japan by",
         answers: {
@@ -96,9 +83,9 @@ const thirdSet = [
     }
 ];
 
-var allSets = [firstSet, secondSet, thirdSet];
 
-var chosenSet = allSets[Math.floor(Math.random() * allSets.length)];
+chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
+chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
 
 
 function buildQuiz() {
