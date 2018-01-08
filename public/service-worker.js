@@ -27,7 +27,7 @@ self.addEventListener('install', function(e) {
                 '/js/DataService.js',
                 '/js/ModuleLoader.js',
                 '/js/score.js',
-                '/js/score2.js',
+                '/js/Score.js',
                 '/components/draw/draw.html',
                 '/components/draw/draw.css',
                 '/components/draw/draw.js',

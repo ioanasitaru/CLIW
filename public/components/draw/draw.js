@@ -1,5 +1,5 @@
 
-const module_name = "Writing";
+const module_name = "draw";
 
 // Keep track of the old/last position when drawing a line
 // We set it to -1 at the start to indicate that we don't have a good value for it yet
@@ -22,6 +22,9 @@ var initialPath;
 var score;
 
 var visited = [];
+
+var scoreObj = new Score(module_name);
+scoreObj.initScore();
 
 function drawLine(ctx, x, y, size) {
     // If lastX is not set, set lastX and lastY to the current position
@@ -233,12 +236,7 @@ function generateWord(){
 }
 
 function submitResult(){
-    console.log(score);
-    let initial_score = get_score(module_name);
-    if(initial_score == null)
-        set_score(module_name, score);
-    else
-        set_score(module_name, parseInt(score) + parseInt(initial_score));
+    scoreObj.updateScore(parseInt(score));
 
     document.getElementById('result').style.visibility='visible';
 

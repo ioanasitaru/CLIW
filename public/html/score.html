@@ -64,7 +64,7 @@
     </p>
 </footer>
 <script src="../js/score.js"></script>
-<script src="../js/score2.js"></script>
+<script src="../js/Score.js"></script>
 <script>
     tweet = function (module_name, score, scorePlace) {
         const provider = new firebase.auth.TwitterAuthProvider();
@@ -83,10 +83,12 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState > 3 && xhr.status === 200) {
                         console.log(xhr.responseText);
-                        let popup = document.getElementById("myPopup"+scorePlace);
+                        let popup = document.getElementById("myPopup" + scorePlace);
                         popup.classList.toggle("show");
 
-                        setTimeout(function(){popup.classList.toggle("show");}, 3000);
+                        setTimeout(function () {
+                            popup.classList.toggle("show");
+                        }, 3000);
                     }
                 };
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -107,34 +109,6 @@
     }
 </script>
 <script>
-    function getPerformanceMessage(score) {
-        console.log(score);
-        let performance = [
-            {
-                "threshold": "25",
-                "message": "It seems you really need more practice"
-            },
-            {
-                "threshold": "50",
-                "message": "Way to go"
-            },
-            {
-                "threshold": "75",
-                "message": "You are doing pretty good"
-            },
-            {
-                "threshold": "100",
-                "message": "You are almost native"
-            },
-        ];
-
-        for (let i = 0; i < performance.length; i++) {
-            if (score < performance[i].threshold) {
-                return performance[i].message;
-            }
-        }
-    }
-
     String.prototype.capitalize = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     };
@@ -149,18 +123,6 @@
                 let score = new Score(component.name);
                 let history = score.getHistory();
                 if (history) {
-                    history.positive = 76;
-                    history.total = 100;
-                    history.maxStreak = 100;
-                    history.streak = 80;
-                    history.monday = 10;
-                    history.tuesday = 20;
-                    history.wednesday = 76;
-                    history.thursday = 67;
-                    history.friday = 56;
-                    history.saturday = 45;
-                    history.sunday = 22;
-
 
                     let container = document.createElement("div");
                     container.className = "container";
@@ -172,8 +134,7 @@
                     message.textContent = "Your stats at " + component.name.capitalize();
 
                     let overallPerformance = document.createElement("p");
-                    let performanceMessage = getPerformanceMessage((history.positive / history.total) * 100);
-                    overallPerformance.textContent = performanceMessage + "! You have answered correctly " + history.positive + " out of " + history.total;
+                    overallPerformance.textContent = 'You scored today ' + history.todayScore + '... Way to go!';
 
                     let twitterShare = document.createElement("p");
                     let textBefore = document.createTextNode("Share it on ");
@@ -233,7 +194,7 @@
                     let id = setInterval(frame, 10);
 
                     function frame() {
-                        if (width >= (history.streak / history.maxStreak) * 100) {
+                        if (history.streak === 0 || width >= (history.streak / history.maxStreak) * 100) {
                             clearInterval(id);
                         } else {
                             width++;
@@ -299,7 +260,7 @@
                         let bardata = document.createElement(TDATA);
                         let bar = document.createElement('div');
                         bar.setAttribute('class', 'bar ' + colors[i]);
-                        bar.style.height = chartjson.data[i][chartjson.ykey] + "%";
+                        bar.style.height = (chartjson.data[i][chartjson.ykey] / chartjson.ymax) * 80 + "%";
                         bardata.innerText = chartjson.data[i][chartjson.ykey] + prefix;
                         bardata.appendChild(bar);
 

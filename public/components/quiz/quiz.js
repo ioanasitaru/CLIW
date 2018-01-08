@@ -1,12 +1,15 @@
 // import {set_score, get_score} from "../../js/score.js";
 // require("../../js/score.js");
-const module_name = "Quiz";
+const module_name = "quiz";
 
 var score;
 
 var totalAnswers = 0;
 
 var chosenSet = [];
+
+let scoreObj = new Score(module_name);
+scoreObj.initScore();
 
 const questions =  [
     {
@@ -146,11 +149,7 @@ function showResults() {
     })
     ;
 
-    let initial_score = get_score(module_name);
-    if(initial_score == "")
-        set_score(module_name, score);
-    else
-        set_score(module_name, parseInt(score) + parseInt(initial_score));
+    scoreObj.updateScore(score);
 
     resultsContainer.innerHTML = ` You have answered ${numCorrect} out of ${chosenSet.length} questions correctly. You've earned ${score} points. `;
 }
