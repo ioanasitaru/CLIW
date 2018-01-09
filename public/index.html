@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="apple-touch-icon" sizes="57x57" href="../img/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../img/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../img/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../img/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../img/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="../img/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="../img/ms-icon-144x144.png">
+	<meta name="theme-color" content="#000000">
+
 	<meta charset="UTF-8">
-	<title>ASLE</title>
+	<title>Landing</title>
 	<link href="css/about.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https://asle-b7a2d.firebaseapp.com/#overview",
+          "name": "Overview",
+          "image": "https://asle-b7a2d.firebaseapp.com/img/japanese.jpg",
+          "description": "Asian Language Learning Web Tool is an application designed to help you learn to write and speak various Asian languages (e.g. Mandarin, Japanese, Korean etc.) by helping you practice writing, increase your vocabulary and many other linguistic skills."
+        }
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "https://asle-b7a2d.firebaseapp.com/#main-feature",
+          "name": "Customizable",
+          "image": "https://asle-b7a2d.firebaseapp.com/img/tsunami.jpg",
+          "description": "The cornerstone of this application is its ability to adapt to your needs, as you can easily adjust which modules you would like to see and train with. Using the provided template, any developer can contribute to the module list, thus helping it expand even further."
+        }
+      }]
+    }
+    </script>
+
+	<meta name="google-site-verification" content="omc2c9MnQV_CaYJLKLnqPnAYA69s164BBdjTfSl1pq4" />
 </head>
 <body class="landing">
 <div id="page-wrapper">
@@ -12,39 +55,48 @@
 		<div class="content">
 			<header>
 				<h2>ASLE</h2>
-				<p>Asian Language<br />
+				<p>Asian Language<br/>
 					Learning Web Tool</p>
 			</header>
-			<span class="image"><img src="img/logo2.png" alt="" /></span>
+			<span class="image"><img src="../img/logo2.png" alt=""/></span>
 		</div>
 		<span class="goto-next" onclick="scrollIt(document.getElementById('two'));">Next</span>
 	</section>
-	<section id="two" class="spotlight style2 right">
-		<span class="image fit main"><img src="img/japanese.jpg" alt="japanese characters" /></span>
-		<div class="content">
-			<header>
-				<h2>Overview</h2>
-				<p><b>ASLE</b> (<b>As</b>ian Language <b>Le</b>arning Web Tool) is an application designed to help you learn to write and speak various Asian languages
-					(e.g. Mandarin, Japanese, Korean etc.) by helping you practice writing, increase your vocabulary and many other
-					linguistic skills.
-				</p>
-			</header>
-		</div>
-		<span class="goto-next" onclick="scrollIt(document.getElementById('three'));">Next</span>
-	</section>
+	<a href="#overview">
+		<section id="two" class="spotlight style2 right">
+			<span class="image fit main"><img src="../img/japanese.jpg" alt="japanese characters"/></span>
+			<div class="content">
+				<header>
+					<h2>Overview</h2>
+					<p><b>ASLE</b> (<b>As</b>ian Language <b>Le</b>arning Web Tool) is an application designed to help
+						you
+						learn to write and speak various Asian languages
+						(e.g. Mandarin, Japanese, Korean etc.) by helping you practice writing, increase your vocabulary
+						and
+						many other
+						linguistic skills.
+					</p>
+				</header>
+			</div>
+			<span class="goto-next" onclick="scrollIt(document.getElementById('three'));">Next</span>
+		</section>
+	</a>
 
-	<section id="three" class="spotlight style3 left">
-		<span class="image fit main bottom"><img src="img/tsunami.jpg" alt="tsunami drawing"/></span>
-		<div class="content">
-			<header>
-				<h2>Customizable</h2>
-				<p>The cornerstone of this application is its ability to adapt to your needs, as you can easily
-					adjust which modules you would like to see and train with. Using the provided template, any developer can contribute
-					to the module list, thus helping it expand even further.</p>
-			</header>
-		</div>
-		<span class="goto-next" onclick="scrollIt(document.getElementById('four'));">Next</span>
-	</section>
+	<a href="#main-feature">
+		<section id="three" class="spotlight style3 left">
+			<span class="image fit main bottom"><img src="../img/tsunami.jpg" alt="tsunami drawing"/></span>
+			<div class="content">
+				<header>
+					<h2>Customizable</h2>
+					<p>The cornerstone of this application is its ability to adapt to your needs, as you can easily
+						adjust which modules you would like to see and train with. Using the provided template, any
+						developer can contribute
+						to the module list, thus helping it expand even further.</p>
+				</header>
+			</div>
+			<span class="goto-next" onclick="scrollIt(document.getElementById('four'));">Next</span>
+		</section>
+	</a>
 
 	<section id="four" class="wrapper">
 		<div class="container">
@@ -69,6 +121,16 @@
             'left': 0,
             'top': element.offsetTop
         });
+    }
+</script>
+<script>
+    if ('serviceWorker' in navigator) {
+        console.log("Beam me up");
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then(function () {
+                console.log("Service Worker Registered");
+            });
     }
 </script>
 </body>

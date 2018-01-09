@@ -77,6 +77,7 @@ class Score {
         }
         else if (currentDate.toComparingString() !== pastDate.toComparingString()) {
             history.streak = 0;
+            history.todayScore = score;
         }
 
         if (history.streak > history.maxStreak) {

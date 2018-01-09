@@ -653,6 +653,11 @@ header h2 + p {
     width: 100%;
 }
 
+#page-wrapper > a{
+    text-decoration: none;
+    cursor: default;
+}
+
 /* XLarge */
 
 @media screen and (max-width: 1680px) {
