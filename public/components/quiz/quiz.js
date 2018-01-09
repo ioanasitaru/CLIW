@@ -20,6 +20,8 @@ const nextButton = document.getElementById("next");
 let scoreObj = new Score(module_name);
 scoreObj.initScore();
 
+let dataService = new DataService();
+
 const questions =  [
     {
         question: "Select the Japanese translation for the English sentence: Good morning. ",
@@ -44,7 +46,7 @@ const questions =  [
         answers: {
             a: "I don't know what to say.",
             b: "What did you say?",
-            c: "Did you say something?",
+            c: "Did you say something?"
         },
         correctAnswer: "b"
     },
@@ -89,7 +91,7 @@ const questions =  [
         answers: {
             a: "Although most Japanese people are not Christians it is customary to go to church on Christmas eve.",
             b: "Is mostly celebrated by sweethearts going on romantic dates. ",
-            c: "Is not well known as there are few Christians in Japan. ",
+            c: "Is not well known as there are few Christians in Japan. "
         },
         correctAnswer: "b"
     }
@@ -101,8 +103,39 @@ function buildQuiz() {
 
     chosenSet = [];
 
+    nextQuizButton.style.display = "none";
+
     chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
     chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
+
+
+    var word = dataService.getRandomWord();
+
+    // const shuffled = array.sort(() => .5 - Math.random());// shuffle  
+    // let selected =shuffled.slice(0,n) ; //get sub-array of first n elements AFTER shuffle
+
+    var translatedWord;
+    dataService.translateText(word, translation => {
+                translatedWord = translation;
+            });
+
+    console.log(translatedWord);
+
+    var translationQuestion;
+    translationQuestion = { question: 'Choose the right translation for: ' + translatedWord, 
+                                answers: {
+                                    a: dataService.getRandomWord(),
+                                    b: dataService.getRandomWord(),
+                                    c: word
+                                },
+                                correctAnswer: "c"
+                            };
+
+    console.log(translationQuestion);
+
+    chosenSet.push(translationQuestion);
+
+    console.log(chosenSet);
 
     const output = [];
 
@@ -136,7 +169,9 @@ function buildQuiz() {
     currentSlide = 0;
     slides = document.querySelectorAll(".slide");
 
-    showSlide(0);
+    showSlide(0);    
+
+    resultsContainer.innerHTML=" ";
 
     submitButton.addEventListener("click", showResults);
     previousButton.addEventListener("click", showPreviousSlide);
