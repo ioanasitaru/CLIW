@@ -197,21 +197,6 @@ function getViewportWidth() {
         viewportWidth = window.getComputedStyle(document.getElementsByTagName('body')[0]).width;
     }
 
-// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
-
-    // else if (typeof document.documentElement !== 'undefined'
-    //     && typeof document.documentElement.clientWidth !==
-    //     'undefined' && document.documentElement.clientWidth !== 0)
-    // {
-    //     viewportWidth = document.documentElement.clientWidth;
-    // }
-    //
-    // // older versions of IE
-    //
-    // else
-    // {
-    //     viewportWidth = document.getElementsByTagName('body')[0].clientWidth;
-    // }
     return viewportWidth;
 }
 
@@ -258,9 +243,13 @@ function generateWord() {
     let dService = new DataService();
     let randomWord = dService.getRandomWord();
 
+    let pService = new PronunciationService();
+
+
+
     document.getElementById("translation").innerHTML = randomWord;
 
-    let japaneseEquivalent = dService.translateText(randomWord, word => {
+    let japaneseEquivalent = dService.translateText(randomWord, word => { pService.kanjnih(word);
         translatedWord = word;
         let fontSize = 150;
         ctx.font = "bold " + fontSize + "px Arial";
