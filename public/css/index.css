@@ -163,7 +163,7 @@ footer {
   margin-right: 5px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1220px) {
     #left-side, #right-side {
         width: 100%;
         float: none;

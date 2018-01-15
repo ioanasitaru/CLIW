@@ -1,4 +1,3 @@
-
 const module_name = "draw";
 
 // Keep track of the old/last position when drawing a line
@@ -6,37 +5,37 @@ const module_name = "draw";
 var lastX, lastY = -1;
 
 // Variables to keep track of the touch position
-var touchX,touchY;
+var touchX, touchY;
 
 // Variables for referencing the canvas and 2dcanvas context
-var canvas, ctx;
+let canvas, ctx;
 // Variables to keep track of the mouse position and left-button status
-var mouseX, mouseY, mouseDown = 0;
+let mouseX, mouseY, mouseDown = 0;
 // Draws a dot at a specific position on the supplied canvas name
 // Parameters are: A canvas context, the x position, the y position, the size of the dot
 
-var translatedWord;
+let translatedWord;
 
-var initialPath;
+let initialPath;
 
-var score;
+let score;
 
-var visited = [];
+const visited = [];
 
-var scoreObj = new Score(module_name);
+const scoreObj = new Score(module_name);
 scoreObj.initScore();
 
 function drawLine(ctx, x, y, size) {
     // If lastX is not set, set lastX and lastY to the current position
-    if (lastX == -1) {
+    if (lastX === -1) {
         lastX = x;
         lastY = y;
     }
     // Let's use black by setting RGB values to 0, and 255 alpha (completely opaque)
-    r = 0;
-    g = 0;
-    b = 0;
-    a = 255;
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    let a = 255;
     // Select a fill style
     ctx.strokeStyle = "rgba(" + r + "," + g + "," + b + "," + (a / 255) + ")";
     // Set the line "cap" style to round, so lines at different angles can join into each other
@@ -60,9 +59,9 @@ function drawLine(ctx, x, y, size) {
 // Clear the canvas context using the canvas width and height
 function clearCanvas(canvas, ctx) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "bold 150px Arial";         
+    ctx.font = "bold 150px Arial";
     ctx.globalAlpha = 0.2;
-    ctx.fillText(translatedWord, canvas.width/2 - ctx.measureText(translatedWord).width/2, canvas.height/2 + 50);
+    ctx.fillText(translatedWord, canvas.width / 2 - ctx.measureText(translatedWord).width / 2, canvas.height / 2 + 50);
     ctx.globalAlpha = 1;
     score = 0;
     document.getElementById('canvas').classList.remove("wrong");
@@ -108,12 +107,12 @@ function getMousePos(e) {
     }
 }
 
- // Draw something when a touch start is detected
+// Draw something when a touch start is detected
 function sketchpad_touchStart() {
     // Update the touch co-ordinates
     getTouchPos();
 
-    drawLine(ctx,touchX,touchY,7);
+    drawLine(ctx, touchX, touchY, 7);
 
     // Prevents an additional mousedown event being triggered
     event.preventDefault();
@@ -122,17 +121,17 @@ function sketchpad_touchStart() {
 
 function sketchpad_touchEnd() {
     // Reset lastX and lastY to -1 to indicate that they are now invalid, since we have lifted the "pen"; also, remove red outline if present
-    lastX=-1;
-    lastY=-1;
+    lastX = -1;
+    lastY = -1;
     document.getElementById('canvas').classList.remove("wrong");
 }
 
 // Draw something and prevent the default scrolling when touch movement is detected
-function sketchpad_touchMove(e) { 
+function sketchpad_touchMove(e) {
     // Update the touch co-ordinates
     getTouchPos(e);
     // During a touchmove event, unlike a mousemove event, we don't need to check if the touch is engaged, since there will always be contact with the screen by definition.
-    drawLine(ctx,touchX,touchY,7); 
+    drawLine(ctx, touchX, touchY, 7);
 
     // Prevent a scrolling action as a result of this touchmove triggering.
     event.preventDefault();
@@ -147,11 +146,11 @@ function getTouchPos(e) {
     if (!e)
         var e = event;
 
-    if(e.touches) {
-        if (e.touches.length == 1) { // Only deal with one finger
-            var touch = e.touches[0]; // Get the information for finger #1
-            touchX=touch.pageX-touch.target.offsetLeft;
-            touchY=touch.pageY-touch.target.offsetTop;
+    if (e.touches) {
+        if (e.touches.length === 1) { // Only deal with one finger
+            const touch = e.touches[0]; // Get the information for finger #1
+            touchX = touch.pageX - touch.target.offsetLeft;
+            touchY = touch.pageY - touch.target.offsetTop;
         }
     }
 }
@@ -159,43 +158,82 @@ function getTouchPos(e) {
 
 function isVisited(X, Y) {
     console.log({X, Y});
-    var i;
+    let i;
 
     for (i = 0; i < visited.length; i++) {
-        if (visited[i].X === X & visited[i].Y === Y ) {
+        if (visited[i].X === X & visited[i].Y === Y) {
             return true;
         }
-     }
+    }
     visited.push({X, Y});
     console.log(visited);
     return false;
 }
 
 
-function compareUserInput(X,Y) {
+function compareUserInput(X, Y) {
     X = Math.round(X);
     Y = Math.round(Y);
-    if (initialPath[((Y - 1)* canvas.width + X) * 4 + 3] > 0) {
+    if (initialPath[((Y - 1) * canvas.width + X) * 4 + 3] > 0) {
         document.getElementById('canvas').classList.remove("wrong");
-        if(!isVisited(X, Y)) {
+        if (!isVisited(X, Y)) {
             score += 1;
-        }  
+        }
     }
     else {
         document.getElementById('canvas').classList.add("wrong");
-        if(!isVisited(X, Y)) {
-         score -= 1;
+        if (!isVisited(X, Y)) {
+            score -= 1;
         }
     }
 }
 
+function getViewportWidth() {
+    let viewportWidth;
+
+    // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+
+    if (typeof window.innerWidth !== 'undefined') {
+        viewportWidth = window.getComputedStyle(document.getElementsByTagName('body')[0]).width;//window.innerWidth;
+        console.log(window.getComputedStyle(document.getElementsByTagName('body')[0]).width);//window.innerWidth;
+    }
+
+// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+
+    // else if (typeof document.documentElement !== 'undefined'
+    //     && typeof document.documentElement.clientWidth !==
+    //     'undefined' && document.documentElement.clientWidth !== 0)
+    // {
+    //     viewportWidth = document.documentElement.clientWidth;
+    // }
+    //
+    // // older versions of IE
+    //
+    // else
+    // {
+    //     viewportWidth = document.getElementsByTagName('body')[0].clientWidth;
+    // }
+    return viewportWidth;
+}
+
 // Set-up the canvas and add our event handlers after the page has loaded
 function init() {
-
+    let viewportWidth = getViewportWidth();
+    console.log(typeof viewportWidth);
+    viewportWidth = Number(viewportWidth.substring(0, viewportWidth.indexOf('px')));
     // Get the specific canvas element from the HTML document
     canvas = document.getElementById('canvas');
-    canvas.width = 490;
-    canvas.height = 290;
+    console.log(viewportWidth);
+    if (viewportWidth >= 496) {
+        canvas.width = 490;
+        canvas.height = 290;
+    } else {
+        canvas.width = 300;
+        canvas.height = 178;
+        document.getElementById('canvas').style.width = '300px';
+        document.getElementById('canvas').style.height = '178px';
+
+    }
     // If the browser supports the canvas tag, get the 2d drawing context for this canvas
     if (canvas.getContext)
         ctx = canvas.getContext('2d');
@@ -205,7 +243,7 @@ function init() {
         canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
         window.addEventListener('mouseup', sketchpad_mouseUp, false);
 
-      // React to touch events on the canvas
+        // React to touch events on the canvas
         canvas.addEventListener('touchstart', sketchpad_touchStart, false);
         canvas.addEventListener('touchend', sketchpad_touchEnd, false);
         canvas.addEventListener('touchmove', sketchpad_touchMove, false);
@@ -219,7 +257,7 @@ function init() {
     // score.upScore();
 }
 
-function generateWord(){
+function generateWord() {
     let dService = new DataService();
     let randomWord = dService.getRandomWord();
 
@@ -227,9 +265,16 @@ function generateWord(){
 
     let japaneseEquivalent = dService.translateText(randomWord, word => {
         translatedWord = word;
-        ctx.font = "bold 150px Arial";         
+        let fontSize = 150;
+        ctx.font = "bold " + fontSize + "px Arial";
+        while (ctx.measureText(word).width > canvas.width) {
+            fontSize -= 10;
+            ctx.font = "bold " + fontSize + "px Arial";
+        }
+        ctx.font = "bold " + fontSize + "px Arial";
         ctx.globalAlpha = 0.2;
-        ctx.fillText(word, canvas.width/2 - ctx.measureText(word).width/2, canvas.height/2 + 50);
+        console.log(ctx.measureText(word).height);
+        ctx.fillText(word, canvas.width / 2 - ctx.measureText(word).width / 2, canvas.height / 2 + fontSize / 3);
         score = 0;
         initialPath = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
         console.log(initialPath.length, initialPath);
@@ -237,15 +282,15 @@ function generateWord(){
     });
 }
 
-function submitResult(){
+function submitResult() {
     scoreObj.updateScore(parseInt(score));
 
-    document.getElementById('result').style.visibility='visible';
+    document.getElementById('result').style.visibility = 'visible';
 
-    document.getElementById('result').innerHTML="You just scored: " + score + "!";
+    document.getElementById('result').innerHTML = "You just scored: " + score + "!";
 
     setTimeout(function () {
-        document.getElementById('result').style.visibility='hidden';
+        document.getElementById('result').style.visibility = 'hidden';
     }, 2000);
 
     clearCanvas(canvas, ctx);
