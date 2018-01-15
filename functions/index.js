@@ -23,7 +23,7 @@ exports.twitter = functions.https.onRequest((request, response) => {
         // other text-based presentations and interpreters
         var mediaIdStr = data.media_id_string;
 
-        let message = "I just scored " +  request.body.score  + " in "  + request.body.module  +  "! Think you can beat me? Head over to https://asle-b7a2d.firebaseapp.com and try!";
+        let message = "I just scored " +  request.body.score  + " in "  + request.body.module  +  "! Think you can beat me? Head over to https://asle-b7a2d.firebaseapp.com and try! By the way, this is my full history:";
         let params = { status: message, media_ids: [mediaIdStr] }
 
         T.post('statuses/update', params, function (err, data, resp) {
