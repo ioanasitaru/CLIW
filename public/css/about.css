@@ -841,7 +841,7 @@ header h2 + p {
     -ms-transition: -ms-transform 0.5s ease;
     transition: transform 0.5s ease;
     padding-bottom: 1px;
-    padding-top: 44px !important;
+    /*padding-top: 44px !important;*/
     }
 
     /* Footer */
@@ -858,7 +858,11 @@ header h2 + p {
     }
 
     body {
-        font-size: 12pt;
+        font-size: 16pt;
+    }
+
+    header h2 + p {
+        font-size: 2em !important;
     }
 
     /* Spotlight */

@@ -26,7 +26,6 @@ self.addEventListener('install', function(e) {
                 '/img/tsunami.jpg',
                 '/js/DataService.js',
                 '/js/ModuleLoader.js',
-                '/js/score.js',
                 '/js/Score.js',
                 '/components/draw/draw.html',
                 '/components/draw/draw.css',
@@ -35,20 +34,24 @@ self.addEventListener('install', function(e) {
                 '/components/quiz/quiz.css',
                 '/components/quiz/quiz.js',
                 'comp.json',
+                'https://fonts.gstatic.com/s/roboto/v18/2tsd397wLxj96qwHyNIkxPesZW2xOQ-xsNqO47m55DA.woff2',
+                'https://fonts.gstatic.com/s/roboto/v18/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2',
+                'https://fonts.gstatic.com/s/roboto/v18/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2',
+                'https://fonts.gstatic.com/s/roboto/v18/CWB0XYA8bzo0kSThX0UTuA.woff2',
                 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,500,700'
             ]);
         })
     );
 });
 
-// self.addEventListener('fetch', function(event) {
-//     event.respondWith(
-//         caches.match(event.request).then(function(response) {
-//             return response || fetch(event.request)
-//                 .catch(function(event) {
-//                     console.log("Could not fetch data: ", event);
-//                     // return caches.match(event.request);;
-//             })
-//         })
-//     );
-// });
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            return response || fetch(event.request)
+                .catch(function(event) {
+                    console.log("Could not fetch data: ", event);
+                    // return caches.match(event.request);;
+            })
+        })
+    );
+});

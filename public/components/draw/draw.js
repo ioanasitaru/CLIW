@@ -194,8 +194,7 @@ function getViewportWidth() {
     // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
 
     if (typeof window.innerWidth !== 'undefined') {
-        viewportWidth = window.getComputedStyle(document.getElementsByTagName('body')[0]).width;//window.innerWidth;
-        console.log(window.getComputedStyle(document.getElementsByTagName('body')[0]).width);//window.innerWidth;
+        viewportWidth = window.getComputedStyle(document.getElementsByTagName('body')[0]).width;
     }
 
 // IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
@@ -219,11 +218,9 @@ function getViewportWidth() {
 // Set-up the canvas and add our event handlers after the page has loaded
 function init() {
     let viewportWidth = getViewportWidth();
-    console.log(typeof viewportWidth);
     viewportWidth = Number(viewportWidth.substring(0, viewportWidth.indexOf('px')));
     // Get the specific canvas element from the HTML document
     canvas = document.getElementById('canvas');
-    console.log(viewportWidth);
     if (viewportWidth >= 496) {
         canvas.width = 490;
         canvas.height = 290;
