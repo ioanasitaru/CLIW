@@ -16,7 +16,7 @@
     margin-top: 150px;
 }
 
-content {
+#changeable_content {
     width: 45%;
     height: 45%;
     margin: 10px 0 10px 0;
@@ -184,7 +184,7 @@ footer {
         margin-left:-30px;
     }
 
-    content {
+    #changeable_content {
         position: static;
         float: none;
         width: 100%;

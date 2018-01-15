@@ -157,7 +157,7 @@
                     link.setAttribute("href", "javascript:void(0)");
                     link.className = "twitter";
                     link.addEventListener("click", function () {
-                        tweet(component.name, history.positive, place);
+                        tweet(component.name, history.todayScore, place);
                         place++;
                     });
                     link.textContent = "Twitter";

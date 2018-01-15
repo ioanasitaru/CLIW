@@ -38,6 +38,21 @@ class Score {
             "sunday": Math.trunc(Math.random() * 10),
             "lastLogin": dateObj.setDate(dateObj.getDate())
         };
+
+        this.updateHistory();
+    }
+
+    updateHistory() {
+        let today = new Date();
+        let history = this.getHistory();
+        let pastDate = new Date(history.lastLogin);
+
+        if (today.toComparingString() !== pastDate.toComparingString()) {
+            history.todayScore = 0;
+            history.lastLogin = today.setDate(today.getDate());
+        }
+
+        this.setHistory(history);
     }
 
     initScore() {
