@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="theme-color" content="#1C1D26"/>
+    <link rel="manifest" href="../manifest.json">
     <link rel="apple-touch-icon" sizes="57x57" href="../img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-icon-72x72.png">
@@ -23,35 +24,12 @@
     <link href="../css/about.css" rel="stylesheet">
     <link href="../css/score.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script src="../js/html2canvas.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBz3REZO1eComp07sU_w8bHbTyRo6yRNdg",
-            authDomain: "asle-b7a2d.firebaseapp.com",
-            databaseURL: "https://asle-b7a2d.firebaseio.com",
-            projectId: "asle-b7a2d",
-            storageBucket: "asle-b7a2d.appspot.com",
-            messagingSenderId: "174054857729"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <script type="application/ld+json">
-        {
-          "@context": "http://schema.org/",
-          "@type": "WebPage",
-          "name": "Asian Language Learning Web Tool - Score",
-          "description": "View your results at practice and share the result"
-        }
-    </script>
 </head>
 <body class="landing">
 <div id="page-wrapper">
     <div id="header">
         <a href="#" id="logo-link">
-            <img src="../img/logo.png" id="logo" alt="asle-logo">
+            <img src="../img/favicon-96x96.png" id="logo" alt="asle-logo">
         </a>
         <!--<div class="vertical-line"></div>-->
         <nav id="nav">

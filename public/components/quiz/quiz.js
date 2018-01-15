@@ -1,18 +1,16 @@
-// import {set_score, get_score} from "../../js/score.js";
-// require("../../js/score.js");
 const module_name = "quiz";
 
-var score;
+let score;
 
-var totalAnswers = 0;
+let totalAnswers = 0;
 
-var chosenSet = [];
+let chosenSet = [];
 
-var answers = [];
+let answers = [];
 
-var slides = [];
+let slides = [];
 
-var currentSlide = 0;
+let currentSlide = 0;
 
 const previousButton = document.getElementById("previous");
 const nextButton = document.getElementById("next");
@@ -22,7 +20,7 @@ scoreObj.initScore();
 
 let dataService = new DataService();
 
-const questions =  [
+const questions = [
     {
         question: "Select the Japanese translation for the English sentence: Good morning. ",
         answers: {
@@ -98,7 +96,6 @@ const questions =  [
 ];
 
 
-
 function buildQuiz() {
 
     chosenSet = [];
@@ -109,27 +106,28 @@ function buildQuiz() {
     chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
 
 
-    var word = dataService.getRandomWord();
+    const word = dataService.getRandomWord();
 
     // const shuffled = array.sort(() => .5 - Math.random());// shuffle  
     // let selected =shuffled.slice(0,n) ; //get sub-array of first n elements AFTER shuffle
 
-    var translatedWord;
+    let translatedWord;
     dataService.translateText(word, translation => {
-                translatedWord = translation;
-            });
+        translatedWord = translation;
+    });
 
     console.log(translatedWord);
 
-    var translationQuestion;
-    translationQuestion = { question: 'Choose the right translation for: ' + translatedWord, 
-                                answers: {
-                                    a: dataService.getRandomWord(),
-                                    b: dataService.getRandomWord(),
-                                    c: word
-                                },
-                                correctAnswer: "c"
-                            };
+    let translationQuestion;
+    translationQuestion = {
+        question: 'Choose the right translation for: ' + translatedWord,
+        answers: {
+            a: dataService.getRandomWord(),
+            b: dataService.getRandomWord(),
+            c: word
+        },
+        correctAnswer: "c"
+    };
 
     console.log(translationQuestion);
 
@@ -169,9 +167,9 @@ function buildQuiz() {
     currentSlide = 0;
     slides = document.querySelectorAll(".slide");
 
-    showSlide(0);    
+    showSlide(0);
 
-    resultsContainer.innerHTML=" ";
+    resultsContainer.innerHTML = " ";
 
     submitButton.addEventListener("click", showResults);
     previousButton.addEventListener("click", showPreviousSlide);
@@ -191,13 +189,13 @@ function showResults() {
         const selector = `input[name=question${questionNumber}]:checked`;
         const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-        totalAnswers ++;
+        totalAnswers++;
         if (userAnswer === currentQuestion.correctAnswer) {
 
             numCorrect++;
             score++;
             answerContainers[questionNumber].style.color = "lightgreen";
-            
+
         } else {
 
             answerContainers[questionNumber].style.color = "red";

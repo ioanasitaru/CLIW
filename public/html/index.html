@@ -4,7 +4,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../img/ms-icon-144x144.png">
     <meta name="theme-color" content="#1C1D26"/>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" sizes="57x57" href="../img/apple-icon-57x57.png">
@@ -20,22 +19,19 @@
     <link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
 
+    <link rel="manifest" href="../manifest.json">
+
     <title>ASLE</title>
     <link href="../css/score.css" rel="stylesheet">
     <link href="../css/about.css" rel="stylesheet">
     <link href="../css/index.css" rel="stylesheet">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-    <script src="../js/ModuleLoader.js"></script>
-    <script src="../js/DataService.js"></script>
-    <script src="../js/Score.js"></script>
-    <script src="../comp.json"></script>
-    <script>mLoader = new ModuleLoader("changeable_content");</script>
 </head>
 <body class="landing">
 <div id="page-wrapper">
     <div id="header">
         <a href="#" id="logo-link">
-            <img src="../img/logo.png" id="logo" alt="asle-logo">
+            <img src="../img/favicon-96x96.png" id="logo" alt="asle-logo">
         </a>
         <div class="vertical-line"></div>
         <nav id="nav">
@@ -78,6 +74,11 @@
         </div>
     </div>
 </div>
+<script src="../js/ModuleLoader.js"></script>
+<script src="../js/DataService.js"></script>
+<script src="../js/Score.js"></script>
+<script src="../comp.json"></script>
+<script>mLoader = new ModuleLoader("changeable_content");</script>
 <script>
     String.prototype.capitalize = function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
