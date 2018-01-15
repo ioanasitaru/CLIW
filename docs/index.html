@@ -77,9 +77,7 @@
                 să implementăm doar scheletul paginii, să reanalizăm și să decidem asupra unei implementări finale. Am
                 observat că includerea progresului pe aceeași pagină
                 ar consta în prea mult conținut deci am hotărât să realizăm o alta pagină unde va fi afișat
-                progresul aferent fiecărui modul de învățare.
-                La consultarea cu profesorul de laborator am convenit și asupra unei paginii de ghid atât pentru
-                utilizatori cât și pentru viitori dezvoltatori.</p>
+                progresul aferent fiecărui modul de învățare.</p>
         </blockquote>
 
         <figure typeof="sa:Image3">
@@ -114,15 +112,29 @@
                 Pentru modulele default pe care le oferim drept exemplu - Canvas și Quiz - interacțiunea se va realiza prin
                 intermediul unui canvas în care userul își poate antrena abilitățile de caligrafie a literelor din limba japoneză.
                 Quiz este un modul de tip întrebări cu variante de răspuns, prin care userul își poate testa atât cunoștințele de
-                limbă cât și cele generale despre cultura japoneză.
+                limbă, cât și cele generale despre cultura japoneză.
             </p>
             <h3> Dezvoltatori </h3>
             <p>
                 Pentru cei ce doresc să aducă contribuții aplicației, facilităm acest lucru prin oferirea unui template
                 de dezvoltare, împreună cu exemple privitoare la implementarea unui modul. Astfel, oricine dorește să extindă
                 cu o anumită funcționalitate trebuie doar să urmeze convenția impusă de template, implementând un conținut pentru
-                tag-ul content împreună cu maniera de utilizare cât și să îi ofere un nume și un catchphrase, ce vor apărea în sidebar-ul
+                tag-ul content împreună cu maniera de utilizare, cât și să îi ofere un nume și un catchphrase, ce vor apărea în sidebar-ul
                 de module.
+            </p>
+            <p>
+                Explicit, componenta trebuie definită în json-ul comp.json. Aici fiecare componentă va fi definită prin intermediul unui obiect care
+                va conține numele, descrierea care va apărea în meniul de selecție a modulelor, textul de pe buton și locația fișierelor sursă. Exemplu de
+                obiect descriind un modul ce va fi încărcat dinamic în cadrul aplicației:
+                <pre>
+{
+    "name": "quiz",
+    "description": "Bored of drawing letters? Do you consider yourself better than that?",
+    "button": "Evaluate yourself!",
+    "src": "../components/quiz/quiz.html"
+}
+                </pre>
+                Precizăm că am implementat încărcarea modulelor astfel încât dezvoltatorul să poată furniza modulele dorite din locații diverse.
             </p>
         </blockquote>
     </section>
@@ -140,13 +152,33 @@
                 ce oferă în pachetul gratuit 1,000,000 de caractere pe zi dar nu mai mult de 10,000,000 pe lună, mai
                 mult decât suficient pentru traficul scontat pentru aplicația noastră.
             </p>
+            <p>
+                Pentru a oferi un acces cât mai simplu la acest api și la funcționalitatea de traducere în special, am implementat o clasă care se ocupă cu
+                accesul la date (chiar și când aplicația funcționează în modul offline, spre exemplu). Așadar viitori dezvoltatori de module vor putea folosi
+                clasa și metodele într-un mod standardizat și sigur. Chiar și noi, am avut nevoie la ambele module-exemplu de traducere din japoneză și am putut
+                apela la această clasă.
+            </p>
         </blockquote>
         <blockquote>
             <h3> Google Firebase </h3>
             <p>
-                Google Firebase vine cu o suită de tools-uri precum Google Functions, Google Hosting, Google
+                Google Firebase vine cu o suită de tool-uri precum Google Functions, Google Hosting, Google
                 authentication pentru a folosi un instrument software aliniat problematicilor serverless și deci pentru
                 a ne concentra asupra interacțiunii cu utilizatorul la nivel de client.
+            </p>
+            <p>
+                Din acestea am ales serviciul de hosting pentru a putea testa live de pe multiple platforme dar și pentru a putea folosi
+                diverse tool-uri de testare performanță online despre care vom vorbi mai târziu. Site-ul poate fi accesat așadar la adresa
+                <a href="https://asle-b7a2d.firebaseapp.com/">https://asle-b7a2d.firebaseapp.com/</a>.
+            </p>
+            <p>
+                Deoarece am vrut să-i punem utilizatorului la dispoziție posibilitatea de a partaja progresul în aplicație pe Twitter, am avut
+                nevoie de o parte minimală de server. Nu am dorit să implementăm un server doar pentru această simplă funcționalitate și am decis
+                să folosim Google Functions, un serviciu aliniat problematicilor serverless. Implementarea părții de "backend" a constat în folosirea
+                pachetul <a href="https://github.com/ttezel/twit">twit</a> (furnizat de npm pentru node.js) pentru a trimite un request autorizat către twitter.
+                Am servit acest serviciu ca un api public pe care îl apelăm folosind apeluri AJAX de pe client.<br>
+                Din păcate, pentru a putea hosta serviciul care face apeluri în afara serverului de google ne-ar fi costat la nivel de apel. Așadar această
+                funcționalitate este disponibilă doar atunci când aplicația este rulată local.
             </p>
         </blockquote>
         <blockquote>
@@ -165,6 +197,14 @@
                 Authentication, pentru a-i oferi utilizatorului posibilitatea de a da share la progresul înregistrat în
                 aplicație pe rețeaua de socializare
             </p>
+            <p>
+                Concret, am înregistrat aplicația la <a href="https://apps.twitter.com/">https://apps.twitter.com/</a>. Am primit două chei pentru a putea
+                folosi api-ul pus la dispoziție. Pentru partea de autentificare a userului înainte de posta ceva am recurs din nou la Firebase care are
+                implementată această logică, noi trebuind doar să setăm URL de callback după autentificare la un endpoint setat de Google. Când userul vrea
+                să posteze progresul se realizează un apel AJAX către api-ul construit cu Google Functions. Ca funcționalitate, am apelat funcțiile din pachetul
+                <a href="https://github.com/ttezel/twit">twit</a> (furnizat de npm pentru node.js) care sunt niște wrapper-ere peste endpointurile puse la dispoziție
+                de Twitter.
+            </p>
         </blockquote>
         <blockquote>
             <h3> Local storage</h3>
@@ -174,13 +214,26 @@
                 îngreuna cererile spre server dar și pentru că aceasta modalitate de stocarea a informațiilor este mai
                 sigură, multe date putând fi stocate local fără a afecta performanța site-ului.
             </p>
+            <p>
+                În local storage am decis să stocăm pentru fiecare modul detalii referitoare la ultimul login, răspunsuri corecte sau zile consecutive în care
+                s-a răspuns corect. Așadar de fiecare dată când userul intră în aplicație, sau mai bine spus, când vrea sa utilizeze un modul, acel modul este
+                responsabil de o intrare din Local Storage. Aceste informații sunt extrase de pagina de scor unde sunt folosite pentru generarea progresului și a
+                diferitelor statistici. Totodată, funcțiile din Google Firebase Authentication își stochează informații despre userul logat
+                pentru a ne putea furniza id-ul utilizatorului care ne ajută să facem request-uri autentificate la api-ul pus la dispoziție de Twitter.
+            </p>
+            <p>
+                Pentru a veni în ajutorul dezvoltatorilor am implementat clasa Score acolo unde accesul la intrarea din Local Storage aferenta modului este centralizată.
+                Așadar, pentru a genera statistici relevante în pagina de scor, fiecare modul trebuie doar să instanțieze această clasă și să folosească metodele ușor
+                de utilizat si înțeles. În acest mod, oferim posibilitatea dezvoltatorilor modulelor de a se concetra strict pe funcționalitățile modului și nu pe modul
+                de stocare eficientă.
+            </p>
         </blockquote>
     </section>
     <section id="cod-sursa">
         <h2>5. Maniera de folosire a sistemului de management al codului-sursă ales</h2>
         <p>Codul se afla la adresa <a href="https://github.com/ioanasitaru/CLIW">ASLE</a>. Din motive întemeiate,
             repository-ul nu este încă public, însă după finalizarea cursului acesta va fi pus la dispoziția
-            utilizatorilor, dar și a viitorilor dezvoltatori</p>
+            utilizatorilor, dar și a viitorilor dezvoltatori.</p>
     </section>
     <section typeof="sa:AuthorsList" id="membrii-echipei">
         <h2>6. Membrii echipei</h2>
@@ -198,7 +251,7 @@
             <li typeof="sa:ContributorRole" property="schema:author">
                 <a href="https://github.com/stefan-matcovici" typeof="schema:Person">
 						<span property="schema:givenName">
-							Stefan
+							Ștefan
 						</span>
                     <span property="schema:familyName">
 							Matcovici
