@@ -38,7 +38,8 @@ self.addEventListener('install', function(e) {
                 'https://fonts.gstatic.com/s/roboto/v18/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2',
                 'https://fonts.gstatic.com/s/roboto/v18/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2',
                 'https://fonts.gstatic.com/s/roboto/v18/CWB0XYA8bzo0kSThX0UTuA.woff2',
-                'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,500,700'
+                'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,500,700',
+                'manifest.json'
             ]);
         })
     );
