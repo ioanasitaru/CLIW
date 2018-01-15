@@ -45,14 +45,20 @@ class Score {
     updateHistory() {
         let today = new Date();
         let history = this.getHistory();
-        let pastDate = new Date(history.lastLogin);
+        if (history) {
+            let pastDate = new Date(history.lastLogin);
 
-        if (today.toComparingString() !== pastDate.toComparingString()) {
-            history.todayScore = 0;
-            history.lastLogin = today.setDate(today.getDate());
+            if (today.toComparingString() !== pastDate.toComparingString()) {
+                history.todayScore = 0;
+                history.lastLogin = today.setDate(today.getDate());
+            }
+
+            this.setHistory(history);
+        }
+        else {
+            this.initScore();
         }
 
-        this.setHistory(history);
     }
 
     initScore() {
