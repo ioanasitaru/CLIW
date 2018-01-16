@@ -277,7 +277,7 @@ function submitResult() {
 
     setTimeout(function () {
         document.getElementById('result').style.visibility = 'hidden';
-    }, 2000);
+    }, 4000);
 
     clearCanvas(canvas, ctx);
     canvas.width = canvas.width;
