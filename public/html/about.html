@@ -22,7 +22,6 @@
 
     <title>ASLE</title>
     <link href="../css/about.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -127,13 +126,14 @@
 </script>
 <script>
     if ('serviceWorker' in navigator) {
-        console.log("Beam me up");
+        // console.log("Beam me up");
         navigator.serviceWorker
             .register('/service-worker.js')
             .then(function () {
-                console.log("Service Worker Registered");
+                // console.log("Service Worker Registered");
             });
     }
 </script>
+<!--<script src="https://use.fontawesome.com/734f4e0645.js"></script>-->
 </body>
 </html>

@@ -15,6 +15,7 @@ class ModuleLoader {
         let ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", componentSrc);
         ifrm.setAttribute("scrolling", "no");
+        ifrm.setAttribute("name", "content");
         ifrm.width = 500 + "px";
         ifrm.height = 500 + "px";
 

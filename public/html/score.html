@@ -23,7 +23,6 @@
     <title>Score</title>
     <link href="../css/about.css" rel="stylesheet">
     <link href="../css/score.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="landing">
 <div id="page-wrapper">
@@ -50,7 +49,7 @@
         <i class="fa fa-copyright" aria-hidden="true"></i> ASLE - CLIW 2017
     </p>
 </footer>
-<script src="../js/score.js"></script>
+<script src="../js/Score.js"></script>
 <script>
     tweet = function (module_name, score, scorePlace) {
         const provider = new firebase.auth.TwitterAuthProvider();
@@ -68,7 +67,7 @@
                 xhr.open('POST', '/api/twitter');
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState > 3 && xhr.status === 200) {
-                        console.log(xhr.responseText);
+                        // console.log(xhr.responseText);
                         let popup = document.getElementById("myPopup" + scorePlace);
                         popup.classList.toggle("show");
 
@@ -120,7 +119,7 @@
                     message.textContent = "Your stats at " + component.name.capitalize();
 
                     let overallPerformance = document.createElement("p");
-                    overallPerformance.textContent = 'You scored today ' + history.todayScore + '... Way to go!';
+                    overallPerformance.textContent = 'Today you scored ' + history.todayScore + '... Way to go!';
 
                     let twitterShare = document.createElement("p");
                     let textBefore = document.createTextNode("Share it on ");
@@ -151,7 +150,7 @@
                     twitterShare.appendChild(textAfter);
                     twitterShare.appendChild(popup);
 
-                    console.log(twitterShare);
+                    // console.log(twitterShare);
 
                     header.appendChild(message);
                     header.appendChild(overallPerformance);
@@ -282,13 +281,14 @@
 
 <script>
     if ('serviceWorker' in navigator) {
-        console.log("Beam me up");
+        // console.log("Beam me up");
         navigator.serviceWorker
             .register('/service-worker.js')
             .then(function () {
-                console.log("Service Worker Registered");
+                // console.log("Service Worker Registered");
             });
     }
 </script>
+<!--<script src="https://use.fontawesome.com/734f4e0645.js"></script>-->
 </body>
 </html>

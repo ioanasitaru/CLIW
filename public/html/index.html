@@ -33,7 +33,7 @@
         <a href="#" id="logo-link">
             <img src="../img/favicon-96x96.png" id="logo" alt="asle-logo">
         </a>
-        <div class="vertical-line"></div>
+        <!--<div class="vertical-line"></div>-->
         <nav id="nav">
             <ul>
                 <li><a href="about.html" id="home">Home</a></li>
@@ -74,6 +74,7 @@
         </div>
     </div>
 </div>
+</body>
 <script src="../js/ModuleLoader.js"></script>
 <script src="../js/DataService.js"></script>
 <script src="../js/Score.js"></script>
@@ -117,16 +118,10 @@
 </script>
 <script>
     if('serviceWorker' in navigator) {
-        console.log("Beam me up");
+        // console.log("Beam me up");
         navigator.serviceWorker
             .register('/service-worker.js')
-            .then(function() { console.log("Service Worker Registered"); });
+            .then(function() { /*console.log("Service Worker Registered");*/ });
     }
 </script>
-<script>
-    // score = new Score("draw");
-    // score.initFakeScore();
-    // score.updateScore(12);
-</script>
-</body>
 </html>

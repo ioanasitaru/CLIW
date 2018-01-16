@@ -327,12 +327,12 @@ class DataService {
     translateText(text, success) {
 
         if (navigator.onLine) {
-            console.log("online");
+            // console.log("online");
             let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
             xhr.open('POST', this.yandexEndpoint);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState > 3 && xhr.status === 200) {
-                    console.log(xhr.responseText);
+                    // console.log(xhr.responseText);
                     success(JSON.parse(xhr.responseText).text[0]);
                 }
             };
@@ -341,7 +341,7 @@ class DataService {
             return xhr;
         }
         else {
-            console.log("offline");
+            // console.log("offline");
             success(this.hardcodedList.filter(w => w["word"] === text)[0]["translation"]);
         }
     }
