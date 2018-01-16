@@ -56,6 +56,9 @@
                 Landing page
             </figcaption>
         </figure>
+
+        <br/>
+
         <blockquote>
             <p>Atunci când un utilizator va intra pe site-ul aplicației noastre, va fi întâmpinat de un landing
             page, ce are rolul de a-l familiariza cu scopul aplicației și tipul de conținut pe care îl va găsi. Această
@@ -70,6 +73,9 @@
                 Butonul "Get Started"
             </figcaption>
         </figure>
+
+        <br/>
+
         <blockquote>
             <p>
                 Odată ajuns pe pagina principală, primul modul cu care va intra în contact utilizatorul este
@@ -89,11 +95,13 @@
                 Pagina principală
             </figcaption>
         </figure>
+        <h2> Draw </h2>
+
         <blockquote>
             <p>
                 Modul în care funcționează modulul Draw este intuitiv și îl face ușor de folosit - utilizatorului
                 îi sunt prezentate simboluri, cu rol de linii de ghidaj, iar, prin utilizarea degetului sau a cursorului, acesta
-                încearcă să le reproducă cât mai fidel. Butonul "Clear canvasGHILIMELE îi dă utilizatorului posibilitatea de a începe
+                încearcă să le reproducă cât mai fidel. Butonul "Clear canvas" îi dă utilizatorului posibilitatea de a începe
                 de la capăt, dacă dorește. Dacă, în timpul exersării, acesta face o greșeală și depășește marcajele, este atenționat prin
                 intermediul unui chenar roșu ce înconjoară suprafața de desen.
             </p>
@@ -105,9 +113,12 @@
                 Desen cu greșeală
             </figcaption>
         </figure>
+
+        <br/>
+
         <blockquote>
             <p>
-                La final, prin butonul GHILIMELESubmitGHILIMELE, este evaluat efortul utilizatorului, oferindu-i-se
+                La final, prin butonul "Submit", este evaluat efortul utilizatorului, oferindu-i-se
                 feedback prin intermediul unui punctaj, care îi va spune cât de fidelă este reprezentarea sa. De asemenea,
                 pe parcursul exersării unui anumit cuvânt, utilizatorul poate atât asculta cât și vedea modul în care acele
                 simboluri se pronunță, pentru o experiență a învățării cât mai completă.
@@ -121,219 +132,79 @@
             </figcaption>
         </figure>
 
+        <h2> Quiz </h2>
+
+        <figure typeof="sa:Image6">
+            <img src="img/screen4.PNG" style="width:920px;height:470px;display:inline;border: 2px solid black; transform: translateX(-11%);">
+            <figcaption align="center">
+                Exemplu de quiz
+            </figcaption>
+        </figure>
+
+        <br/>
+
         <blockquote>
             <p>
                 Celălalt modul demo la care va avea acces orice utilizator este cel de Quiz. Acesta are formatul unui
-                chestionar cu întrebări cu variante de răspuns, din care numai una este corectă.
+                chestionar cu întrebări cu variante de răspuns, din care numai una este corectă. Întrebările sunt alese
+                în mod aleatoriu de fiecare dată când un utilizator alege să rezolve un test, așa că acesta este reutilizabil
+                în repetate rânduri. La final, utilizatorul va afla punctajul și la care dintre întrebări a ales răspunsul corect.
             </p>
         </blockquote>
 
-        <figure typeof="sa:Image5">
-            <img src="img/drawing_score.PNG" style="width:720px;height:105px;display:inline;border: 2px solid black">
+        <figure typeof="sa:Image7">
+            <img src="img/quiz.PNG" style="width:720px;height:550px;display:inline;border: 2px solid black; transform: translateX(-2%);">
             <figcaption align="center">
-                Desen cu greșeală
+                Exemplu de quiz
             </figcaption>
         </figure>
-    </section>
-    <section id="interactiune-utilizator">
-        <h2>3. Maniera de interacţiune cu utilizatorul</h2>
-        <p>
-            <h3> Utilizatori obișnuiți </h3>
-            <p>
-                Interacțiunea dintre utilizator și aplicație se realizează diferit, în funcție de fiecare modul în parte.
-                Încărcarea unui modul se realizează prin selectarea acestuia din lista de module ce se găsește în partea dreaptă.
-                Pentru modulele default pe care le oferim drept exemplu - Canvas și Quiz - interacțiunea se va realiza prin
-                intermediul unui canvas în care userul își poate antrena abilitățile de caligrafie a literelor din limba japoneză.
-                Quiz este un modul de tip întrebări cu variante de răspuns, prin care userul își poate testa atât cunoștințele de
-                limbă, cât și cele generale despre cultura japoneză.
-            </p>
-            <h3> Dezvoltatori </h3>
-            <p>
-                Pentru cei ce doresc să aducă contribuții aplicației, facilităm acest lucru prin oferirea unui template
-                de dezvoltare, împreună cu exemple privitoare la implementarea unui modul. Astfel, oricine dorește să extindă
-                cu o anumită funcționalitate trebuie doar să urmeze convenția impusă de template, implementând un conținut pentru
-                zona efectiv interactivă a modulului, împreună cu maniera de utilizare, cât și să îi ofere un nume și un catchphrase,
-                ce vor apărea în sidebar-ul de module.
-            </p>
-            <p>
-                Explicit, componenta trebuie definită în json-ul comp.json. Aici, fiecare componentă va fi definită prin intermediul unui obiect care
-                va conține numele, descrierea care va apărea în meniul de selecție a modulelor, textul de pe buton și locația fișierelor sursă. Exemplu de
-                obiect descriind un modul ce va fi încărcat dinamic în cadrul aplicației:
-                <pre>
-{
-    "name": "quiz",
-    "description": "Bored of drawing letters? Do you consider yourself better than that?",
-    "button": "Evaluate yourself!",
-    "src": "../components/quiz/quiz.html"
-}
-                </pre>
-                Precizăm că am implementat încărcarea modulelor astfel încât dezvoltatorul să poată furniza modulele dorite din locații diverse.
-            </p>
-    </section>
 
-    <section id="model-api-stocare">
-        <h2>4. Modelul datelor, API-uri externe, soluţii de stocare</h2>
+        <h2> Stats </h2>
+
+        <figure typeof="sa:Image8">
+            <img src="img/draw_performance.PNG" style="width:720px;height:330px;display:inline;border: 2px solid black; transform: translateX(-2%);">
+            <figcaption align="center">
+                Exemplu de secțiune scor
+            </figcaption>
+        </figure>
+
+        <br/>
+
         <blockquote>
-            <h3> Yandex Translate API </h3>
             <p>
-                Am decis sa apelăm la acest API în defavoarea binecunoscutului Google Translate deoarece Google Cloud
-                Platform
-                obligă pe toți utilizatorii europeni ai platformei să își înregistreze un cont business. Cum aplicația
-                noastră este una lightweight și open-source am căutat alternative. Yandex Translate este un sistem de
-                traducere statistic
-                ce oferă în pachetul gratuit 1,000,000 de caractere pe zi dar nu mai mult de 10,000,000 pe lună, mai
-                mult decât suficient pentru traficul scontat pentru aplicația noastră.
-            </p>
-            <p>
-                Pentru a oferi un acces cât mai simplu la acest API și la funcționalitatea de traducere în special, am implementat o clasă care se ocupă cu
-                accesul la date (chiar și când aplicația funcționează în modul offline, spre exemplu). Așadar viitori dezvoltatori de module vor putea folosi
-                clasa și metodele într-un mod standardizat și sigur. Chiar și noi, am avut nevoie la ambele module-exemplu de traducere din japoneză și am putut
-                apela la această clasă.
+                Progresul utilizatorului va fi stocat local (incluzând numărul de zile consecutive în care acesta a utilizat aplicația,
+                scorul cumulat obținut pentru fiecare modul în fiecare zi pentru ultimele 7 zile), acesta putând fi vizualizat pe pagina
+                "Score". Aici, pentru fiecare modul, va exista câte o secțiune în cadrul căreia va fi afișat scorul obținut
+                în ziua curentă, dar și un grafic cu zilele precedente, cu ajutorul căruia utilizatorul își poate vizualiza și autoevalua
+                progresul.
             </p>
         </blockquote>
+
+        <figure typeof="sa:Image8">
+            <img src="img/draw_stats.PNG" style="width:320px;height:220px;display:inline;border: 2px solid black; transform: translateX(59%);">
+            <figcaption align="center">
+                Exemplu de punctaj
+            </figcaption>
+        </figure>
+
+        <br/>
+
         <blockquote>
-            <h3> Google Firebase </h3>
             <p>
-                Google Firebase vine cu o suită de tool-uri precum Google Functions, Google Hosting, Google
-                authentication pentru a folosi un instrument software aliniat problematicilor serverless și deci pentru
-                a ne concentra asupra interacțiunii cu utilizatorul la nivel de client.
-            </p>
-            <p>
-                Din acestea am ales serviciul de hosting pentru a putea testa live de pe multiple platforme dar și pentru a putea folosi
-                diverse tool-uri de testare performanță online despre care vom vorbi mai târziu. Site-ul poate fi accesat așadar la adresa
-                <a href="https://asle-b7a2d.firebaseapp.com/">https://asle-b7a2d.firebaseapp.com/</a>.
-            </p>
-            <p>
-                Deoarece am vrut să-i punem utilizatorului la dispoziție posibilitatea de a partaja progresul în aplicație pe Twitter, am avut
-                nevoie de o parte minimală de server. Nu am dorit să implementăm un server doar pentru această simplă funcționalitate și am decis
-                să folosim Google Functions, un serviciu aliniat problematicilor serverless. Implementarea părții de "backend" a constat în folosirea
-                pachetul <a href="https://github.com/ttezel/twit">twit</a> (furnizat de npm pentru node.js) pentru a trimite un request autorizat către twitter.
-                Am servit acest serviciu ca un API public pe care îl apelăm folosind apeluri AJAX de la nivelul clientului.<br>
-                Din păcate, pentru a putea hosta serviciul care face apeluri în afara serverului de Google ne-ar fi costat la nivel de apel. Așadar această
-                funcționalitate este disponibilă doar atunci când aplicația este rulată local.
+                Prin intermediul unui buton de Tweet, utilizatorul poate alege să își partajeze rezultatele cu follower-ii săi de pe
+                Twitter. Textul acestui tweet va fi unul prestabilit, ce va include punctajul obținut, denumirea modulului, un link către
+                pagină, dar și graficul pe care acesta îl vede pe pagină, pentru a face mesajul mai atractiv.
             </p>
         </blockquote>
-        <blockquote>
-            <h3> Jisho </h3>
-            <p>
-                Jisho este un dicționar japonez-englez căutarea putându-se face după cuvinte, kanji, exemple de
-                utilizare în propoziții rapid si ușor. Rezultatul oferit conține toate sensurile posibile, folosirea
-                termenului în diferite contexte și sinonime. Acest API va fi folosit la generarea de quiz-uri de
-                traducere și a transcrierii fonetice a cuvintelor din modulul pentru exersarea scrierii.
-                Deoarece API-ul oferit de cei de la Jisho nu permitea requesturi cross-domain, am fost nevoiți să utilizăm
-                un wrapper al acestuia din npm  - <a href="https://www.npmjs.com/package/unofficial-jisho-api">unofficial-jisho-api</a> - ce rulează pe partea de server și la care facem apeluri
-                pentru traduceri și transcrieri din diferitele tipuri de scrieri japoneze.
-            </p>
-        </blockquote>
-        <blockquote>
-            <h3> Twitter API</h3>
-            <p>
-                Vom folosi API-ul oferit de Twitter, eventual împreună cu tool-ul pus la dispoziție de Google Firebase
-                Authentication, pentru a-i oferi utilizatorului posibilitatea de a da share la progresul înregistrat în
-                aplicație pe rețeaua de socializare
-            </p>
-            <p>
-                Concret, am înregistrat aplicația la <a href="https://apps.twitter.com/">https://apps.twitter.com/</a>. Am primit două chei pentru a putea
-                folosi API-ul pus la dispoziție. Pentru partea de autentificare a userului înainte de posta ceva am recurs din nou la Firebase care are
-                implementată această logică, noi trebuind doar să setăm URL de callback după autentificare la un endpoint setat de Google. Când userul vrea
-                să posteze progresul se realizează un apel AJAX către API-ul construit cu Google Functions. Ca funcționalitate, am apelat funcțiile din pachetul
-                <a href="https://github.com/ttezel/twit">twit</a> (furnizat de npm pentru node.js) care sunt niște wrapper-ere peste endpointurile puse la dispoziție
-                de Twitter.
-            </p>
-        </blockquote>
-        <blockquote>
-            <h3> Local storage</h3>
-            <p>
-                Pentru stocarea progresului și a diferitelor informații folositoare despre utilizator am decis sa
-                folosim API-ul pus la dispoziție de HTML, Local Web Storage. Nu am recurs la cookie-uri deoarece ar
-                îngreuna cererile spre server dar și pentru că aceasta modalitate de stocarea a informațiilor este mai
-                sigură, multe date putând fi stocate local fără a afecta performanța site-ului.
-            </p>
-            <p>
-                În local storage am decis să stocăm pentru fiecare modul detalii referitoare la ultimul login, răspunsuri corecte sau zile consecutive în care
-                s-a răspuns corect. Așadar de fiecare dată când userul intră în aplicație, sau mai bine spus, când vrea sa utilizeze un modul, acel modul este
-                responsabil de o intrare din Local Storage. Aceste informații sunt extrase de pagina de scor unde sunt folosite pentru generarea progresului și a
-                diferitelor statistici. Totodată, funcțiile din Google Firebase Authentication își stochează informații despre userul logat
-                pentru a ne putea furniza id-ul utilizatorului care ne ajută să facem request-uri autentificate la API-ul pus la dispoziție de Twitter.
-            </p>
-            <p>
-                Pentru a veni în ajutorul dezvoltatorilor am implementat clasa Score acolo unde accesul la intrarea din Local Storage aferenta modului este centralizată.
-                Așadar, pentru a genera statistici relevante în pagina de scor, fiecare modul trebuie doar să instanțieze această clasă și să folosească metodele ușor
-                de utilizat și înțeles. În acest mod, oferim posibilitatea dezvoltatorilor modulelor de a se concetra strict pe funcționalitățile modului și nu pe modul
-                de stocare eficientă.
-            </p>
-        </blockquote>
-        <blockquote>
-            <h3> HTML Text to Speech </h3>
-            <p>
-                Pentru a oferi utilizatorilor un ghid în pronunția semnelor și a cuvintelor pe care le exersează
-                prin modulul Draw, am inclus, pe lângă transcrierea fonetică oferită de Jisho, un buton la a cărui
-                apăsare, utilizatorul poate asculta cum se pronunță cuvântul. Modulul folosește preset-ul pentru limba
-                japoneză, pentru o apropiere cât mai mare de modalitatea în care ar fi pronunțat de către un vorbitor real, nativ.
-            </p>
-        </blockquote>
-        <blockquote>
-            <h3> Service Worker </h3>
-            <p>
-                În scopul utilizării aplicației atât normal, online, cât și offline, am implementat un service worker ce
-                se instalează în mod automat pe dispozitivul client la prima încărcare a site-ului. Dacă este posibil, acesta
-                stocheaza local, în cache, toate dependențele necesare unei rulări aproape identice chiar și în lipsa unei conexiuni
-                la Internet, cu excepția serviciilor externe (e.g. butonul de Tweet, transcrierea fonetică). Astfel, majoritatea
-                flow-ului aplicației este disponibil indiferent de context, cât timp utilizatorul a intrat măcar o dată, în prealabil,
-                pe site.
-            </p>
-        </blockquote>
-        <blockquote>
-            <h3> HTML2Canvas </h3>
-            <p>
-                Pentru a face opțiunea de Tweet să transmită cât mai multe, într-o manieră cât mai captivantă,
-                am decis să utilizăm capacitatea Twitter-ului de a include imagini în conținutul tweet-urilor
-                împreună cu pagina destinată scorului și vizualizării progresului utilizatorului. Astfel, în momentul
-                în care un utilizator dorește să își partajeze scorul obținut pe un anumit modul cu follower-ii lui de
-                pe Twitter,
-            </p>
-        </blockquote>
-    </section>
-    <section id="cod-sursa">
-        <h2>5. Maniera de folosire a sistemului de management al codului-sursă ales</h2>
-        <p>Codul se afla la adresa <a href="https://github.com/ioanasitaru/CLIW">ASLE</a>. Din motive întemeiate,
-            repository-ul nu este încă public, însă după finalizarea cursului acesta va fi pus la dispoziția
-            utilizatorilor, dar și a viitorilor dezvoltatori.</p>
-    </section>
-    <section typeof="sa:AuthorsList" id="membrii-echipei">
-        <h2>6. Membrii echipei</h2>
-        <ol>
-            <li typeof="sa:ContributorRole" property="schema:author">
-                <a href="https://github.com/ioanasitaru" typeof="schema:Person">
-						<span property="schema:givenName">
-							Ioana
-						</span>
-                    <span property="schema:familyName">
-							Sitaru
-						</span>
-                </a>
-            </li>
-            <li typeof="sa:ContributorRole" property="schema:author">
-                <a href="https://github.com/stefan-matcovici" typeof="schema:Person">
-						<span property="schema:givenName">
-							Ștefan
-						</span>
-                    <span property="schema:familyName">
-							Matcovici
-						</span>
-                </a>
-            </li>
-            <li typeof="sa:ContributorRole" property="schema:author">
-                <a href="https://github.com/bogdanlupu" typeof="schema:Person">
-						<span property="schema:givenName">
-							Bogdan
-						</span>
-                    <span property="schema:familyName">
-							Lupu
-						</span>
-                </a>
-            </li>
-        </ol>
+
+        <figure typeof="sa:Image9">
+            <img src="img/tweet.PNG" style="width:720px;height:480px;display:inline;border: 2px solid black; transform: translateX(-2%);">
+            <figcaption align="center">
+                Exemplu de tweet
+            </figcaption>
+        </figure>
+
+
     </section>
 </article>
 </body>
