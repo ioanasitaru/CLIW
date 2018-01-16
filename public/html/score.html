@@ -25,6 +25,17 @@
     <link href="../css/about.css" rel="stylesheet">
     <link href="../css/score.css" rel="stylesheet">
     <link href="../css/index.css" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebPage",
+      "url": "https://asle-b7a2d.firebaseapp.com/html/score.html",
+      "name": "Score Page",
+      "description": "Here you can see your progress throughout all the modules and share it with your friends"
+    }
+
+    </script>
 </head>
 <body class="landing">
 <div id="page-wrapper">
@@ -35,7 +46,7 @@
         <!--<div class="vertical-line"></div>-->
         <nav id="nav">
             <ul>
-                <li><a href="about.html" id="home">Home</a></li>
+                <li><a href="../index.html" id="home">Home</a></li>
                 <li>
                     <a href="index.html" id="practice">Practice</a>
                 </li>
@@ -51,7 +62,21 @@
         <i class="fa fa-copyright" aria-hidden="true"></i> ASLE - CLIW 2017
     </p>
 </footer>
-<script src="../js/Score.js"></script>
+<script src="../js/html2canvas.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBz3REZO1eComp07sU_w8bHbTyRo6yRNdg",
+        authDomain: "asle-b7a2d.firebaseapp.com",
+        databaseURL: "https://asle-b7a2d.firebaseio.com",
+        projectId: "asle-b7a2d",
+        storageBucket: "asle-b7a2d.appspot.com",
+        messagingSenderId: "174054857729"
+    };
+    firebase.initializeApp(config);
+</script>
+<script src = "../js/Score.js" ></script>
 <script>
     tweet = function (module_name, score, scorePlace) {
         const provider = new firebase.auth.TwitterAuthProvider();
