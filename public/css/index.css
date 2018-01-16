@@ -146,14 +146,6 @@ label {
 	display: block;
 }
 
-footer {
-  margin-top: 80%;
-  height: 90px;
-  bottom:0;
-  top:60%;
-  /*position:absolute;*/
-}
-
 .submit {
   display: inline-block;
   width: 100px;
