@@ -5,29 +5,47 @@ class PronunciationService {
     }
 
     kanjnih(word) {
-    	let requestURL = this.endpoint + word;
-    	if (navigator.onLine) {
-            let xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-            
-            xhr.open('GET', requestURL, true);
-            xhr.onreadystatechange = function () {
-                    console.log(xhr.responseText);
-                    //success(JSON.parse(xhr.responseText).text[0]);
+		let decoder = new TextDecoder("utf-8");
+		let nihrom = this.nihrom;
+        return fetch('/api/jisho', {
+            mode: 'cors',
+			method: 'POST',
+			body: word
+        }).then(function(response) {
+            // console.log(response.type, response); // "opaque"
+			return response.body;
 
-            }
-            xhr.setRequestHeader('Content-Type', 'application/JSON');
-            xhr.send();
-            return xhr;
-        }
-    }
+        }).then(function(response) {
+            let reader = response.getReader();
+            let charsReceived = 0;
+            let result = [];
+            return reader.read().then(function processText({done, value}) {
+                if (done) {
+                    // console.log("Stream complete");
+                    return result;
+                }
+                charsReceived += value.length;
+                let wordDecoded = decoder.decode(value);
+                result += wordDecoded;
+				// console.log(wordDecoded);
+                // Read some more, and call this function again
+                return reader.read().then(processText);
+            });
+        }).then(function(response) {
+        	// console.log(response);
+        	return nihrom(response);
+		});
+    };
 
 	nihrom(car) {
-
+		// console.log(car);
 		car = car.replace(/ん/g, "n");
 		car = car.replace(/つ/g, "tsu");
+		car = car.replace(/っ/g, "tsu");
 		car = car.replace(/きゃ/g, "kya");
 		car = car.replace(/きゅ/g, "kyu");
 		car = car.replace(/きょ/g, "kyo");
+		car = car.replace(/ょ/g, "yo");
 		car = car.replace(/にゃ/g, "nya");
 		car = car.replace(/にゅ/g, "nyu");
 		car = car.replace(/にょ/g, "nyo");
@@ -250,7 +268,6 @@ class PronunciationService {
 		car = car.replace(/ッf/g, "ff");
 		car = car.replace(/ッj/g, "jj");
 		car = car.replace(/ッ/g, "\!");
-
 		return car;
 	}
 	
@@ -366,7 +383,7 @@ class PronunciationService {
 		car = car.replace(/yu/g, "ユ"); 
 		car = car.replace(/zu/g, "ズ"); 
 		car = car.replace(/u/g, "ウ");
-		
+		car = car.replace(/ー/g, " ");
 		return car;
 	}
 }

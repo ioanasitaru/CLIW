@@ -47,7 +47,6 @@ class Score {
         let history = this.getHistory();
         if (history) {
             let pastDate = new Date(history.lastLogin);
-
             if (today.toComparingString() !== pastDate.toComparingString()) {
                 history.todayScore = 0;
                 history.lastLogin = today.setDate(today.getDate());
@@ -96,11 +95,9 @@ class Score {
         if (tomorrow.toComparingString() === currentDate.toComparingString()) {
             history.streak++;
         }
-        else if (currentDate.toComparingString() !== pastDate.toComparingString()) {
-            history.streak = 0;
-            history.todayScore = score;
+        else {
+            history.streak = 1;
         }
-
         if (history.streak > history.maxStreak) {
             history.maxStreak = history.streak;
         }

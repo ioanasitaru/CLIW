@@ -102,8 +102,8 @@ function buildQuiz() {
 
     nextQuizButton.style.display = "none";
 
-    chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
-    chosenSet.push(questions[Math.round(Math.random() * questions.length)]);
+    chosenSet.push(questions[Math.floor(Math.random() * questions.length)]);
+    chosenSet.push(questions[Math.floor(Math.random() * questions.length)]);
 
 
     const word = dataService.getRandomWord();
@@ -114,67 +114,66 @@ function buildQuiz() {
     let translatedWord;
     dataService.translateText(word, translation => {
         translatedWord = translation;
-    });
 
-    console.log(translatedWord);
+        // console.log(translatedWord);
 
-    let translationQuestion;
-    translationQuestion = {
-        question: 'Choose the right translation for: ' + translatedWord,
-        answers: {
-            a: dataService.getRandomWord(),
-            b: dataService.getRandomWord(),
-            c: word
-        },
-        correctAnswer: "c"
-    };
+        let translationQuestion;
+        translationQuestion = {
+            question: 'Choose the right translation for: ' + translatedWord,
+            answers: {
+                a: dataService.getRandomWord(),
+                b: dataService.getRandomWord(),
+                c: word
+            },
+            correctAnswer: "c"
+        };
 
-    console.log(translationQuestion);
+        // console.log(translationQuestion);
 
-    chosenSet.push(translationQuestion);
+        chosenSet.push(translationQuestion);
 
-    console.log(chosenSet);
+        // console.log(chosenSet);
 
-    const output = [];
+        const output = [];
 
-    chosenSet.forEach((currentQuestion, questionNumber) => {
-
-        answers = [];
-        for (let letter in currentQuestion.answers) {
-
-            answers.push(
-                `<label>
+        chosenSet.forEach((currentQuestion, questionNumber) => {
+            // console.log(currentQuestion);
+            answers = [];
+            for (let letter in currentQuestion.answers) {
+                answers.push(
+                    `<label>
                  <input type="radio" name="question${questionNumber}" value="${letter}">
                   ${letter} :
                   ${currentQuestion.answers[letter]}
                </label>`
-            );
-        }
+                );
+            }
 
-        output.push(
-            `<div class="slide">
+            output.push(
+                `<div class="slide">
                <div class="question"> ${currentQuestion.question} </div>
                <div class="answers"> ${answers.join("")} </div>
              </div>`
-        );
-    })
-    ;
-    console.log(output);
-    quizContainer.innerHTML = output.join("");
+            );
+        })
+        ;
+        // console.log(output);
+        quizContainer.innerHTML = output.join("");
 
-    score = 0;
+        score = 0;
 
-    currentSlide = 0;
-    slides = document.querySelectorAll(".slide");
+        currentSlide = 0;
+        slides = document.querySelectorAll(".slide");
 
-    showSlide(0);
+        showSlide(0);
 
-    resultsContainer.innerHTML = " ";
+        resultsContainer.innerHTML = " ";
 
-    submitButton.addEventListener("click", showResults);
-    previousButton.addEventListener("click", showPreviousSlide);
-    nextButton.addEventListener("click", showNextSlide);
-    nextQuizButton.addEventListener("click", buildQuiz);
+        submitButton.addEventListener("click", showResults);
+        previousButton.addEventListener("click", showPreviousSlide);
+        nextButton.addEventListener("click", showNextSlide);
+        nextQuizButton.addEventListener("click", buildQuiz);
+    });
 }
 
 function showResults() {

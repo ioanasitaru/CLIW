@@ -2,10 +2,10 @@ const module_name = "draw";
 
 // Keep track of the old/last position when drawing a line
 // We set it to -1 at the start to indicate that we don't have a good value for it yet
-var lastX, lastY = -1;
+let lastX, lastY = -1;
 
 // Variables to keep track of the touch position
-var touchX, touchY;
+let touchX, touchY;
 
 // Variables for referencing the canvas and 2dcanvas context
 let canvas, ctx;
@@ -15,6 +15,7 @@ let mouseX, mouseY, mouseDown = 0;
 // Parameters are: A canvas context, the x position, the y position, the size of the dot
 
 let translatedWord;
+let currentWord;
 
 let initialPath;
 
@@ -157,7 +158,7 @@ function getTouchPos(e) {
 
 
 function isVisited(X, Y) {
-    console.log({X, Y});
+    // console.log({X, Y});
     let i;
 
     for (i = 0; i < visited.length; i++) {
@@ -166,7 +167,7 @@ function isVisited(X, Y) {
         }
     }
     visited.push({X, Y});
-    console.log(visited);
+    // console.log(visited);
     return false;
 }
 
@@ -242,14 +243,18 @@ function init() {
 function generateWord() {
     let dService = new DataService();
     let randomWord = dService.getRandomWord();
-
     let pService = new PronunciationService();
 
-
-
-    document.getElementById("translation").innerHTML = randomWord;
-
-    let japaneseEquivalent = dService.translateText(randomWord, word => { pService.kanjnih(word);
+    let japaneseEquivalent = dService.translateText(randomWord, word => {
+        if (navigator.onLine) {
+            pService.kanjnih(word).then(function (phoneticWord) {
+                document.getElementById('translation').innerText = phoneticWord;
+                currentWord = phoneticWord;
+            });
+        } else {
+            document.getElementById('translation').innerText = "Not available (offline)";
+            currentWord = "Offline";
+        }
         translatedWord = word;
         let fontSize = 150;
         ctx.font = "bold " + fontSize + "px Arial";
@@ -259,11 +264,10 @@ function generateWord() {
         }
         ctx.font = "bold " + fontSize + "px Arial";
         ctx.globalAlpha = 0.2;
-        console.log(ctx.measureText(word).height);
         ctx.fillText(word, canvas.width / 2 - ctx.measureText(word).width / 2, canvas.height / 2 + fontSize / 3);
         score = 0;
         initialPath = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        console.log(initialPath.length, initialPath);
+        // console.log(initialPath.length, initialPath);
         ctx.globalAlpha = 1;
     });
 }
@@ -275,6 +279,8 @@ function submitResult() {
 
     document.getElementById('result').innerHTML = "You just scored: " + score + "!";
 
+    document.getElementById('translation').innerText = "fetching...";
+
     setTimeout(function () {
         document.getElementById('result').style.visibility = 'hidden';
     }, 2000);
@@ -283,4 +289,10 @@ function submitResult() {
     canvas.width = canvas.width;
 
     generateWord();
+}
+
+function pronounce() {
+    const msg = new SpeechSynthesisUtterance(currentWord);
+    msg.lang = 'ja-JP';
+    window.speechSynthesis.speak(msg);
 }
