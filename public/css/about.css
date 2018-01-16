@@ -857,9 +857,9 @@ header h2 + p {
         min-width: 320px;
     }
 
-    body {
-        font-size: 16pt;
-    }
+    /*body {*/
+        /*font-size: 16pt;*/
+    /*}*/
 
     header h2 + p {
         font-size: 2em !important;
