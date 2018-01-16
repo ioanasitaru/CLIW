@@ -24,9 +24,9 @@
 
     <title>ASLE</title>
 
-    <link href="../css/about.css" rel="stylesheet">
-    <link href="../css/score.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/about.min.css" rel="stylesheet">
+    <link href="../css/score.min.css" rel="stylesheet">
+    <link href="../css/index.min.css" rel="stylesheet">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 
     <script type="application/ld+json">
@@ -46,7 +46,6 @@
         <a href="#" id="logo-link">
             <img src="../img/favicon-96x96.png" id="logo" alt="asle-logo">
         </a>
-        <!--<div class="vertical-line"></div>-->
         <nav id="nav">
             <ul>
                 <li><a href="../index.html" id="home">Home</a></li>
@@ -70,7 +69,9 @@
                     </div>
                 </div>
                 <div id="right-side">
-                    <div id="progress-image"><img src="../img/level4.png" alt="max-progress"></div>
+                    <div id="progress-image">
+                        <img src="../img/level4.png" alt="progress level" id="prog">
+                    </div>
                     <div id="side-bar-buttons">
                         <hr>
                         <section id="references">
@@ -88,10 +89,22 @@
     </div>
 </div>
 </body>
-<script src="../js/ModuleLoader.js"></script>
-<script src="../js/DataService.js"></script>
-<script src="../js/Score.js"></script>
+<script src="../js/ModuleLoader.min.js"></script>
+<script src="../js/DataService.min.js"></script>
+<script src="../js/Score.min.js"></script>
 <script src="../comp.json"></script>
+<script>
+    let image = document.getElementById('prog');
+    let dayArrayLen = localStorage.getItem('dayArray') ? JSON.parse(localStorage.getItem('dayArray')).length : 0;
+    if (dayArrayLen < 5)
+        image.setAttribute("src", "../img/level1.png");
+    else if (dayArrayLen < 10)
+        image.setAttribute("src", "../img/level2.png");
+    else if (dayArrayLen < 15)
+        image.setAttribute("src", "../img/level3.png");
+    else
+        image.setAttribute("src", "../img/level4.png");
+</script>
 <script>mLoader = new ModuleLoader("changeable_content");</script>
 <script>
     String.prototype.capitalize = function () {
@@ -133,7 +146,7 @@
     if ('serviceWorker' in navigator) {
         // console.log("Beam me up");
         navigator.serviceWorker
-            .register('/service-worker.js')
+            .register('/service-worker.min.js')
             .then(function () { /*console.log("Service Worker Registered");*/
             });
     }

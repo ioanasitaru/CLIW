@@ -1,6 +1,6 @@
 const module_name = "quiz";
 
-let score;
+let score = 0;
 
 let totalAnswers = 0;
 

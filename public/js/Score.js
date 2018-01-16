@@ -9,6 +9,16 @@ class Score {
             return month + '.' + day + '.' + year;
         };
 
+        if (!localStorage.getItem('dayArray')) {
+            localStorage.setItem('dayArray',JSON.stringify([new Date().toComparingString()]));
+        } else {
+            let dayArray = JSON.parse(localStorage.getItem('dayArray'));
+            if (dayArray.indexOf(new Date().toComparingString()) < 0) {
+                dayArray.push(new Date().toComparingString());
+            }
+            localStorage.setItem('dayArray',JSON.stringify(dayArray));
+        }
+
         this.moduleName = moduleName;
         this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         this.blankHistory = {
