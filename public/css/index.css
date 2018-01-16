@@ -151,7 +151,7 @@ footer {
   height: 90px;
   bottom:0;
   top:60%;
-  position:absolute;
+  /*position:absolute;*/
 }
 
 .submit {
