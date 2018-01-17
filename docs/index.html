@@ -3,7 +3,7 @@
 <head>
     <title>Documentatie Asle - Asian Language Learning Web Tool</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body prefix="schema: http://schema.org/">
 <article typeof="schema:ScholarlyArticle" resource="#">
@@ -29,23 +29,25 @@
                 <li><a href="#idei-concepte-design">2. Idei/concepte importante privind designul general</a></li>
                 <li><a href="#interactiune-utilizator">3. Maniera de interacţiune cu utilizatorul</a></li>
                 <li><a href="#model-api-stocare">4. Modelul datelor, API-uri externe, soluţii de stocare</a></li>
-                <li><a href="#cod-sursa">5. Maniera de folosire a sistemului de management al codului-sursă ales</a>
-                </li>
-                <li><a href="#membrii-echipei">6. Membrii echipei</a></li>
+                <li><a href="#testare">5. Testare și benchmarking</a></li>
+                <li><a href="#cod-sursa">6. Maniera de folosire a sistemului de management al codului-sursă ales</a></li>
+                <li><a href="#membrii-echipei">7. Membrii echipei</a></li>
             </ul>
             <!--</p>-->
         </aside>
     </section>
     <section typeof="sa:Results" id="descrierea-proiectului">
         <h2>1. Descrierea proiectului</h2>
-        <p>
-            Ideea proiectul este de a concepe un instrument Web care să asiste utilizatorul în procesul de învăţare a
-            simbolurilor unei
-            limbi asiatice precum japoneza sau coreeana. Aplicaţia va ghida utilizatorul să deseneze cu succes
-            simbolurile în ordinea corectă, cu posibilitatea de a oferi echivalentul lor în alfabetul roman. Pe baza
-            unor extensii, vor fi oferite diverse lecţii/exerciţii de scriere, plus resurse de interes disponibile
-            online. Progresul înregistrat va putea fi partajat în cadrul unei reţele sociale.
-        </p>
+        <blockquote>
+            <p>
+                Ideea proiectul este de a concepe un instrument Web care să asiste utilizatorul în procesul de învăţare a
+                simbolurilor unei
+                limbi asiatice precum japoneza sau coreeana. Aplicaţia va ghida utilizatorul să deseneze cu succes
+                simbolurile în ordinea corectă, cu posibilitatea de a oferi echivalentul lor în alfabetul roman. Pe baza
+                unor extensii, vor fi oferite diverse lecţii/exerciţii de scriere, plus resurse de interes disponibile
+                online. Progresul înregistrat va putea fi partajat în cadrul unei reţele sociale.
+            </p>
+        </blockquote>
     </section>
     <section id="idei-concepte-design">
         <h2>2. Idei/concepte importante privind designul general</h2>
@@ -100,7 +102,7 @@
     </section>
     <section id="interactiune-utilizator">
         <h2>3. Maniera de interacţiune cu utilizatorul</h2>
-        <p>
+        <blockquote>
             <h3> Utilizatori obișnuiți </h3>
             <p>
                 Interacțiunea dintre utilizator și aplicație se realizează diferit, în funcție de fiecare modul în parte.
@@ -110,6 +112,8 @@
                 Quiz este un modul de tip întrebări cu variante de răspuns, prin care userul își poate testa atât cunoștințele de
                 limbă, cât și cele generale despre cultura japoneză.
             </p>
+        </blockquote>
+        <blockquote>
             <h3> Dezvoltatori </h3>
             <p>
                 Pentru cei ce doresc să aducă contribuții aplicației, facilităm acest lucru prin oferirea unui template
@@ -131,7 +135,7 @@
 }
                 </pre>
                 Precizăm că am implementat încărcarea modulelor astfel încât dezvoltatorul să poată furniza modulele dorite din locații diverse.
-            </p>
+        </blockquote>
     </section>
 
     <section id="model-api-stocare">
@@ -257,14 +261,41 @@
             </p>
         </blockquote>
     </section>
+    <section id="testare">
+        <h2> 5. Testare și benchmarking </h2>
+        <blockquote>
+            <h3> Testare </h3>
+            <p>
+                Pentru testarea aplicației am recurs la soluții de testare automată, prin intermediul frameworkului
+                de testare automată <a href="http://www.seleniumhq.org/">Selenium</a>. Cu acesta, am creat flow-uri de test
+                cât mai cuprinzătoare pentru toate funcționalitățile aplicației.
+            </p>
+        </blockquote>
+        <blockquote>
+            <h3> Benchmarking </h3>
+            <p>
+                Pentru a asigura o experiență cât mai plăcută a utilizării aplicației, am folosit
+                <a href="https://developers.google.com/web/tools/lighthouse/">Google Lighthouse</a> pentru o evaluare
+                automată a timpilor de încărcare dar și a gradului de aderare la standardele actuale în dezvoltarea de aplicații
+                Web. Astfel, am îmbunătățit performanța paginii prin minificarea codului <a href="https://skalman.github.io/UglifyJS-online/">JavaScript</a>,
+                <a href="https://www.minifier.org/">CSS</a>, și <a href="https://www.willpeavy.com/minifier/">HTML</a>, prin compresia
+                imaginilor la dimensiunile la care sunt afișate, și prin <a href="https://uncss-online.com/">eliminarea automată a codului CSS redundant</a>.
+                Totodată, conținutul HTML este adnotat conform standardelor <a href="https://schema.org/">schema.org</a> cu metadatele corespunzătoare.
+            </p>
+        </blockquote>
+    </section>
     <section id="cod-sursa">
-        <h2>5. Maniera de folosire a sistemului de management al codului-sursă ales</h2>
-        <p>Codul se afla la adresa <a href="https://github.com/ioanasitaru/CLIW">ASLE</a>. Din motive întemeiate,
+        <h2>6. Maniera de folosire a sistemului de management al codului-sursă ales</h2>
+        <blockquote>
+        <p>
+            Codul se afla la adresa <a href="https://github.com/ioanasitaru/CLIW">ASLE</a>. Din motive întemeiate,
             repository-ul nu este încă public, însă după finalizarea cursului acesta va fi pus la dispoziția
-            utilizatorilor, dar și a viitorilor dezvoltatori.</p>
+            utilizatorilor, dar și a viitorilor dezvoltatori.
+        </p>
+        </blockquote>
     </section>
     <section typeof="sa:AuthorsList" id="membrii-echipei">
-        <h2>6. Membrii echipei</h2>
+        <h2>7. Membrii echipei</h2>
         <ol>
             <li typeof="sa:ContributorRole" property="schema:author">
                 <a href="https://github.com/ioanasitaru" typeof="schema:Person">
