@@ -108,14 +108,10 @@ function buildQuiz() {
 
     const word = dataService.getRandomWord();
 
-    // const shuffled = array.sort(() => .5 - Math.random());// shuffle  
-    // let selected =shuffled.slice(0,n) ; //get sub-array of first n elements AFTER shuffle
-
     let translatedWord;
     dataService.translateText(word, translation => {
         translatedWord = translation;
 
-        // console.log(translatedWord);
 
         let translationQuestion;
         translationQuestion = {
@@ -128,11 +124,9 @@ function buildQuiz() {
             correctAnswer: "c"
         };
 
-        // console.log(translationQuestion);
 
         chosenSet.push(translationQuestion);
 
-        // console.log(chosenSet);
 
         const output = [];
 
@@ -155,9 +149,8 @@ function buildQuiz() {
                <div class="answers"> ${answers.join("")} </div>
              </div>`
             );
-        })
-        ;
-        // console.log(output);
+        });
+
         quizContainer.innerHTML = output.join("");
 
         score = 0;
